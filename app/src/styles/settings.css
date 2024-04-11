@@ -1,0 +1,199 @@
+.title {
+    font-family: CooperTT_Blk_BT, 'Roboto', 'Segoe UI', sans-serif;
+    font-size: 24px;
+    margin-left: 12px;
+    user-select: none;
+    text-align: left;
+    line-height: 16px;
+}
+
+#settings-background {
+    padding-top: 12px;
+    padding-right: 12px;
+    margin: 12px;
+    border-radius: 12px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#settings-item {
+    display: flex;
+    align-items: center;
+  }
+  
+.text {
+    font-family: Arial_Rounded_MT_Pro, 'Roboto', 'Segoe UI', sans-serif;
+    font-size: 16px;
+    padding-left: 12px;
+    user-select: none;
+}
+
+.information {
+    width: 12px;
+    height: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    border-radius: 60px;
+    margin-left: 4px;
+    font-family: CooperTT_Blk_BT, 'Roboto', 'Segoe UI', sans-serif;
+    user-select: none;
+  }
+
+.information:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+/* button design from github button */
+#change-theme-button {
+  appearance: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+/* switch design from w3schools */
+.switch {
+    position: relative;
+    width: 60px;
+    height: 34px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: auto; 
+    margin-right: 0;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    transition: .4s;
+}
+  
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+.select-menu {
+  position: relative;
+  width: 60px;
+  height: 34px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: auto; 
+  margin-right: 0;
+}
+
+select {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  right: 0;
+  border-radius: 34px;
+  border-width: 2px;
+  /*border-color: #2196F3;*/
+  /*opacity: 0.8;*/
+  text-align: center;
+}
+
+#aspect-ratio-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#restore-default-settings-button {
+  appearance: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+.social-icons {
+  width: 32px;
+  height: 32px;
+}
+
+.social-container {
+  margin-left: 8px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.social-name {
+  font-family: CooperTT_Blk_BT, 'Roboto', 'Segoe UI', sans-serif;
+  font-size: 12px;
+  position: absolute;
+  bottom: calc(-10px);
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.social-container:hover {
+  transform: translateY(-10px);
+}
+
+.social-container:hover .social-name {
+  opacity: 1;
+}

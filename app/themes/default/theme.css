@@ -1,0 +1,164 @@
+/* MAIN */
+#titlebar {
+    background-image: linear-gradient(90deg, #e4d4b8, #ddd5b6);
+}
+
+body {
+    background-image: linear-gradient(90deg, #F0E1C4, #E1DAC1);
+}
+
+.background {
+    background-image: linear-gradient(90deg, #fceed2, #f1ebd4);
+}
+
+/* TEXT */
+#window-title {
+    color: #000000;
+}
+
+.text {
+    color: #000000;
+}
+
+.title {
+    color: #000000;
+}
+
+
+.theme-name,
+.theme-description,
+.theme-author,
+.theme-modified {
+    color: #000000;
+}
+
+
+/* MENU */
+#menu {
+    background-color: #faedd2;
+}
+
+.menu-item {
+    background-color: #d6be92;
+    border-bottom: 2px #a1885d solid;
+}
+
+.menu-item:hover, 
+.menu-item-small:hover {
+    background-color: #c9ae7d;
+}
+
+.menu-item:active,
+.menu-item-small:active {
+    background-color: #b49a69;
+}
+
+.menu-item-small {
+    background-color: #d6be92;
+    border-bottom: 2px #a1885d solid;
+}
+
+
+/* SETTINGS */
+.information {
+    border: #002983 solid 1px;
+    color: #002983;
+}
+
+#change-theme-button {
+    background-color: #2ea44f;
+    border: 1px solid rgba(27, 31, 35, .15);
+    color: #fff;
+}
+
+#change-theme-button:hover{
+    background-color: #2c974b;
+}
+
+.slider {
+    background-color: #ccc;
+}
+  
+.slider:before {
+    background-color: white;
+}
+  
+input:checked + .slider {
+    background-color: #2196F3;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+#restore-default-settings-button {
+    background-color: #b60a0a;
+    border: 1px solid rgba(27, 31, 35, .15);
+    color: #fff;
+}
+
+#restore-default-settings-button:hover{
+    background-color: #920202;
+}
+
+#aspect-ratio-text {
+    color: #000000;
+}
+
+select {
+    box-shadow: #2196F3 2px 2px;
+}
+
+/* THEME BROWSER */
+#theme-item {
+    background-image: linear-gradient(90deg, #f0dab4, #dacfa9);
+}
+
+.use-theme-button {
+    background-color: #2ea44f;
+    border: 1px solid rgba(27, 31, 35, .15);
+    color: #fff;
+}
+
+.use-theme-button:hover{
+    background-color: #2c974b;
+}
+
+.edit-theme-button {
+    background-color: #1b46d3;
+    border: 1px solid rgba(27, 31, 35, .15);
+    color: #fff;
+}
+
+.edit-theme-button:hover{
+    background-color: #1a39a0;
+}
+
+.delete-theme-button {
+    background-color: #b60a0a;
+    border: 1px solid rgba(27, 31, 35, .15);
+    color: #fff;
+}
+
+.delete-theme-button:hover{
+    background-color: #920202;
+}
+
+#create-theme-button {
+    background-color: #2ea44f;
+    border: 1px solid rgba(27, 31, 35, .15);
+    color: #fff;
+}
+
+#infobox-in-app {
+    border-bottom: 2px solid rgba(179, 150, 101, 0.5);
+}
+
+/* UPDATER */
+#update-body {
+    background-color: rgb(20, 37, 54);
+}
+
+.update-text {
+    color: white;
+}

@@ -1,5 +1,6 @@
 # GGReborn-App
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://choosealicense.com/licenses/mit/) [![LATEST](https://img.shields.io/badge/latest-UNKNOWN-blue?style=flat)](https://img.shields.io/badge/latest-UNKNOWN-blue)
+
 Simple, customizable client with built in flash player to play GoodGame Café, Disco and Fashion.
 
 ## About the project
@@ -7,8 +8,11 @@ Missing
 
 ## How to install
 Download the latest version from [here](https://github.com/GGR-Devs/GGReborn-App/releases)
+
 If you downloaded the installer: open it, and follow the steps.
+
 If you downloaded the portable: unzip it, then enter the directory.
+
 After you can start the app by clicking on the GGReborn file.
 
 #### Run Locally
@@ -24,7 +28,7 @@ To run the app, use the following command:
 ```
 npm run start
 ```
-or
+or (if you installed yarn)
 ```
 yarn start
 ```

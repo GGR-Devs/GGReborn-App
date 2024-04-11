@@ -1,0 +1,10 @@
+{
+      "name": "Melting Butter (Default)",
+      "id": "default",
+      "description": "Default app theme",
+      "author": "GGReborn",
+      "created": "18-01-24",
+      "modified": "03-02-24",
+      "themepath": "default/theme.css",
+      "thumbnail": "default/preview.png"
+    }

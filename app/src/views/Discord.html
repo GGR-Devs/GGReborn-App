@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title>Discord</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" type="text/css" id="active-theme" href="theme.css">
+    <link rel="stylesheet" type="text/css" href="../styles/game.css">
+    <link rel="stylesheet" type="text/css" href="../../themes/default/theme.css">
+  </head>
+  <body style="margin:0;overflow:hidden">
+    <header id="titlebar">
+      <div id="drag-region">
+        <div id="window-title">
+          <span>GoodGame Café Reborn</span>
+        </div>
+        </div>
+        <div id="window-controls">
+          <div class="button" id="min-button" title="Minimize" style="display: none;">
+          </div>
+          <div class="button" id="close-button" title="Close">
+            <img src="../assets/buttons/close.png" class="icon" draggable="false">
+          </div>
+        </div>
+      </div>
+    </header>
+    <webview id="game" src="https://discord.com/servers/goodgame-cafe-reborn-921065979591667802/" autosize="on" style="width:100%;height:100%"></webview>
+    <script>
+        let titlebar_height = getComputedStyle(document.documentElement).getPropertyValue('--height');
+  
+        function resizeFlashObject() {
+          var game = document.getElementById('game');
+          var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+          var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+          game.style.width = windowWidth + 'px';
+          game.style.height = windowHeight - titlebar_height.slice(0, -2) + 'px';
+        }
+        window.addEventListener('resize', function() {
+          resizeFlashObject();
+        });
+        // Initial resizing
+        resizeFlashObject();
+        require('../scripts/renderer.js')
+      </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+#update-body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: auto;
+    max-width: 38rem;
+    padding: 2rem;
+}
+
+#app-icon {
+    width: 90%;
+    -webkit-app-region: drag;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    border-radius: 16px;
+}
+
+#container {
+    position: relative;
+    top: 0%;
+    left: 25%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    width: 50%;
+    height: 50%;
+    overflow: hidden;
+}
+
+#update-alert {
+    font-size: 24px;
+}
+
+#update-status-text {
+    font-size: 16px;
+}
+
+.update-text {
+    position: relative;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+

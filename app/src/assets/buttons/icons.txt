@@ -1,0 +1,15 @@
+discord
+menu
+password
+reload_page
+settings
+facebook_colorized
+facebook_dark
+github_dark
+github_light
+x_dark
+x_light
+info_colorized
+info_dark
+
+by icons8.com
