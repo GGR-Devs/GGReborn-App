@@ -66,6 +66,6 @@ function handleWindowControls() {
     // }
 }
 
-function log(type, message) {
-    ipcRenderer.send('log', type, message);
+function log(event, message) {
+    ipcRenderer.send('log', event, message);
 }

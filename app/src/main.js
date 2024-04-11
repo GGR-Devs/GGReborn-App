@@ -1,36 +1,6 @@
 const { app, BrowserWindow, ipcMain, screen, dialog } = require('electron');
 const path = require("path");
-
-// will be moved to config.js
-// 4:3
-const resolutions = {
-  a: '640x480',
-  b: '800x600',
-  c: '960x720',
-  d: '1024x768',
-  e: '1152x864',
-  f: '1280x960',
-  g: '1440x1050',
-  h: '1440x1080',
-  i: '1600x1200',
-  j: '1856x1392',
-  k: '1920x1440'
-}
-
-// will be moved to config.js
-const appConfig = {
-  startMaximized: false,
-  enableSplash: true,
-  fasterSplash: true,
-  customResolution: resolutions.b,
-  appTheme: 'default',
-  defaultGame: 'Cafe',
-  enableDiscordRichPresence: true,
-  updateDiscordRichPresence: true,
-  autoUpdate: true,
-  storeLogs: false,
-  appVersion: '0.0.1'
-}
+const settings = require('../src/scripts/settings');
 
 const childWindowState = {
   isClosed: true,
@@ -39,6 +9,10 @@ const childWindowState = {
 
 log('INFO', 'App started');
 log('INFO', `Platform: ${process.platform}`)
+settings.loadAppConfig();
+
+appConfig = settings.appConfig
+
 log('INFO', '----------APP CONFIG----------');
 for (const key in appConfig) {
   if (Object.hasOwnProperty.call(appConfig, key)) {
@@ -284,7 +258,8 @@ ipcMain.on('openWindow', (event, windowOptions) => {
 
           childWindow.focus();
       });
-      }
+    
+    }
       else {
         log('INFO', 'Showing the opened child window')
         childWindow.focus();
