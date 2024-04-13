@@ -1,5 +1,5 @@
 {
-  "name": "GGReborn",
+  "name": "GGRebornApp",
   "version": "0.0.2",
   "description": "Simple, customizable client with built in flash player to play GoodGame Café, Disco and Fashion.",
   "main": "app/src/main.js",
@@ -20,6 +20,7 @@
     "appId": "com.ggreborn.app",
     "productName": "GGRebornApp",
     "win": {
+      "target": "nsis",
       "icon": "./app/icons/icon.ico",
       "extraResources": [
         {
