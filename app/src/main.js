@@ -1,6 +1,12 @@
 const { app, BrowserWindow, ipcMain, screen, dialog } = require('electron');
+const { autoUpdater, appUpdater } = require("electron-updater")
 const path = require("path");
-const settings = require('../src/scripts/settings');
+
+autoUpdater.autoDownload = false // Don't download without asking the user
+autoUpdater.autoInstallOnAppQuit = true
+
+const { appConfig } = require('../src/scripts/settings');
+const { title } = require('process');
 
 const childWindowState = {
   isClosed: true,
@@ -9,9 +15,6 @@ const childWindowState = {
 
 log('INFO', 'App started');
 log('INFO', `Platform: ${process.platform}`)
-settings.loadAppConfig();
-
-appConfig = settings.appConfig
 
 log('INFO', '----------APP CONFIG----------');
 for (const key in appConfig) {
@@ -52,6 +55,7 @@ app.commandLine.appendSwitch("ignore-certificate-errors");
 let splashWin;
 let mainWin;
 let childWindow;
+let updateAvaliable = false;
 
 function isAsar() {
   return __filename.includes('.asar');
@@ -90,50 +94,6 @@ function createSplash() {
   }
 }
 
-function isLatest() {
-  /*newVersion = '1.2.0';
-
-  if (appConfig.appVersion != newVersion) {
-    log('INFO', 'App is not the latest!');
-    return false;
-  }
-  log('INFO', 'App is the latest!');
-  */
-  return true;
-
-}
-
-function appUpdate() {
-  /*
-  createUpdate();
-  const options = {
-    type: 'question',
-    buttons: ['Close', 'Continue'],
-    defaultId: 2,
-    title: 'App update',
-    message: 'App updated!',
-    detail: 'Please close the app, and launch it again to apply all new updates!'
-  };
-
-  log('INFO', 'Starting the update');
-  log('INFO', 'Downloading the new version...');
-  log('INFO', 'New version downloaded!');
-  dialog.showMessageBox(null, options).then(data => {
-    console.log(data.response)
-    switch (data.response) {
-      case 0:
-        app.quit();
-        break;
-      case 1:
-        createSplash();
-        createMain();
-        childWindow.close();
-        break;
-    }
-    });
-*/
-}
-
 function createMain() {
   log('INFO', 'Creating main window');
   mainWin = new BrowserWindow({
@@ -157,7 +117,7 @@ function createMain() {
 }
 
 function createUpdate() {
-  /*log('INFO', 'Creating update window');
+  log('INFO', 'Creating update window');
   childWindow = new BrowserWindow({
       width: 300,
       height: 350,
@@ -173,11 +133,81 @@ function createUpdate() {
     log('INFO', 'Update window ready to show')
     childWindow.show();
     });
-    */
 }
 
 app.whenReady().then(() => {
-  if (isLatest()) {
+  if (appConfig.autoUpdate) {
+  autoUpdater.checkForUpdates();
+
+  log('INFO', 'Checking for updates');
+  autoUpdater.on('update-available', () => {
+    log('INFO', 'A new version is avaliable!');
+    updateAvaliable = true;
+  });
+
+  autoUpdater.on('update-not-available', () => {
+    log('INFO', 'Using latest version');
+  });
+
+  autoUpdater.on('error', (e) => {
+    log('ERROR', e);
+  });
+
+  if (updateAvaliable) {
+    const options = {
+      type: 'question',
+      buttons: ['Later', 'Install'],
+      defaultId: 2,
+      title: 'App update',
+      message: 'An app update is avaliable!',
+      detail: 'Would you like to install the new version now, or install it later?',
+    };
+
+    dialog.showMessageBox(mainWin, options).then(data => {
+      switch (data.response) {
+        case 0:
+          log('INFO', 'User choosed to install it later');
+          if (appConfig.enableSplash) {
+            log('INFO', 'Splash screen enabled!');
+            createSplash();
+        }
+        createMain();
+        if (!appConfig.enableSplash) {
+            setTimeout(() => {
+                mainWin.show();
+                log('INFO', 'Main window show');
+                mainWin.focus();
+            }, 100);
+        };
+          break;
+        case 1:
+          log('INFO', 'User choosed to install the new update');
+          createUpdate();
+
+          let path = autoUpdater.downloadUpdate();
+          log('INFO', path);
+
+            log('INFO', 'Update downloaded!');
+            dialog.showMessageBox(
+              null,
+              {
+              buttons: ['OK'],
+              title: 'App update',
+              message: 'Update downloaded!',
+              detail: 'To apply the new update, the app need to be closed, and launch it again, to install the new update.',
+              }
+            ).then(data => {
+              if (data.response == 0) {
+                app.quit();
+              }
+            })
+          break;
+      };
+      });
+    };
+  };
+
+  if (!updateAvaliable) {
   if (appConfig.enableSplash) {
       log('INFO', 'Splash screen enabled!');
       createSplash();
@@ -189,17 +219,14 @@ app.whenReady().then(() => {
           log('INFO', 'Main window show');
           mainWin.focus();
       }, 100);
-  }
+  };
+};
 
   app.on('activate', () => {
       if (BrowserWindow.getAllWindows().length === 0) {
           createWindow();
       }
   });
-}
-else {
-  appUpdate();
-}
 });
 
 app.on('window-all-closed', () => {

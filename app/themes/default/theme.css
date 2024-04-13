@@ -155,10 +155,6 @@ select {
 }
 
 /* UPDATER */
-#update-body {
-    background-color: rgb(20, 37, 54);
-}
-
 .update-text {
-    color: white;
+    color: black;
 }

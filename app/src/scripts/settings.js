@@ -43,8 +43,7 @@ const appConfig = {
     enableDiscordRichPresence: true, // Enable rich presence
     updateDiscordRichPresence: true, // Update realtime the rich presence
     autoUpdate: true, // On launch the app checks the latest version. If the current version is different, the app will update
-    storeLogs: false, // Enable this to store logs
-    appVersion: '0.0.1'
+    storeLogs: false // Enable this to store logs
 }
 
 const userPath = (electron.app || electron.remote.app).getPath('userData');
@@ -111,4 +110,5 @@ function log(level, message) {
     console.log(`[${level}] ${message}`);
 }
 
+loadAppConfig();
 module.exports = { loadAppConfig, appConfig, resolutions }

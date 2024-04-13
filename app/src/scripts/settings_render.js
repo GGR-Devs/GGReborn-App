@@ -1,22 +1,28 @@
-let start_maximized = document.getElementById('start-maximized');
-let enable_splash = document.getElementById('enable-splash');
-let fast_splash = document.getElementById('faster-splash');
-let enable_discord = document.getElementById('enable-discord');
-let update_discord = document.getElementById('update-discord');
-let auto_update = document.getElementById('auto-update');
-let enable_logs = document.getElementById('enable-logs');
+const { app } = require('electron');
+const { appConfig } = require('./settings');
 
 handleControls();
 
-function setSettings(switchId, enabled) {
-    const switchElement = document.getElementById(switchId);
-    if (switchElement) {
-        switchElement.checked = enabled;
+function setSettings(settingId, value) {
+    const setting = document.getElementById(settingId);
+    if (setting) {
+        setting.checked = value;
+    }
+}
+
+function setSelection(selectionId, value) {
+    const selection = document.getElementById(selectionId);
+    if (selection) {
+        for (let i = 0; i <= selection.options.length; i++) {
+            if (selection.options[i].text.toLowerCase() === value.toLowerCase()) {
+                selection.selectedIndex = i;
+                break;
+            }
+        }
     }
 }
 
 function handleControls() {
-
     document.getElementById('change-theme-button').addEventListener("click", event => {
         checkGeneratedThemeBrowserFile();
         ipcRenderer.send('openWindow', { 
@@ -27,34 +33,15 @@ function handleControls() {
             fileUrl: fileUrl
             });
         });
-    
-    
-    start_maximized.addEventListener("click", event => {
-    });
-
-    enable_splash.addEventListener("click", event => {
-
-    });
-
-    fast_splash.addEventListener("click", event => {
-
-    });
-
-    enable_discord.addEventListener("click", event => {
-
-    });
-
-    update_discord.addEventListener("click", event => {
-        appConfig.updateDiscordRichPresence = update_discord.checked;
-        saveConfig();
-    });
-
-    enable_error_logs.addEventListener("click", event => {
-
-    });
-    
 }
 
-setSettings('start-maximized', true);
+setSettings('start-maximized', appConfig.startMaximized);
+setSettings('enable-splash', appConfig.enableSplash);
+setSettings('faster-splash', appConfig.fasterSplash);
+setSettings('enable-discord', appConfig.enableDiscordRichPresence);
+setSettings('update-discord', appConfig.updateDiscordRichPresence);
+setSettings('auto-update', appConfig.autoUpdate);
+setSettings('store-logs', appConfig.storeLogs);
 
-setSettings('enable-splash', true);
+setSelection('game-select', appConfig.defaultGame);
+setSelection('resolutions-select', appConfig.customResolution);
