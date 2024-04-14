@@ -1,6 +1,6 @@
 {
   "name": "GGRebornApp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple, customizable client with built in flash player to play GoodGame Café, Disco and Fashion.",
   "main": "app/src/main.js",
   "repository": "https://github.com/GGR-Devs/GGReborn-App",
@@ -54,7 +54,6 @@
   },
   "dependencies": {
     "discord-rpc": "^4.0.1",
-    "electron-squirrel-startup": "^1.0.0",
     "electron-updater": "^6.1.8"
   },
   "devDependencies": {
