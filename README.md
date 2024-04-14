@@ -3,9 +3,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://choosealicense.com/licenses/mit/) [![LATEST](https://img.shields.io/badge/latest-UNKNOWN-blue?style=flat)](https://img.shields.io/badge/latest-UNKNOWN-blue)
 
 Simple, customizable client with built in flash player to play GoodGame Café, Disco and Fashion.
-
-![image](https://github.com/GGR-Devs/GGReborn-App/assets/78733248/9fc05ae9-ea27-445c-9eac-bf4c95af8d27 =640x480)
-
+![image](https://github.com/GGR-Devs/GGReborn-App/assets/78733248/5f03623f-e303-4076-a542-a949abf47704)
 ## About the project
 Missing
 
