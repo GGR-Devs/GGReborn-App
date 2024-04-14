@@ -6,12 +6,15 @@ autoUpdater.autoDownload = false // Don't download without asking the user
 autoUpdater.autoInstallOnAppQuit = true
 
 const { appConfig } = require('../src/scripts/settings');
-const { title } = require('process');
 
 const childWindowState = {
   isClosed: true,
   fileUrl: ''
 };
+
+let splashWin;
+let mainWin;
+let childWindow;
 
 log('INFO', 'App started');
 log('INFO', `Platform: ${process.platform}`)
@@ -27,7 +30,6 @@ console.log('')
 
 if (process.platform === "linux") app.commandLine.appendSwitch("no-sandbox");
 if (process.platform === "linux") app.commandLine.appendSwitch('disable-gpu');
-
 
 if (!isAsar()) {
   const pluginPaths = {
@@ -51,11 +53,6 @@ if (!isAsar()) {
 
 app.commandLine.appendSwitch("ppapi-flash-version", "31.0.0.122");
 app.commandLine.appendSwitch("ignore-certificate-errors");
-
-let splashWin;
-let mainWin;
-let childWindow;
-let updateAvaliable = false;
 
 function isAsar() {
   return __filename.includes('.asar');
@@ -138,26 +135,16 @@ function createUpdate() {
 app.whenReady().then(() => {
   if (appConfig.autoUpdate) {
       autoUpdater.checkForUpdates();
+
       log('INFO', 'Checking for updates');
-      
+
       autoUpdater.on('update-available', () => {
           log('INFO', 'A new version is avaliable!');
-          updateAvaliable = true;
-      });
 
-      if (!updateAvaliable) {
-          log('INFO', 'Using latest version');
-      }
-
-      autoUpdater.on('error', (e) => {
-          log('ERROR', e);
-      });
-
-      if (updateAvaliable) {
           const options = {
               type: 'question',
               buttons: ['Later', 'Install'],
-              defaultId: 2,
+              defaultId: 1,
               title: 'App update',
               message: 'A new version is avaliable!',
               detail: 'Would you like to install the new version now, or install it later?',
@@ -166,59 +153,59 @@ app.whenReady().then(() => {
           dialog.showMessageBox(mainWin, options).then(data => {
               switch (data.response) {
                   case 0:
-                      log('INFO', 'User choosed to install it later');
-                      if (appConfig.enableSplash) {
-                          log('INFO', 'Splash screen enabled!');
-                          createSplash();
-                      }
-                      createMain();
-                      if (!appConfig.enableSplash) {
-                          setTimeout(() => {
-                              mainWin.show();
-                              log('INFO', 'Main window show');
-                              mainWin.focus();
-                          }, 100);
-                      };
+                      log('INFO', 'User choosed to download it later');
                       break;
                   case 1:
-                      log('INFO', 'User choosed to install the new update');
+                      log('INFO', 'User choosed to download the new update');
                       createUpdate();
-
                       let path = autoUpdater.downloadUpdate();
                       log('INFO', path);
-
-                      log('INFO', 'Update downloaded!');
-                      dialog.showMessageBox(
-                          null, {
-                              buttons: ['OK'],
-                              title: 'App update',
-                              message: 'Update downloaded!',
-                              detail: 'To apply the new update, the app need to be closed, and launch it again, to install the new update.',
-                          }
-                      ).then(data => {
-                          if (data.response == 0) {
-                              app.quit();
-                          }
-                      })
                       break;
               };
           });
-      };
+
+      });
+
+      autoUpdater.on('update-downloaded', () => {
+          log('INFO', 'Update downloaded!');
+
+          dialog.showMessageBox(
+              null, {
+                  buttons: ['Yes', 'No'],
+                  title: 'App update',
+                  message: 'Update downloaded!',
+                  detail: 'To install the update, the app needs to be closed and started again. Would you like to close it now and install the update, or install it on the next time when the app started?',
+              }
+          ).then(data => {
+              switch (data.response) {
+                  case 0:
+                      log('INFO', 'User choosed to install it now');
+                      app.quit();
+                      break;
+                  case 1:
+                      log('INFO', 'User choosed to install it later');
+                      break;
+              };
+          });
+
+      });
+
+      autoUpdater.on('error', (e) => {
+          log('ERROR', e);
+      });
   };
 
-  if (!updateAvaliable) {
-      if (appConfig.enableSplash) {
-          log('INFO', 'Splash screen enabled!');
-          createSplash();
-      }
-      createMain();
-      if (!appConfig.enableSplash) {
-          setTimeout(() => {
-              mainWin.show();
-              log('INFO', 'Main window show');
-              mainWin.focus();
-          }, 100);
-      };
+  if (appConfig.enableSplash) {
+      log('INFO', 'Splash screen enabled!');
+      createSplash();
+  }
+  createMain();
+  if (!appConfig.enableSplash) {
+      setTimeout(() => {
+          mainWin.show();
+          log('INFO', 'Main window show');
+          mainWin.focus();
+      }, 100);
   };
 
   app.on('activate', () => {
@@ -236,13 +223,7 @@ app.on('window-all-closed', () => {
 });
 
 ipcMain.on('openWindow', (event, windowOptions) => {
-  const {
-      width,
-      height,
-      minWidth,
-      minHeight,
-      fileUrl
-  } = windowOptions;
+  const { width, height, minWidth, minHeight, fileUrl } = windowOptions;
   const mainWinBounds = mainWin.getBounds();
   const display = screen.getDisplayNearestPoint({
       x: mainWinBounds.x,
