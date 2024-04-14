@@ -177,6 +177,7 @@ select {
   position: relative;
   cursor: pointer;
   transition: transform 0.3s ease;
+  user-select: none;
 }
 
 .social-name {
@@ -188,6 +189,7 @@ select {
   transform: translateX(-50%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  user-select: none;
 }
 
 .social-container:hover {
@@ -196,4 +198,8 @@ select {
 
 .social-container:hover .social-name {
   opacity: 1;
+}
+
+.social-container:active {
+  transform: scale(1.3);
 }

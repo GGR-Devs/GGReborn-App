@@ -1,5 +1,6 @@
-const { app } = require('electron');
-const { appConfig } = require('./settings');
+const { app, ipcRenderer } = require('electron');
+const { appConfig, updateSetting } = require('./settings');
+const remote = require('electron').remote;
 
 handleControls();
 
@@ -9,6 +10,7 @@ function setSettings(settingId, value) {
         setting.checked = value;
     }
 }
+
 
 function setSelection(selectionId, value) {
     const selection = document.getElementById(selectionId);
@@ -24,7 +26,6 @@ function setSelection(selectionId, value) {
 
 function handleControls() {
     document.getElementById('change-theme-button').addEventListener("click", event => {
-        checkGeneratedThemeBrowserFile();
         ipcRenderer.send('openWindow', { 
             width: 800,
             height: 600,
@@ -34,6 +35,38 @@ function handleControls() {
             });
         });
 }
+
+function log(event, message) {
+    ipcRenderer.send('log', event, message);
+}
+
+
+const start_maximized = document.getElementById('start-maximized');
+start_maximized.addEventListener("click", event => { updateSetting('startMaximized', start_maximized.checked) });
+
+const enable_splash = document.getElementById('enable-splash');
+enable_splash.addEventListener("click", event => { updateSetting('enableSplash', enable_splash.checked) });
+
+const faster_splash = document.getElementById('faster-splash');
+faster_splash.addEventListener("click", event => { updateSetting('fasterSplash', faster_splash.checked) });
+
+const enable_discord = document.getElementById('enable-discord');
+enable_discord.addEventListener("click", event => { updateSetting('enableDiscordRichPresence', enable_discord.checked) });
+
+const update_discord = document.getElementById('update-discord');
+update_discord.addEventListener("click", event => { updateSetting('updateDiscordRichPresence', update_discord.checked) });
+
+const auto_update = document.getElementById('auto-update');
+auto_update.addEventListener("click", event => { updateSetting('autoUpdate', auto_update.checked) });
+
+const store_logs = document.getElementById('store-logs');
+store_logs.addEventListener("click", event => { updateSetting('storeLogs', store_logs.checked) });
+
+const game_select = document.getElementById('game-select');
+game_select.addEventListener("change", event => { updateSetting('defaultGame', game_select.value) });
+
+const resolutions_select = document.getElementById('resolutions-select');
+resolutions_select.addEventListener("change", event => { updateSetting('customResolution', resolutions_select.options[resolutions_select.selectedIndex].text) });
 
 setSettings('start-maximized', appConfig.startMaximized);
 setSettings('enable-splash', appConfig.enableSplash);

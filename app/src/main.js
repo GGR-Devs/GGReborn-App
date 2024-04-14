@@ -78,6 +78,9 @@ function createSplash() {
           mainWin.show();
           log('INFO', 'Main window show');
           mainWin.focus();
+          if (appConfig.startMaximized) {
+            mainWin.maximize();
+          };
       }, 5000);
   } else {
       log('INFO', 'Splash screen duration: 2500ms');
@@ -87,6 +90,9 @@ function createSplash() {
           mainWin.show();
           log('INFO', 'Main window show');
           mainWin.focus();
+          if (appConfig.startMaximized) {
+            mainWin.maximize();
+          };
       }, 2500);
   }
 }
@@ -137,6 +143,10 @@ app.whenReady().then(() => {
       autoUpdater.checkForUpdates();
 
       log('INFO', 'Checking for updates');
+
+      autoUpdater.on('update-not-available', () => {
+        log('INFO', 'Using the latest version');
+      });
 
       autoUpdater.on('update-available', () => {
           log('INFO', 'A new version is avaliable!');
@@ -205,6 +215,9 @@ app.whenReady().then(() => {
           mainWin.show();
           log('INFO', 'Main window show');
           mainWin.focus();
+          if (appConfig.startMaximized) {
+            mainWin.maximize();
+          };
       }, 100);
   };
 

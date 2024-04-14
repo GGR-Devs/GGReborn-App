@@ -39,7 +39,7 @@ const appConfig = {
     fasterSplash: false, // Splash screen duration: 2.5s
     customResolution: resolutions.b, // Set a custom app windowed resolution
     appTheme: 'default', // Use custom themes
-    defaultGame: 'Cafe', // Loads this game on launch
+    defaultGame: 'cafe', // Loads this game on launch
     enableDiscordRichPresence: true, // Enable rich presence
     updateDiscordRichPresence: true, // Update realtime the rich presence
     autoUpdate: true, // On launch the app checks the latest version. If the current version is different, the app will update
@@ -48,7 +48,7 @@ const appConfig = {
 
 const userPath = (electron.app || electron.remote.app).getPath('userData');
 const parentDir = path.join(userPath, '..');
-var appDir = path.join(parentDir, 'GGReborn');
+var appDir = path.join(parentDir, 'GGRebornApp');
 var configFile = path.join(appDir, 'config.json');
 
 function createConfigFile() {
@@ -106,9 +106,31 @@ function loadAppConfig() {
     }
 }
 
+function updateSetting(setting, value) {
+    appConfig[setting] = value;
+
+    saveSettings();
+}
+
+function saveSettings() {
+    try {
+        // Create the content to be written to the config file
+        const content = {
+            'DO NOT MODIFY': ['Please DO NOT modify this file!'],
+            settings: [appConfig],
+        };
+
+        // Write the content to the config file
+        fs.writeFileSync(configFile, JSON.stringify(content, null, 4));
+
+        log('INFO', 'Settings saved successfully.');
+    } catch (e) {
+        log('ERROR', 'Failed to save settings:', e);
+    }
+}
 function log(level, message) {
     console.log(`[${level}] ${message}`);
 }
 
 loadAppConfig();
-module.exports = { loadAppConfig, appConfig, resolutions }
+module.exports = { loadAppConfig, appConfig, resolutions, updateSetting }
