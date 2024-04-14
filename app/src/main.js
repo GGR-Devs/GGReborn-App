@@ -19,7 +19,7 @@ log('INFO', `Platform: ${process.platform}`)
 log('INFO', '----------APP CONFIG----------');
 for (const key in appConfig) {
   if (Object.hasOwnProperty.call(appConfig, key)) {
-    log('INFO',  `${key}: ${appConfig[key]}`);
+      log('INFO', `${key}: ${appConfig[key]}`);
   }
 }
 log('INFO', '----------APP CONFIG----------');
@@ -83,7 +83,7 @@ function createSplash() {
           mainWin.focus();
       }, 5000);
   } else {
-    log('INFO', 'Splash screen duration: 2500ms');
+      log('INFO', 'Splash screen duration: 2500ms');
       setTimeout(() => {
           splashWin.close();
           log('INFO', 'Splash screen closed');
@@ -104,10 +104,10 @@ function createMain() {
       frame: false,
       show: false,
       webPreferences: {
-        plugins: true,
-        nodeIntegration: true,
-        enableRemoteModule: true,
-        webviewTag: true
+          plugins: true,
+          nodeIntegration: true,
+          enableRemoteModule: true,
+          webviewTag: true
       },
   });
 
@@ -130,97 +130,96 @@ function createUpdate() {
   childWindow.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/update.html"));
 
   childWindow.once('ready-to-show', () => {
-    log('INFO', 'Update window ready to show')
-    childWindow.show();
-    });
+      log('INFO', 'Update window ready to show')
+      childWindow.show();
+  });
 }
 
 app.whenReady().then(() => {
   if (appConfig.autoUpdate) {
-  autoUpdater.checkForUpdates();
-
-  log('INFO', 'Checking for updates');
-  autoUpdater.on('update-available', () => {
-    log('INFO', 'A new version is avaliable!');
-    updateAvaliable = true;
-  });
-
-  autoUpdater.on('update-not-available', () => {
-    log('INFO', 'Using latest version');
-  });
-
-  autoUpdater.on('error', (e) => {
-    log('ERROR', e);
-  });
-
-  if (updateAvaliable) {
-    const options = {
-      type: 'question',
-      buttons: ['Later', 'Install'],
-      defaultId: 2,
-      title: 'App update',
-      message: 'An app update is avaliable!',
-      detail: 'Would you like to install the new version now, or install it later?',
-    };
-
-    dialog.showMessageBox(mainWin, options).then(data => {
-      switch (data.response) {
-        case 0:
-          log('INFO', 'User choosed to install it later');
-          if (appConfig.enableSplash) {
-            log('INFO', 'Splash screen enabled!');
-            createSplash();
-        }
-        createMain();
-        if (!appConfig.enableSplash) {
-            setTimeout(() => {
-                mainWin.show();
-                log('INFO', 'Main window show');
-                mainWin.focus();
-            }, 100);
-        };
-          break;
-        case 1:
-          log('INFO', 'User choosed to install the new update');
-          createUpdate();
-
-          let path = autoUpdater.downloadUpdate();
-          log('INFO', path);
-
-            log('INFO', 'Update downloaded!');
-            dialog.showMessageBox(
-              null,
-              {
-              buttons: ['OK'],
-              title: 'App update',
-              message: 'Update downloaded!',
-              detail: 'To apply the new update, the app need to be closed, and launch it again, to install the new update.',
-              }
-            ).then(data => {
-              if (data.response == 0) {
-                app.quit();
-              }
-            })
-          break;
-      };
+      autoUpdater.checkForUpdates();
+      log('INFO', 'Checking for updates');
+      
+      autoUpdater.on('update-available', () => {
+          log('INFO', 'A new version is avaliable!');
+          updateAvaliable = true;
       });
-    };
+
+      if (!updateAvaliable) {
+          log('INFO', 'Using latest version');
+      }
+
+      autoUpdater.on('error', (e) => {
+          log('ERROR', e);
+      });
+
+      if (updateAvaliable) {
+          const options = {
+              type: 'question',
+              buttons: ['Later', 'Install'],
+              defaultId: 2,
+              title: 'App update',
+              message: 'A new version is avaliable!',
+              detail: 'Would you like to install the new version now, or install it later?',
+          };
+
+          dialog.showMessageBox(mainWin, options).then(data => {
+              switch (data.response) {
+                  case 0:
+                      log('INFO', 'User choosed to install it later');
+                      if (appConfig.enableSplash) {
+                          log('INFO', 'Splash screen enabled!');
+                          createSplash();
+                      }
+                      createMain();
+                      if (!appConfig.enableSplash) {
+                          setTimeout(() => {
+                              mainWin.show();
+                              log('INFO', 'Main window show');
+                              mainWin.focus();
+                          }, 100);
+                      };
+                      break;
+                  case 1:
+                      log('INFO', 'User choosed to install the new update');
+                      createUpdate();
+
+                      let path = autoUpdater.downloadUpdate();
+                      log('INFO', path);
+
+                      log('INFO', 'Update downloaded!');
+                      dialog.showMessageBox(
+                          null, {
+                              buttons: ['OK'],
+                              title: 'App update',
+                              message: 'Update downloaded!',
+                              detail: 'To apply the new update, the app need to be closed, and launch it again, to install the new update.',
+                          }
+                      ).then(data => {
+                          if (data.response == 0) {
+                              app.quit();
+                          }
+                      })
+                      break;
+              };
+          });
+      };
   };
 
   if (!updateAvaliable) {
-  if (appConfig.enableSplash) {
-      log('INFO', 'Splash screen enabled!');
-      createSplash();
-  }
-  createMain();
-  if (!appConfig.enableSplash) {
-      setTimeout(() => {
-          mainWin.show();
-          log('INFO', 'Main window show');
-          mainWin.focus();
-      }, 100);
+      if (appConfig.enableSplash) {
+          log('INFO', 'Splash screen enabled!');
+          createSplash();
+      }
+      createMain();
+      if (!appConfig.enableSplash) {
+          setTimeout(() => {
+              mainWin.show();
+              log('INFO', 'Main window show');
+              mainWin.focus();
+          }, 100);
+      };
   };
-};
 
   app.on('activate', () => {
       if (BrowserWindow.getAllWindows().length === 0) {
@@ -237,12 +236,21 @@ app.on('window-all-closed', () => {
 });
 
 ipcMain.on('openWindow', (event, windowOptions) => {
-  const { width, height, minWidth, minHeight, fileUrl } = windowOptions;
+  const {
+      width,
+      height,
+      minWidth,
+      minHeight,
+      fileUrl
+  } = windowOptions;
   const mainWinBounds = mainWin.getBounds();
-  const display = screen.getDisplayNearestPoint({x: mainWinBounds.x, y: mainWinBounds.y})
+  const display = screen.getDisplayNearestPoint({
+      x: mainWinBounds.x,
+      y: mainWinBounds.y
+  })
 
   if (childWindowState.isClosed) {
-    log('INFO', 'Openning a new window')
+      log('INFO', 'Openning a new window')
       childWindow = new BrowserWindow({
           width: width,
           height: height,
@@ -255,57 +263,54 @@ ipcMain.on('openWindow', (event, windowOptions) => {
           frame: false,
           show: false,
           webPreferences: {
-            nodeIntegration: true,
-            enableRemoteModule: true,
-            webviewTag: true
+              nodeIntegration: true,
+              enableRemoteModule: true,
+              webviewTag: true
           },
       });
 
       childWindow.loadFile(fileUrl);
-      
+
       const winX = display.bounds.x + (display.bounds.width - width) / 2;
       const winY = display.bounds.y + (display.bounds.height - height) / 2;
       childWindow.setPosition(winX, winY);
 
       childWindowState.isClosed = false;
       childWindowState.fileUrl = fileUrl;
-    }
-    else {
+  } else {
       if (childWindowState.fileUrl != fileUrl) {
-        childWindowState.fileUrl = fileUrl;
+          childWindowState.fileUrl = fileUrl;
 
-        childWindow.loadFile(fileUrl).then(() => {
-          childWindow.setMinimumSize(minWidth, minHeight);
-          childWindow.setSize(width, height);
+          childWindow.loadFile(fileUrl).then(() => {
+              childWindow.setMinimumSize(minWidth, minHeight);
+              childWindow.setSize(width, height);
 
-          const primaryDisplay = screen.getPrimaryDisplay().workAreaSize;
-          const x = (primaryDisplay.width - childWindow.getSize()[0]) / 2;
-          const y = (primaryDisplay.height - childWindow.getSize()[1]) / 2;
-          childWindow.setPosition(x, y);
+              const primaryDisplay = screen.getPrimaryDisplay().workAreaSize;
+              const x = (primaryDisplay.width - childWindow.getSize()[0]) / 2;
+              const y = (primaryDisplay.height - childWindow.getSize()[1]) / 2;
+              childWindow.setPosition(x, y);
 
+              childWindow.focus();
+          });
+
+      } else {
+          log('INFO', 'Showing the opened child window')
           childWindow.focus();
-      });
-    
-    }
-      else {
-        log('INFO', 'Showing the opened child window')
-        childWindow.focus();
       }
-    }
+  }
 
-    childWindow.once('ready-to-show', () => {
+  childWindow.once('ready-to-show', () => {
       log('INFO', 'Child window ready to show')
       childWindow.show();
-      });
+  });
 
-    childWindow.on('close', () => {
+  childWindow.on('close', () => {
       childWindow = null;
       childWindowState.isClosed = true;
       childWindowState.fileUrl = '';
       log('INFO', 'Child window closed')
-    });
-  }
-);
+  });
+});
 
 ipcMain.on('log', (event, level, message) => {
   log(level, message)
