@@ -6,6 +6,7 @@ autoUpdater.autoDownload = false // Don't download without asking the user
 autoUpdater.autoInstallOnAppQuit = true
 
 const { appConfig } = require('../src/scripts/settings');
+const { initDiscordRichPresence } = require('../src/integrations/discord')
 
 const childWindowState = {
   isClosed: true,
@@ -139,6 +140,10 @@ function createUpdate() {
 }
 
 app.whenReady().then(() => {
+  if (appConfig.enableDiscordRichPresence) {
+    initDiscordRichPresence();
+  }
+
   if (appConfig.autoUpdate) {
       autoUpdater.checkForUpdates();
 
@@ -312,4 +317,4 @@ ipcMain.on('log', (event, level, message) => {
 
 function log(level, message) {
   console.log(`[${level}] ${message}`);
-}
+};

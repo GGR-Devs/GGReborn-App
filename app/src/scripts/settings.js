@@ -3,6 +3,7 @@ const remote = require('electron').remote;
 const electron = require('electron');
 const fs = require('fs');
 const path = require('path');
+const { initDiscordRichPresence, removeDiscordRichPresence } = require('../integrations/discord')
 
 const resolutions = {
     // 4:3
@@ -107,6 +108,16 @@ function loadAppConfig() {
 }
 
 function updateSetting(setting, value) {
+    if (setting === 'enableDiscordRichPresence') {
+        if (appConfig.enableDiscordRichPresence) {
+            removeDiscordRichPresence();
+            log('INFO', 'Removing Discord Rich Presence');
+        }
+        else {
+            initDiscordRichPresence();
+            log('INFO', 'Initing Discord Rich Presence');
+        }
+    }
     appConfig[setting] = value;
 
     saveSettings();
