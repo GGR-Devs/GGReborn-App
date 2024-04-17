@@ -1,6 +1,7 @@
 const { app, ipcRenderer } = require('electron');
 const { appConfig, updateSetting } = require('./settings');
 const remote = require('electron').remote;
+const shell = require('electron').shell; // need to open the links in the OS default browser
 
 handleControls();
 
@@ -34,12 +35,32 @@ function handleControls() {
             fileUrl: fileUrl
             });
         });
+
+    document.getElementById('github-repo').addEventListener("click", event => {
+        event.preventDefault();
+        shell.openExternal("https://github.com/GGR-Devs/GGReborn-App");
+    });
+
+    document.getElementById('x-social').addEventListener("click", event => {
+        event.preventDefault();
+        shell.openExternal("https://x.com/GGSCafeReborn");
+    });
+
+    document.getElementById('facebook-social').addEventListener("click", event => {
+        event.preventDefault();
+        shell.openExternal("https://www.facebook.com/GGSCR");
+    });
+
+    document.getElementById('buymeacoffee').addEventListener("click", event => {
+        event.preventDefault();
+        shell.openExternal("https://www.buymeacoffee.com/ggreborn");
+    });
+    
 }
 
 function log(event, message) {
     ipcRenderer.send('log', event, message);
 }
-
 
 const start_maximized = document.getElementById('start-maximized');
 start_maximized.addEventListener("click", event => { updateSetting('startMaximized', start_maximized.checked) });

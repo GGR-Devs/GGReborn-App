@@ -22,9 +22,9 @@ log('INFO', `Platform: ${process.platform}`)
 
 log('INFO', '----------APP CONFIG----------');
 for (const key in appConfig) {
-  if (Object.hasOwnProperty.call(appConfig, key)) {
-      log('INFO', `${key}: ${appConfig[key]}`);
-  }
+    if (Object.hasOwnProperty.call(appConfig, key)) {
+        log('INFO', `${key}: ${appConfig[key]}`);
+    }
 }
 log('INFO', '----------APP CONFIG----------');
 console.log('')
@@ -33,288 +33,294 @@ if (process.platform === "linux") app.commandLine.appendSwitch("no-sandbox");
 if (process.platform === "linux") app.commandLine.appendSwitch('disable-gpu');
 
 if (!isAsar()) {
-  const pluginPaths = {
-      win32: path.join(path.dirname(__dirname), "../lib/pepflashplayer.dll"),
-      darwin: path.join(path.dirname(__dirname), "../lib/PepperFlashPlayer.plugin"),
-      linux: path.join(path.dirname(__dirname), "../lib/libpepflashplayer.so"),
-  };
-  const pluginName = pluginPaths[process.platform];
-  app.commandLine.appendSwitch("ppapi-flash-path", pluginName);
-  log('INFO', `pluginName: ${pluginName}`);
+    const pluginPaths = {
+        win32: path.join(path.dirname(__dirname), "../lib/pepflashplayer.dll"),
+        darwin: path.join(path.dirname(__dirname), "../lib/PepperFlashPlayer.plugin"),
+        linux: path.join(path.dirname(__dirname), "../lib/libpepflashplayer.so"),
+    };
+    const pluginName = pluginPaths[process.platform];
+    app.commandLine.appendSwitch("ppapi-flash-path", pluginName);
+    log('INFO', `pluginName: ${pluginName}`);
 } else {
-  const pluginPaths = {
-      win32: path.join(path.dirname(__dirname), "../../lib/pepflashplayer.dll"),
-      darwin: path.join(path.dirname(__dirname), "../../lib/PepperFlashPlayer.plugin"),
-      linux: path.join(path.dirname(__dirname), "../../lib/libpepflashplayer.so"),
-  };
-  const pluginName = pluginPaths[process.platform];
-  app.commandLine.appendSwitch("ppapi-flash-path", pluginName);
-  log('INFO', `pluginName: ${pluginName}`);
+    const pluginPaths = {
+        win32: path.join(path.dirname(__dirname), "../../lib/pepflashplayer.dll"),
+        darwin: path.join(path.dirname(__dirname), "../../lib/PepperFlashPlayer.plugin"),
+        linux: path.join(path.dirname(__dirname), "../../lib/libpepflashplayer.so"),
+    };
+    const pluginName = pluginPaths[process.platform];
+    app.commandLine.appendSwitch("ppapi-flash-path", pluginName);
+    log('INFO', `pluginName: ${pluginName}`);
 }
 
 app.commandLine.appendSwitch("ppapi-flash-version", "31.0.0.122");
 app.commandLine.appendSwitch("ignore-certificate-errors");
 
 function isAsar() {
-  return __filename.includes('.asar');
+    return __filename.includes('.asar');
 }
 
 function createSplash() {
-  log('INFO', 'Creating splash screen')
-  splashWin = new BrowserWindow({
-      width: 300,
-      height: 300,
-      frame: false,
-      transparent: true,
-      alwaysOnTop: true
-  });
+    log('INFO', 'Creating splash screen')
+    splashWin = new BrowserWindow({
+        width: 300,
+        height: 300,
+        frame: false,
+        transparent: true,
+        alwaysOnTop: true
+    });
 
-  splashWin.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/splash.html"));
-  log('INFO', 'Splash screen created!');
-  if (!appConfig.fasterSplash) {
-      log('INFO', 'Splash screen duration: 5000ms');
-      setTimeout(() => {
-          splashWin.close();
-          log('INFO', 'Splash screen closed');
-          mainWin.show();
-          log('INFO', 'Main window show');
-          mainWin.focus();
-          if (appConfig.startMaximized) {
-            mainWin.maximize();
-          };
-      }, 5000);
-  } else {
-      log('INFO', 'Splash screen duration: 2500ms');
-      setTimeout(() => {
-          splashWin.close();
-          log('INFO', 'Splash screen closed');
-          mainWin.show();
-          log('INFO', 'Main window show');
-          mainWin.focus();
-          if (appConfig.startMaximized) {
-            mainWin.maximize();
-          };
-      }, 2500);
-  }
+    splashWin.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/splash.html"));
+    log('INFO', 'Splash screen created!');
+    if (!appConfig.fasterSplash) {
+        log('INFO', 'Splash screen duration: 5000ms');
+        setTimeout(() => {
+            splashWin.close();
+            log('INFO', 'Splash screen closed');
+            mainWin.show();
+            log('INFO', 'Main window show');
+            mainWin.focus();
+            if (appConfig.startMaximized) {
+                mainWin.maximize();
+            };
+        }, 5000);
+    } else {
+        log('INFO', 'Splash screen duration: 2500ms');
+        setTimeout(() => {
+            splashWin.close();
+            log('INFO', 'Splash screen closed');
+            mainWin.show();
+            log('INFO', 'Main window show');
+            mainWin.focus();
+            if (appConfig.startMaximized) {
+                mainWin.maximize();
+            };
+        }, 2500);
+    }
 }
 
 function createMain() {
-  log('INFO', 'Creating main window');
-  mainWin = new BrowserWindow({
-      width: parseInt(appConfig.customResolution.split('x')[0]),
-      height: parseInt(appConfig.customResolution.split('x')[1]),
-      minWidth: 400,
-      minHeight: 400,
-      frame: false,
-      show: false,
-      webPreferences: {
-          plugins: true,
-          nodeIntegration: true,
-          enableRemoteModule: true,
-          webviewTag: true
-      },
-  });
+    log('INFO', 'Creating main window');
+    mainWin = new BrowserWindow({
+        width: parseInt(appConfig.customResolution.split('x')[0]),
+        height: parseInt(appConfig.customResolution.split('x')[1]),
+        minWidth: 400,
+        minHeight: 400,
+        frame: false,
+        show: false,
+        webPreferences: {
+            plugins: true,
+            nodeIntegration: true,
+            enableRemoteModule: true,
+            webviewTag: true
+        },
+    });
 
-  mainWin.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/" + appConfig.defaultGame + ".html"));
+    mainWin.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/" + appConfig.defaultGame + ".html"));
 
-  log('INFO', 'Main window loaded!');
+    log('INFO', 'Main window loaded!');
 }
 
 function createUpdate() {
-  log('INFO', 'Creating update window');
-  childWindow = new BrowserWindow({
-      width: 300,
-      height: 350,
-      minWidth: 300,
-      minHeight: 350,
-      frame: false,
-      show: false
-  });
+    log('INFO', 'Creating update window');
+    childWindow = new BrowserWindow({
+        width: 300,
+        height: 350,
+        minWidth: 300,
+        minHeight: 350,
+        frame: false,
+        show: false
+    });
 
-  childWindow.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/update.html"));
+    childWindow.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/update.html"));
 
-  childWindow.once('ready-to-show', () => {
-      log('INFO', 'Update window ready to show')
-      childWindow.show();
-  });
+    childWindow.once('ready-to-show', () => {
+        log('INFO', 'Update window ready to show')
+        childWindow.show();
+    });
 }
 
 app.whenReady().then(() => {
-  if (appConfig.enableDiscordRichPresence) {
-    initDiscordRichPresence();
-  }
+    if (appConfig.enableDiscordRichPresence) {
+        initDiscordRichPresence();
+    }
 
-  if (appConfig.autoUpdate) {
-      autoUpdater.checkForUpdates();
+    if (appConfig.autoUpdate) {
+        autoUpdater.checkForUpdates();
 
-      log('INFO', 'Checking for updates');
+        log('INFO', 'Checking for updates');
 
-      autoUpdater.on('update-not-available', () => {
-        log('INFO', 'Using the latest version');
-      });
+        autoUpdater.on('update-not-available', () => {
+            log('INFO', 'Using the latest version');
+        });
 
-      autoUpdater.on('update-available', () => {
-          log('INFO', 'A new version is avaliable!');
+        autoUpdater.on('update-available', () => {
+            log('INFO', 'A new version is avaliable!');
 
-          const options = {
-              type: 'question',
-              buttons: ['Later', 'Install'],
-              defaultId: 1,
-              title: 'App update',
-              message: 'A new version is avaliable!',
-              detail: 'Would you like to install the new version now, or install it later?',
-          };
+            const options = {
+                type: 'question',
+                buttons: ['Later', 'Install'],
+                defaultId: 1,
+                title: 'App update',
+                message: 'A new version is avaliable!',
+                detail: 'Would you like to install the new version now, or install it later?',
+            };
 
-          dialog.showMessageBox(mainWin, options).then(data => {
-              switch (data.response) {
-                  case 0:
-                      log('INFO', 'User choosed to download it later');
-                      break;
-                  case 1:
-                      log('INFO', 'User choosed to download the new update');
-                      createUpdate();
-                      let path = autoUpdater.downloadUpdate();
-                      log('INFO', path);
-                      break;
-              };
-          });
+            dialog.showMessageBox(mainWin, options).then(data => {
+                switch (data.response) {
+                    case 0:
+                        log('INFO', 'User choosed to download it later');
+                        break;
+                    case 1:
+                        log('INFO', 'User choosed to download the new update');
+                        createUpdate();
+                        let path = autoUpdater.downloadUpdate();
+                        log('INFO', path);
+                        break;
+                };
+            });
 
-      });
+        });
 
-      autoUpdater.on('update-downloaded', () => {
-          log('INFO', 'Update downloaded!');
+        autoUpdater.on('update-downloaded', () => {
+            log('INFO', 'Update downloaded!');
 
-          dialog.showMessageBox(
-              null, {
-                  buttons: ['Yes', 'No'],
-                  title: 'App update',
-                  message: 'Update downloaded!',
-                  detail: 'To install the update, the app needs to be closed and started again. Would you like to close it now and install the update, or install it on the next time when the app started?',
-              }
-          ).then(data => {
-              switch (data.response) {
-                  case 0:
-                      log('INFO', 'User choosed to install it now');
-                      app.quit();
-                      break;
-                  case 1:
-                      log('INFO', 'User choosed to install it later');
-                      break;
-              };
-          });
+            dialog.showMessageBox(
+                null, {
+                    buttons: ['Yes', 'No'],
+                    title: 'App update',
+                    message: 'Update downloaded!',
+                    detail: 'To install the update, the app needs to be closed and started again. Would you like to close it now and install the update, or install it on the next time when the app started?',
+                }
+            ).then(data => {
+                switch (data.response) {
+                    case 0:
+                        log('INFO', 'User choosed to install it now');
+                        app.quit();
+                        break;
+                    case 1:
+                        log('INFO', 'User choosed to install it later');
+                        break;
+                };
+            });
 
-      });
+        });
 
-      autoUpdater.on('error', (e) => {
-          log('ERROR', e);
-      });
-  };
+        autoUpdater.on('error', (e) => {
+            log('ERROR', e);
+        });
+    };
 
-  if (appConfig.enableSplash) {
-      log('INFO', 'Splash screen enabled!');
-      createSplash();
-  }
-  createMain();
-  if (!appConfig.enableSplash) {
-      setTimeout(() => {
-          mainWin.show();
-          log('INFO', 'Main window show');
-          mainWin.focus();
-          if (appConfig.startMaximized) {
-            mainWin.maximize();
-          };
-      }, 100);
-  };
+    if (appConfig.enableSplash) {
+        log('INFO', 'Splash screen enabled!');
+        createSplash();
+    }
+    createMain();
+    if (!appConfig.enableSplash) {
+        setTimeout(() => {
+            mainWin.show();
+            log('INFO', 'Main window show');
+            mainWin.focus();
+            if (appConfig.startMaximized) {
+                mainWin.maximize();
+            };
+        }, 100);
+    };
 
-  app.on('activate', () => {
-      if (BrowserWindow.getAllWindows().length === 0) {
-          createWindow();
-      }
-  });
+    app.on('activate', () => {
+        if (BrowserWindow.getAllWindows().length === 0) {
+            createWindow();
+        }
+    });
 });
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-      app.quit();
-      log('INFO', 'App closed');
-  }
+    if (process.platform !== 'darwin') {
+        app.quit();
+        log('INFO', 'App closed');
+    }
 });
 
 ipcMain.on('openWindow', (event, windowOptions) => {
-  const { width, height, minWidth, minHeight, fileUrl } = windowOptions;
-  const mainWinBounds = mainWin.getBounds();
-  const display = screen.getDisplayNearestPoint({
-      x: mainWinBounds.x,
-      y: mainWinBounds.y
-  })
+    const {
+        width,
+        height,
+        minWidth,
+        minHeight,
+        fileUrl
+    } = windowOptions;
+    const mainWinBounds = mainWin.getBounds();
+    const display = screen.getDisplayNearestPoint({
+        x: mainWinBounds.x,
+        y: mainWinBounds.y
+    })
 
-  if (childWindowState.isClosed) {
-      log('INFO', 'Openning a new window')
-      childWindow = new BrowserWindow({
-          width: width,
-          height: height,
-          minWidth: minWidth,
-          minHeight: minHeight,
-          // parent: mainWin,
-          // modal: true, Window flicker when closing the child
-          // https://github.com/electron/electron/issues/10616
-          autoHideMenuBar: true,
-          frame: false,
-          show: false,
-          webPreferences: {
-              nodeIntegration: true,
-              enableRemoteModule: true,
-              webviewTag: true
-          },
-      });
+    if (childWindowState.isClosed) {
+        log('INFO', 'Openning a new window')
+        childWindow = new BrowserWindow({
+            width: width,
+            height: height,
+            minWidth: minWidth,
+            minHeight: minHeight,
+            // parent: mainWin,
+            // modal: true, Window flicker when closing the child
+            // https://github.com/electron/electron/issues/10616
+            autoHideMenuBar: true,
+            frame: false,
+            show: false,
+            webPreferences: {
+                nodeIntegration: true,
+                enableRemoteModule: true,
+                webviewTag: true
+            },
+        });
 
-      childWindow.loadFile(fileUrl);
+        childWindow.loadFile(fileUrl);
 
-      const winX = display.bounds.x + (display.bounds.width - width) / 2;
-      const winY = display.bounds.y + (display.bounds.height - height) / 2;
-      childWindow.setPosition(winX, winY);
+        const winX = display.bounds.x + (display.bounds.width - width) / 2;
+        const winY = display.bounds.y + (display.bounds.height - height) / 2;
+        childWindow.setPosition(winX, winY);
 
-      childWindowState.isClosed = false;
-      childWindowState.fileUrl = fileUrl;
-  } else {
-      if (childWindowState.fileUrl != fileUrl) {
-          childWindowState.fileUrl = fileUrl;
+        childWindowState.isClosed = false;
+        childWindowState.fileUrl = fileUrl;
+    } else {
+        if (childWindowState.fileUrl != fileUrl) {
+            childWindowState.fileUrl = fileUrl;
 
-          childWindow.loadFile(fileUrl).then(() => {
-              childWindow.setMinimumSize(minWidth, minHeight);
-              childWindow.setSize(width, height);
+            childWindow.loadFile(fileUrl).then(() => {
+                childWindow.setMinimumSize(minWidth, minHeight);
+                childWindow.setSize(width, height);
 
-              const primaryDisplay = screen.getPrimaryDisplay().workAreaSize;
-              const x = (primaryDisplay.width - childWindow.getSize()[0]) / 2;
-              const y = (primaryDisplay.height - childWindow.getSize()[1]) / 2;
-              childWindow.setPosition(x, y);
+                const primaryDisplay = screen.getPrimaryDisplay().workAreaSize;
+                const x = (primaryDisplay.width - childWindow.getSize()[0]) / 2;
+                const y = (primaryDisplay.height - childWindow.getSize()[1]) / 2;
+                childWindow.setPosition(x, y);
 
-              childWindow.focus();
-          });
+                childWindow.focus();
+            });
 
-      } else {
-          log('INFO', 'Showing the opened child window')
-          childWindow.focus();
-      }
-  }
+        } else {
+            log('INFO', 'Showing the opened child window')
+            childWindow.focus();
+        }
+    }
 
-  childWindow.once('ready-to-show', () => {
-      log('INFO', 'Child window ready to show')
-      childWindow.show();
-  });
+    childWindow.once('ready-to-show', () => {
+        log('INFO', 'Child window ready to show')
+        childWindow.show();
+    });
 
-  childWindow.on('close', () => {
-      childWindow = null;
-      childWindowState.isClosed = true;
-      childWindowState.fileUrl = '';
-      log('INFO', 'Child window closed')
-  });
+    childWindow.on('close', () => {
+        childWindow = null;
+        childWindowState.isClosed = true;
+        childWindowState.fileUrl = '';
+        log('INFO', 'Child window closed')
+    });
 });
 
 ipcMain.on('log', (event, level, message) => {
-  log(level, message)
+    log(level, message)
 });
 
 function log(level, message) {
-  console.log(`[${level}] ${message}`);
+    console.log(`[${level}] ${message}`);
 };

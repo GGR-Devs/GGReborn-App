@@ -33,26 +33,26 @@
               <a id="menu-items-text" draggable="false" class="text">Fashion</a>
             </div>
             <div id="menu-others" class="">
-            <a id="menu-items-title" draggable="false" class="text">Other</a>
-            <br>
-            <div class="menu-item-small" id="reload-button" title="Refresh the current page (CTRL + R)">
-              <img src="../assets/buttons/reload_page.png" class="icon" draggable="false">
-              <a id="menu-items-text" draggable="false" class=""></a>
-            </div>
-            <div class="menu-item-small" id="password-manager-button" title="Store your passwords">
-              <img src="../assets/buttons/password.png" class="icon" draggable="false">
-              <a id="menu-items-text" draggable="false" class=""></a>
-            </div>
+              <a id="menu-items-title" draggable="false" class="text">Other</a>
+              <br>
+              <div class="menu-item-small" id="reload-button" title="Refresh the current page (CTRL + R)">
+                <img src="../assets/buttons/reload_page.png" class="icon" draggable="false">
+                <a id="menu-items-text" draggable="false" class=""></a>
+              </div>
+              <div class="menu-item-small" id="password-manager-button" title="Store your passwords">
+                <img src="../assets/buttons/password.png" class="icon" draggable="false">
+                <a id="menu-items-text" draggable="false" class=""></a>
+              </div>
               <div class="menu-item-small" id="settings-button" title="Change the app settings">
                 <img src="../assets/buttons/settings.png" class="icon" draggable="false">
               </div>
-            <div class="menu-item" id="support-button" title="Contact GGReborn support">
+              <div class="menu-item" id="support-button" title="Contact GGReborn support">
                 <img src="../assets/buttons/discord.png" class="icon" draggable="false">
                 <a id="menu-items-text" draggable="false" class="text">Support</a>
               </div>
             </div>
             <!--Set the version text from script-->
-              <div class="text" id="app-version">Alpha Testing 0.0.3</div>
+            <div class="text" id="app-version">Alpha Testing 0.0.3</div>
           </div>
         </div>
         <div id="window-controls">
@@ -66,7 +66,7 @@
       </div>
     </header>
     <!--Missing game url-->
-    <webview id="game" src="http://localhost:8080/content/loader/cafe/index.html" autosize="on" style="width:100%;height:100%" plugins></webview>
+    <webview id="game" src="https://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager07.html" autosize="on" style="width:100%;height:100%" plugins></webview>
     <script>
       let titlebar_height = getComputedStyle(document.documentElement).getPropertyValue('--height');
 
@@ -80,7 +80,6 @@
       window.addEventListener('resize', function() {
         resizeFlashObject();
       });
-   
       // Initial resizing
       resizeFlashObject();
       require('../scripts/menu_renderer.js')
