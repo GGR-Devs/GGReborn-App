@@ -55,6 +55,7 @@ function onRpcReady() {
         startTimestamp: Date.now(),
         largeImageKey: states[content.currentGame].logo,
         instance: true,
+        buttons: [{label: "Play now!", url: "https://github.com/GGR-Devs/GGReborn-App"}],
     });
 }
 
