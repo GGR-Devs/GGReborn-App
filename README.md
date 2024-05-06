@@ -1,4 +1,3 @@
-
 # GGReborn-App
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://choosealicense.com/licenses/mit/) [![LATEST](https://img.shields.io/badge/latest-UNKNOWN-blue?style=flat)](https://img.shields.io/badge/latest-UNKNOWN-blue)
 
@@ -10,14 +9,13 @@ Missing
 ## How to install
 Download the latest version from [here](https://github.com/GGR-Devs/GGReborn-App/releases)
 
-If you downloaded the installer: open it, and follow the steps.
-
+If you downloaded the installer: open the installer. When the installer finishes, the application will start automatically.
 If you downloaded the portable: unzip it, then enter the directory.
 
-After you can start the app by clicking on the GGReborn file.
+Once you have installed the application, launch the GGRebornApp executable.
 
 #### Build it yourself
-Make sure you have [nodejs](https://nodejs.org/en/download/) installed (you can install yarn too [yarn](https://classic.yarnpkg.com/en/docs/install)).
+Make sure you have [nodejs](https://nodejs.org/en/download/) installed (you can install [yarn](https://classic.yarnpkg.com/en/docs/install) too).
 
 Clone this repository
 ```
