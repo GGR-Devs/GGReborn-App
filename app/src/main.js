@@ -348,6 +348,6 @@ function log(level, message) {
     if (fs.existsSync(todaysLogFile)) {
         fs.appendFileSync(todaysLogFile, `${level} ${message}\n`);
     };
-};
+}
 
 };

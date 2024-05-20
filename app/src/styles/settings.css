@@ -47,7 +47,7 @@
 }
 
 /* button design from github button */
-#change-theme-button {
+#change-theme-button, #view-logs-button {
   appearance: none;
   border-radius: 6px;
   box-sizing: border-box;
@@ -146,7 +146,7 @@ select {
   font-weight: bold;
 }
 
-#restore-default-settings-button {
+#restore-default-settings-button, #report-problem-button {
   appearance: none;
   border-radius: 6px;
   box-sizing: border-box;
@@ -166,7 +166,7 @@ select {
   margin-left: 12px;
 }
 
-.social-icons {
+.btn-icon {
   width: 32px;
   height: 32px;
 }
@@ -180,7 +180,7 @@ select {
   user-select: none;
 }
 
-.social-name {
+.name {
   font-family: CooperTT_Blk_BT, 'Roboto', 'Segoe UI', sans-serif;
   font-size: 12px;
   position: absolute;
@@ -196,10 +196,14 @@ select {
   transform: translateY(-10px);
 }
 
-.social-container:hover .social-name {
+.social-container:hover .name {
   opacity: 1;
 }
 
 .social-container:active {
   transform: scale(1.3);
+}
+
+.button:active {
+  transform: scale(1.1);
 }

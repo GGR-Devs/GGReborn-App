@@ -55,6 +55,11 @@ function handleControls() {
         event.preventDefault();
         shell.openExternal("https://www.buymeacoffee.com/ggreborn");
     });
+
+    document.getElementById('report-problem-button').addEventListener("click", event => {
+        event.preventDefault();
+        shell.openExternal("https://github.com/GGR-Devs/GGReborn-App/issues/new/choose");
+    })
     
 }
 
