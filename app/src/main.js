@@ -1,12 +1,14 @@
 const { app, BrowserWindow, ipcMain, screen, dialog } = require('electron');
 const { autoUpdater, appUpdater } = require("electron-updater")
 const path = require("path");
+const fs = require('fs');
 
 autoUpdater.autoDownload = false // Don't download without asking the user
 autoUpdater.autoInstallOnAppQuit = true
 
 const { appConfig } = require('../src/scripts/settings');
-const { initDiscordRichPresence } = require('../src/integrations/discord')
+const { initDiscordRichPresence } = require('../src/integrations/discord');
+const { fstat } = require('fs');
 
 const childWindowState = {
   isClosed: true,
@@ -323,4 +325,29 @@ ipcMain.on('log', (event, level, message) => {
 
 function log(level, message) {
     console.log(`[${level}] ${message}`);
+
+    if (appConfig.storeLogs) {
+    const datetime = new Date();
+    const currentDate = datetime.toISOString().slice(0,10);
+
+    const userPath = (app || remote.app).getPath('userData');
+    const parentDir = path.join(userPath, '..');
+    var appDir = path.join(parentDir, 'GGRebornApp');
+    var logsDir = path.join(appDir, 'logs');
+
+    if (!fs.existsSync(logsDir)) {
+        fs.mkdirSync(logsDir)
+    };
+
+    var todaysLogFile = path.join(logsDir, `${currentDate}.txt`);
+    if (!fs.existsSync(todaysLogFile)) {
+        console.log(`[INFO] ${currentDate} log file does not exist -> cannot store logs. Creating a new file where's the logs going to be stored`);
+        fs.writeFileSync(todaysLogFile, JSON.stringify('File created', null, 4));
+    };
+
+    if (fs.existsSync(todaysLogFile)) {
+        fs.appendFileSync(todaysLogFile, `${level} ${message}\n`);
+    };
+};
+
 };
