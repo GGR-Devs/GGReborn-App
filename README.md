@@ -50,7 +50,7 @@ yarn dist
 ```
 then install the package from the dist folder.
 
-#### Uninstall
+## Uninstall
 **Warning:** On uninstall, all app data will be removed, including saved accounts from the password manager.
 
 **On Windows:**
