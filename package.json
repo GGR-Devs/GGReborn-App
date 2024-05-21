@@ -45,6 +45,14 @@
         }
       ]
     },
+	"nsis": {
+	"oneClick": false,
+    "allowElevation": true,
+    "allowToChangeInstallationDirectory": true,
+	"license": "LICENSE",
+	"deleteAppDataOnUninstall": true,
+	"createDesktopShortcut": true
+	},
     "asar": true,
     "files": [
       "**/*",
