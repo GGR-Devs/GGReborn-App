@@ -3,7 +3,7 @@
 [![DISCORD](https://dcbadge.limes.pink/api/server/fHN8Pk9a3Q?style=flat)](https://discord.gg/fHN8Pk9a3Q)
 
 Simple, customizable client with built in flash player to play GoodGame Café, Disco and Fashion.
-![image](https://github.com/GGR-Devs/GGReborn-App/assets/78733248/5f03623f-e303-4076-a542-a949abf47704)
+![image](https://github.com/GGR-Devs/GGReborn-App/assets/78733248/5f615d50-4c95-4b7e-962d-76ce87d0fd45)
 ## About the project
 **Goodgame Reborn is a fan community** dedicated to reviving the flash games from Goodgame Studios (Café, Disco, Fashion) that were discontinued in 2016. Rebuild your dream Café, Disco, or Fashion and connect with old and new friends!
 This project is non-profit. All support goes directly into the project. Our team is not connected with Goodgame Studios.
