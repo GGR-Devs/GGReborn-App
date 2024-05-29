@@ -85,8 +85,6 @@ update_discord.addEventListener("click", event => { updateSetting('updateDiscord
 const auto_update = document.getElementById('auto-update');
 auto_update.addEventListener("click", event => { updateSetting('autoUpdate', auto_update.checked) });
 
-const store_logs = document.getElementById('store-logs');
-store_logs.addEventListener("click", event => { updateSetting('storeLogs', store_logs.checked) });
 
 const game_select = document.getElementById('game-select');
 game_select.addEventListener("change", event => { updateSetting('defaultGame', game_select.value) });
@@ -100,7 +98,6 @@ setSettings('faster-splash', appConfig.fasterSplash);
 setSettings('enable-discord', appConfig.enableDiscordRichPresence);
 setSettings('update-discord', appConfig.updateDiscordRichPresence);
 setSettings('auto-update', appConfig.autoUpdate);
-setSettings('store-logs', appConfig.storeLogs);
 
 setSelection('game-select', appConfig.defaultGame);
 setSelection('resolutions-select', appConfig.customResolution);

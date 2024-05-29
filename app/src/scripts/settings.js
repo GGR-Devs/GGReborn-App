@@ -43,8 +43,7 @@ const appConfig = {
     defaultGame: 'cafe', // Loads this game on launch
     enableDiscordRichPresence: true, // Enable rich presence
     updateDiscordRichPresence: true, // Update realtime the rich presence
-    autoUpdate: true, // On launch the app checks the latest version. If the current version is different, the app will update
-    storeLogs: false // Enable this to store logs
+    autoUpdate: true // On launch the app checks the latest version. If the current version is different, the app will update
 }
 
 const userPath = (electron.app || electron.remote.app).getPath('userData');
