@@ -202,6 +202,12 @@
     height: 32px;
 }
 
+.menu-item-online img {
+    width: 24px;
+    height: 24px;
+}
+
+
 #titlebar-image {
     position: fixed;
     object-fit: cover;
