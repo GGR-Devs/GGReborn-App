@@ -1,14 +1,16 @@
 const { app, BrowserWindow, ipcMain, screen, dialog } = require('electron');
-const { autoUpdater, appUpdater } = require("electron-updater")
+const { autoUpdater } = require("electron-updater")
 const path = require("path");
-const fs = require('fs');
 
-autoUpdater.autoDownload = false // Don't download without asking the user
+autoUpdater.autoDownload = false // If auto update set to true -> set to true
 autoUpdater.autoInstallOnAppQuit = true
+autoUpdater.autoRunAppAfterInstall = true
+autoUpdater.auto
 
 const { appConfig } = require('../src/scripts/settings');
+
+//const { updateStatus } = require('./scripts/updater')
 const { initDiscordRichPresence } = require('../src/integrations/discord');
-const { fstat } = require('fs');
 
 const childWindowState = {
   isClosed: true,
@@ -18,6 +20,7 @@ const childWindowState = {
 let splashWin;
 let mainWin;
 let childWindow;
+let updateWin;
 
 log('INFO', 'App started');
 log('INFO', `Platform: ${process.platform}`)
@@ -117,106 +120,53 @@ function createMain() {
         },
     });
 
-    mainWin.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/" + appConfig.defaultGame + ".html"));
+    mainWin.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/game.html"));
 
     log('INFO', 'Main window loaded!');
 }
 
 function createUpdate() {
     log('INFO', 'Creating update window');
-    childWindow = new BrowserWindow({
-        width: 300,
-        height: 350,
-        minWidth: 300,
-        minHeight: 350,
+    updateWin = new BrowserWindow({
+        width: 320,
+        height: 380,
+        minWidth: 320,
+        minHeight: 380,
+        fileUrl: 'app/src/views/update.html',
         frame: false,
-        show: false
+        show: false,
+        alwaysOnTop: true,
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true,
+            webviewTag: true
+        },
     });
 
-    childWindow.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/update.html"));
+    updateWin.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/update.html"));
 
-    childWindow.once('ready-to-show', () => {
-        log('INFO', 'Update window ready to show')
-        childWindow.show();
+    log('INFO', 'Update window loaded!');
+
+    updateWin.on('close', () => {
+        updateWin.close;
+        updateWin = null;
+        log('INFO', 'Update window closed')
     });
 }
+
 
 app.whenReady().then(() => {
     if (appConfig.enableDiscordRichPresence) {
         initDiscordRichPresence();
     }
 
-    if (appConfig.autoUpdate) {
-        autoUpdater.checkForUpdates();
-
-        log('INFO', 'Checking for updates');
-
-        autoUpdater.on('update-not-available', () => {
-            log('INFO', 'Using the latest version');
-        });
-
-        autoUpdater.on('update-available', () => {
-            log('INFO', 'A new version is avaliable!');
-
-            const options = {
-                type: 'question',
-                buttons: ['Later', 'Install'],
-                defaultId: 1,
-                title: 'App update',
-                message: 'A new version is avaliable!',
-                detail: 'Would you like to install the new version now, or install it later?',
-            };
-
-            dialog.showMessageBox(mainWin, options).then(data => {
-                switch (data.response) {
-                    case 0:
-                        log('INFO', 'User choosed to download it later');
-                        break;
-                    case 1:
-                        log('INFO', 'User choosed to download the new update');
-                        createUpdate();
-                        let path = autoUpdater.downloadUpdate();
-                        log('INFO', path);
-                        break;
-                };
-            });
-
-        });
-
-        autoUpdater.on('update-downloaded', () => {
-            log('INFO', 'Update downloaded!');
-
-            dialog.showMessageBox(
-                null, {
-                    buttons: ['Yes', 'No'],
-                    title: 'App update',
-                    message: 'Update downloaded!',
-                    detail: 'To install the update, the app needs to be closed and started again. Would you like to close it now and install the update, or install it on the next time when the app started?',
-                }
-            ).then(data => {
-                switch (data.response) {
-                    case 0:
-                        log('INFO', 'User choosed to install it now');
-                        app.quit();
-                        break;
-                    case 1:
-                        log('INFO', 'User choosed to install it later');
-                        break;
-                };
-            });
-
-        });
-
-        autoUpdater.on('error', (e) => {
-            log('ERROR', e);
-        });
-    };
-
     if (appConfig.enableSplash) {
         log('INFO', 'Splash screen enabled!');
         createSplash();
     }
+
     createMain();
+
     if (!appConfig.enableSplash) {
         setTimeout(() => {
             mainWin.show();
@@ -233,6 +183,25 @@ app.whenReady().then(() => {
             createWindow();
         }
     });
+
+    if (appConfig.checkUpdates) {
+        log('INFO', 'Checking for updates');
+        autoUpdater.checkForUpdates();
+
+        autoUpdater.on('update-available', () => {
+            createUpdate();
+            updateWin.once('ready-to-show', () => {
+                log('INFO', 'Update window ready to show')
+                updateWin.show();
+            });
+        });
+
+        if (appConfig.autoUpdate) {
+            // autoUpdater.downloadUpdate();
+            // NOT DONE YET
+        }
+}
+
 });
 
 app.on('window-all-closed', () => {
@@ -240,6 +209,32 @@ app.on('window-all-closed', () => {
         app.quit();
         log('INFO', 'App closed');
     }
+});
+
+ipcMain.on('downloadUpdate', (event) => {
+    autoUpdater.downloadUpdate();
+
+    autoUpdater.on('update-downloaded', () => {
+        dialog.showMessageBox(
+            null, {
+                buttons: ['Install now', 'Later'],
+                title: 'App update',
+                message: 'Update downloaded!',
+                detail: 'Close the app now, to apply the update?',
+            }
+        ).then(data => {
+            switch (data.response) {
+                case 0:
+                    log('INFO', 'User choosed to install it now');
+                    app.quit();
+                    break;
+                case 1:
+                    log('INFO', 'User choosed to install it later');
+                    updateWin.close();
+                    break;
+            };
+        });
+    });
 });
 
 ipcMain.on('openWindow', (event, windowOptions) => {
@@ -266,7 +261,7 @@ ipcMain.on('openWindow', (event, windowOptions) => {
             // parent: mainWin,
             // modal: true, Window flicker when closing the child
             // https://github.com/electron/electron/issues/10616
-            autoHideMenuBar: true,
+            autoHideMenuBar: false,
             frame: false,
             show: false,
             webPreferences: {

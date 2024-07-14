@@ -29,6 +29,14 @@
     overflow: hidden;
 }
 
+.update-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 #update-alert {
     font-size: 24px;
 }
@@ -37,12 +45,64 @@
     font-size: 16px;
 }
 
-.update-text {
+#update-download-now {
+    border-width: 1px;
+    border-style: solid;
+    margin: 6px;
+    text-align: center;
+}
+
+#update-download-later {
+}
+
+.update-options-button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    text-decoration: underline;
+}
+
+#progress-bar-container {
     position: relative;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
+    top: 0;
+    left: 0;
+}
+
+#progress-bar {
+    position: relative;
+    width: 200px;
+    top: 0;
+    left: 0;
+}
+
+.progress-bar-preload {
+    position: absolute;
+    width: 32px;
+    top: 25px;
+    animation: scale-up 0.5s;
+}
+
+@keyframes scale-up {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
+
+#progress-bar-preload-0 {
+    left: 75px;
+}
+
+#progress-bar-preload-1 {
+    left: 115px;
+}
+
+#progress-bar-preload-2 {
+    left: 155px;
+}
+
+#progress-bar-preload-3 {
+    left: 195px;
 }
 

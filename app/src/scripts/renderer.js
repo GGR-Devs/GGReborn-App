@@ -1,12 +1,15 @@
 const remote = require('electron').remote;
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, app } = require('electron');
 const path = require('path');
 
 const win = remote.getCurrentWindow(); /* Note this is different to the
 html global `window` variable */
 
 const webview = document.getElementById('game');
+const app_title = document.getElementById('app-title');
 const title = document.getElementById('window-title');
+
+const { appConfig } = require('./settings');
 
 
 window.RufflePlayer = window.RufflePlayer || {};
@@ -14,7 +17,11 @@ window.RufflePlayer = window.RufflePlayer || {};
 // Added check
 if (webview) {
 webview.addEventListener('dom-ready', () => {
+    app_title.innerHTML = webview.getTitle();
     title.innerHTML = webview.getTitle();
+
+    const titlebar_image = `../assets/layout/${appConfig.defaultGame}-titlebar.jpg`; // Overwrides when switching games
+    document.getElementById("titlebar-image").src = titlebar_image;
 });
 }
 

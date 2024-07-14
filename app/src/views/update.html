@@ -1,20 +1,52 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>App updater</title>
-  <link rel="stylesheet" href="../styles/update.css" media="screen" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="../../themes/default/theme.css">
-</head>
-
-<body>
-  <div id="container">
-    <img src="../assets/splash.png" id="app-icon">
-  </div>
-  <p id="update-alert" class="update-text">App updater</p>
-  <p id="update-status-text" class="update-text">Downloading update</p>
-  <p id="update-status-text" class="update-text">Please don't close the app</p>
-</body>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title>App settings</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" type="text/css" id="active-theme" href="theme.css">
+    <link rel="stylesheet" type="text/css" href="../styles/game.css">
+    <link rel="stylesheet" type="text/css" href="../styles/update.css">
+    <link rel="stylesheet" type="text/css" href="../../themes/default/theme.css">
+  </head>
+   <body>
+      <div id="container">
+         <img src="../assets/splash.png" id="app-icon">
+      </div>
+      <div id="update-found" class="update-div" style="display: block;">
+         <p id="update-alert" class="update-text">Update found!</p>
+         <p class="update-text">Would you like to download the update now?</p>
+         <div id="update-download-now" class="update-options-button">
+            <p class="update-text">Download now</p>
+         </div>
+         <div id="update-download-later" class="update-options-button">
+            <p class="update-text">Later</p>
+         </div>
+      </div>
+      <div id="update-downloading" class="update-div" style="display: none;">
+         <p id="update-alert" class="update-text">Downloading the update</p>
+         <p id="update-text" class="update-text">Please don't close the app.</p>
+         <div id="progress-bar-container">
+         <img src="../assets/progress_bar/bar.png" id="progress-bar">
+         <img src="../assets/progress_bar/0.png" class="progress-bar-preload" id="progress-bar-preload-0">
+         <img src="../assets/progress_bar/0.png" class="progress-bar-preload" id="progress-bar-preload-1">
+         <img src="../assets/progress_bar/0.png" class="progress-bar-preload" id="progress-bar-preload-2">
+         <img src="../assets/progress_bar/0.png" class="progress-bar-preload" id="progress-bar-preload-3">
+         <p id="info" class="">ETA: N/A</p>
+      </div>
+      </div>
+      <div id="update-downloaded" class="update-div" style="display: none;">
+         <p id="update-alert" class="update-text">Update downloaded!</p>
+         <p class="update-text">Install the update now?</p>
+         <div id="update-download-now" class="update-options-button">
+            <p class="update-text">Install now</p>
+         </div>
+         <div id="update-download-later" class="update-options-button">
+            <p class="update-text">Later</p>
+         </div>
+      </div>
+      <script>
+         require('../scripts/updater_renderer.js')
+       </script>
+   </body>
 </html>

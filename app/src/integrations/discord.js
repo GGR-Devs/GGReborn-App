@@ -17,7 +17,7 @@ const states = {
         in: 'Club',
         lounge: 'Lounge',
         logo: 'ggdiscologo',
-        APPLICATION_ID: ''
+        APPLICATION_ID: '1258521418350596146'
     },
     fashion: {
         in: 'Fashion',

@@ -82,6 +82,9 @@ enable_discord.addEventListener("click", event => { updateSetting('enableDiscord
 const update_discord = document.getElementById('update-discord');
 update_discord.addEventListener("click", event => { updateSetting('updateDiscordRichPresence', update_discord.checked) });
 
+const check_updates = document.getElementById('check-updates');
+check_updates.addEventListener("click", event => { updateSetting('checkUpdates', check_updates.checked) });
+
 const auto_update = document.getElementById('auto-update');
 auto_update.addEventListener("click", event => { updateSetting('autoUpdate', auto_update.checked) });
 
@@ -97,6 +100,7 @@ setSettings('enable-splash', appConfig.enableSplash);
 setSettings('faster-splash', appConfig.fasterSplash);
 setSettings('enable-discord', appConfig.enableDiscordRichPresence);
 setSettings('update-discord', appConfig.updateDiscordRichPresence);
+setSettings('check-updates', appConfig.checkUpdates);
 setSettings('auto-update', appConfig.autoUpdate);
 
 setSelection('game-select', appConfig.defaultGame);
