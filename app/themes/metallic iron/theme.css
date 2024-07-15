@@ -1,0 +1,135 @@
+/* MAIN */
+#titlebar {
+  background-image: linear-gradient(90deg, #333333, #666666);
+}
+
+body {
+  background-image: linear-gradient(90deg, #4d4d4d, #8c8c8c);
+}
+
+.background {
+  background-image: linear-gradient(90deg, #4d4d4d, #8c8c8c);
+}
+
+/* TEXT */
+#window-title {
+  color: #ffffff;
+}
+
+.text {
+  color: #ffffff;
+}
+
+.title {
+  color: #ffffff;
+}
+
+.theme-name,
+.theme-description,
+.theme-author,
+.theme-modified {
+  color: #ffffff;
+}
+
+
+/* MENU */
+#menu {
+  background-color: #4d4d4d;
+  border-top: #3a3939 2px solid;
+}
+
+.menu-item {
+  background-color: #8c8c8c;
+  border-color: #3a3939 !important;
+  border-bottom: 2px #3a3939 solid;
+}
+
+.menu-item:hover, 
+.menu-item-small:hover {
+  background-color: #bfbfbf;
+}
+
+.menu-item:active,
+.menu-item-small:active {
+  background-color: #ffffff;
+}
+
+.menu-item-small {
+  background-color: #8c8c8c;
+  border-color: 2px #3a3939 !important;
+  border-bottom: 2px #3a3939 solid;
+}
+
+
+/* SETTINGS */
+.information {
+  border: #8c8c8c solid 1px;
+  color: #8c8c8c;
+}
+
+#change-theme-button {
+  background-color: #7dafd5;
+  border: 1px solid rgba(27, 31, 35, .15);
+  color: #fff;
+}
+
+#change-theme-button:hover{
+  background-color: #7dafd5;
+}
+
+.slider {
+  background-color: #ccc;
+}
+
+.slider:before {
+  background-color: white;
+}
+
+input:checked + .slider {
+  background-color: #7dafd5;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #7dafd5;
+}
+
+/* THEME BROWSER */
+#theme-item {
+  background-image: linear-gradient(90deg, #8c8c8c, #bfbfbf);
+}
+
+.use-theme-button {
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  color: #fff;
+}
+
+.use-theme-button:hover{
+  background-color: #2c974b;
+}
+
+.edit-theme-button {
+  background-color: #2e7fa4;
+  border: 1px solid rgba(27, 31, 35, .15);
+  color: #fff;
+}
+
+.edit-theme-button:hover{
+  background-color: #2c6997;
+}
+
+.delete-theme-button {
+  background-color:  #a42e2e;
+  border: 1px solid rgba(27, 31, 35, .15);
+  color: #fff;
+}
+
+.delete-theme-button:hover{
+  background-color: #7b2525;
+}
+
+#create-theme-button {
+  background-color: #8c8c8c;
+  border: 1px solid rgba(27, 31, 35, .15);
+  color: #fff;
+}

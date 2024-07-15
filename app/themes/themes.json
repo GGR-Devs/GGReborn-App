@@ -9,6 +9,10 @@
       {
        "id": "default",
        "config": "theme.json"
+	  },
+	  {
+		"id": "metallic iron",
+		"config": "theme.json"
 	  }
     ]
  }
