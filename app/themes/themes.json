@@ -8,8 +8,7 @@
 
       {
        "id": "default",
-       "themepath": "default/theme.css",
-       "path": "default/theme.json"
+       "config": "theme.json"
 	  }
     ]
  }

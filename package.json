@@ -5,6 +5,20 @@
   "main": "app/src/main.js",
   "repository": "https://github.com/GGR-Devs/GGReborn-App",
   "author": "GGReborn",
+  "contributors": [
+    {"name": "BXn4", "url": "https://github.com/bxn4"}
+  ],
+  "keywords": [
+    "ggreborn",
+    "ggreborn app",
+    "goodgame cafe reborn",
+    "goodgame disco reborn",
+    "goodgame fashion reborn"
+  ],
+  "funding": {
+    "type": "Buy Me a Coffee",
+    "url": "https://buymeacoffee.com/ggreborn"
+  },
   "license": "MIT",
   "scripts": {
     "start": "electron .",

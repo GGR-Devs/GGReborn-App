@@ -2,9 +2,10 @@
       "name": "Melting Butter (Default)",
       "id": "default",
       "description": "Default app theme",
+      "long-description": "Adds a smooth and creamy user experience with warm colors.",
       "author": "GGReborn",
-      "created": "18-01-24",
+      "created": "01-18-24",
       "modified": "05-20-24",
-      "themepath": "default/theme.css",
-      "thumbnail": "default/preview.png"
+      "theme_file": "theme.css",
+      "thumbnail": "preview.png"
     }

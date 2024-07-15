@@ -11,6 +11,10 @@ const title = document.getElementById('window-title');
 
 const { appConfig } = require('./settings');
 
+const { inject } = require('./theme_reader');
+
+inject(appConfig.appTheme)
+
 
 window.RufflePlayer = window.RufflePlayer || {};
 

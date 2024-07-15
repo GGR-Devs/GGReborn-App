@@ -11,6 +11,9 @@ const { appConfig } = require('../src/scripts/settings');
 
 //const { updateStatus } = require('./scripts/updater')
 const { initDiscordRichPresence } = require('../src/integrations/discord');
+const { loadThemes } = require('../src/scripts/theme_reader');
+
+loadThemes();
 
 const childWindowState = {
   isClosed: true,
@@ -175,7 +178,7 @@ app.whenReady().then(() => {
             if (appConfig.startMaximized) {
                 mainWin.maximize();
             };
-        }, 100);
+        }, 200);
     };
 
     app.on('activate', () => {
