@@ -25,7 +25,7 @@ function loadThemes() {
         }});
 };
 
-function inject(wantedThemeID) {
+function injectTheme(wantedThemeID) {
     const active_theme = document.getElementById('active-theme');
     let theme_loaded = false;
 
@@ -50,4 +50,41 @@ function inject(wantedThemeID) {
     }
 };
 
-module.exports = { loadThemes, inject };
+function injectAvaliableThemes() {
+    const themes_list = document.getElementById('themes-list');
+
+    themes.forEach(theme => {
+        const themePath = path.join(themesPath + theme.id + '/' + theme.config);
+        
+        if (fs.existsSync(themePath)) {
+            const themeConfig = fs.readFileSync(themePath, 'utf-8');
+                const themeData = JSON.parse(themeConfig);
+                const theme_item = document.createElement('div');
+                theme_item.id = 'theme-item'
+
+                theme_item.innerHTML = 
+                `
+                <div id="theme-${theme.id}" title="Hold or click to see the preview" draggable="false" class="theme">
+                <img class="theme-thumbnail" src="${themesPath + themeData.id + '/' + themeData.thumbnail}" style="width: 200px; height: 150px;" draggable="false">
+                <img class="preview" src="../assets/buttons/preview.png" draggable="false">
+                </div>
+                <p class="theme-name">${themeData.name}</p>
+                <p class="theme-description">${themeData.description}</p>
+                <p class="theme-author">Author: ${themeData.author}</p>
+                <p class="theme-modified">Modified: ${themeData.modified}</p>
+                <div id="theme-buttons">
+                    <button class="use-theme-button" id="${themeData.id}">Use</button>
+                    <button class="edit-theme-button">Edit</button>
+                    <button class="delete-theme-button">Delete</button>
+                </div>
+                `;
+                themes_list.appendChild(theme_item);
+        };
+    });
+};
+
+function getThemePreview(wantedThemeID) {
+
+}
+
+module.exports = { loadThemes, injectTheme, injectAvaliableThemes, getThemePreview };

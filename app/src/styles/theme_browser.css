@@ -1,0 +1,134 @@
+#themes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+#theme-item {
+  align-items: center;
+  padding: 12px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  position: relative;
+}
+
+.theme-thumbnail {
+  position: relative;
+}
+
+.preview {
+  position: absolute;
+  top: 65px; /* BAD!! not center?*/
+  left: 90px; /* BAD!! not center?*/
+  opacity: 0.2;
+}
+
+.theme:hover .preview {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.theme:active .preview {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.theme-name {
+  font-family: CooperTT_Blk_BT, 'Roboto', 'Segoe UI', sans-serif;
+  font-size: 22px;
+  user-select: none;
+  margin-left: 12px;
+  margin-top: 0%;
+  margin-bottom: auto;
+}
+
+.theme-description {
+  font-family: Arial_Rounded_MT_Pro, 'Roboto', 'Segoe UI', sans-serif;
+  font-size: 16px;
+  user-select: none;
+  margin-left: 210px;
+  margin-bottom: 70px;
+  position: absolute;
+}
+
+.theme-author {
+  font-family: Arial_Rounded_MT_Pro, 'Roboto', 'Segoe UI', sans-serif;
+  font-size: 16px;
+  user-select: none;
+  margin-left: 210px;
+  margin-bottom: 10px;
+  position: absolute;
+}
+
+.theme-modified {
+  font-family: Arial_Rounded_MT_Pro, 'Roboto', 'Segoe UI', sans-serif;
+  font-size: 16px;
+  user-select: none;
+  margin-left: 210px;
+  margin-bottom: -50px;
+  position: absolute;
+}
+
+
+#theme-buttons {
+  font-family: Arial_Rounded_MT_Pro, 'Roboto', 'Segoe UI', sans-serif;
+  font-size: 16px;
+  user-select: none;
+  margin-left: 205px;
+  margin-top: 140px;
+  position: absolute;
+}
+
+.use-theme-button,
+.edit-theme-button,
+.delete-theme-button {
+  appearance: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin: 6px;
+  margin-top: -6px;
+  padding: 6px;
+}
+
+/* button design from github button */
+#create-theme-button {
+  appearance: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-left: 12px;
+  margin-top: 12px;
+}
+
+.text {
+  font-size: 24px;
+  line-height: 24px;
+}

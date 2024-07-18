@@ -32,7 +32,7 @@ function handleControls() {
             height: 600,
             minWidth: 800,
             minHeight: 600,
-            fileUrl: fileUrl
+            fileUrl: 'app/src/views/theme_browser.html'
             });
         });
 

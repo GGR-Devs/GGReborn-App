@@ -11,5 +11,6 @@ x_dark
 x_light
 info_colorized
 info_dark
+preview
 
 by icons8.com

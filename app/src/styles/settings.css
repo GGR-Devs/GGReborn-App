@@ -180,12 +180,12 @@ select {
   user-select: none;
 }
 
-.name {
+#social-name {
   font-family: CooperTT_Blk_BT, 'Roboto', 'Segoe UI', sans-serif;
   font-size: 12px;
   position: absolute;
   bottom: calc(-10px);
-  left: 50%;
+  left: 20%;
   transform: translateX(-50%);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -196,7 +196,7 @@ select {
   transform: translateY(-10px);
 }
 
-.social-container:hover .name {
+.social-container:hover #social-name {
   opacity: 1;
 }
 

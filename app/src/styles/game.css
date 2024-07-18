@@ -209,3 +209,27 @@
     height: 40px;
     width: 100%;
 }
+
+#info-box {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    background-color: #F0E1C4;
+    transition: opacity 2s linear, transform 2s linear;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .status-bar-containter {
+    height: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  #status-bar {
+    height: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #c4a36a;
+    transition: width 5s linear;
+  }

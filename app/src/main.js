@@ -11,7 +11,7 @@ const { appConfig } = require('../src/scripts/settings');
 
 //const { updateStatus } = require('./scripts/updater')
 const { initDiscordRichPresence } = require('../src/integrations/discord');
-const { loadThemes } = require('../src/scripts/theme_reader');
+const { loadThemes } = require('../src/scripts/themer');
 
 loadThemes();
 
@@ -240,7 +240,7 @@ ipcMain.on('downloadUpdate', (event) => {
     });
 });
 
-ipcMain.on('openWindow', (event, windowOptions) => {
+function createChildWindow(windowOptions) {
     const {
         width,
         height,
@@ -252,16 +252,17 @@ ipcMain.on('openWindow', (event, windowOptions) => {
     const display = screen.getDisplayNearestPoint({
         x: mainWinBounds.x,
         y: mainWinBounds.y
-    })
+    });
 
-    if (childWindowState.isClosed) {
-        log('INFO', 'Openning a new window')
+    if (!childWindow) {
+        log('INFO', 'Creating a new child window to load: ' + fileUrl)
+
         childWindow = new BrowserWindow({
             width: width,
             height: height,
             minWidth: minWidth,
             minHeight: minHeight,
-            // parent: mainWin,
+            parent: mainWin,
             // modal: true, Window flicker when closing the child
             // https://github.com/electron/electron/issues/10616
             autoHideMenuBar: false,
@@ -280,41 +281,33 @@ ipcMain.on('openWindow', (event, windowOptions) => {
         const winY = display.bounds.y + (display.bounds.height - height) / 2;
         childWindow.setPosition(winX, winY);
 
-        childWindowState.isClosed = false;
-        childWindowState.fileUrl = fileUrl;
-    } else {
-        if (childWindowState.fileUrl != fileUrl) {
-            childWindowState.fileUrl = fileUrl;
+        childWindowState.fileUrl = fileUrl
 
-            childWindow.loadFile(fileUrl).then(() => {
-                childWindow.setMinimumSize(minWidth, minHeight);
-                childWindow.setSize(width, height);
+        childWindow.once('ready-to-show', () => {
+            log('INFO', 'Child window ready to show')
+            childWindow.show();
+        });
 
-                const primaryDisplay = screen.getPrimaryDisplay().workAreaSize;
-                const x = (primaryDisplay.width - childWindow.getSize()[0]) / 2;
-                const y = (primaryDisplay.height - childWindow.getSize()[1]) / 2;
-                childWindow.setPosition(x, y);
-
-                childWindow.focus();
-            });
-
-        } else {
-            log('INFO', 'Showing the opened child window')
-            childWindow.focus();
-        }
-    }
-
-    childWindow.once('ready-to-show', () => {
-        log('INFO', 'Child window ready to show')
-        childWindow.show();
-    });
-
-    childWindow.on('close', () => {
+        childWindow.on('close', () => {
+            childWindowState.isClosed = true;
+            childWindowState.fileUrl = '';
+            log('INFO', 'Child window closed')
+            childWindow = null;
+        });
+    } else if (childWindowState.fileUrl != fileUrl) {
+        // !! LAZY
+        childWindow.close();
         childWindow = null;
-        childWindowState.isClosed = true;
-        childWindowState.fileUrl = '';
-        log('INFO', 'Child window closed')
-    });
+        createChildWindow(windowOptions);
+    } else {
+        log('INFO', 'Showing the opened child window');
+        childWindow.focus();
+    }
+};
+
+
+ipcMain.on('openWindow', (event, windowOptions) => {
+    createChildWindow(windowOptions);
 });
 
 ipcMain.on('log', (event, level, message) => {
@@ -323,4 +316,4 @@ ipcMain.on('log', (event, level, message) => {
 
 function log(level, message) {
     console.log(`[${level}] ${message}`);
-}
+};
