@@ -1,5 +1,5 @@
 const remote = require('electron').remote;
-const { ipcRenderer, app } = require('electron');
+const { ipcRenderer } = require('electron');
 const path = require('path');
 
 const win = remote.getCurrentWindow(); /* Note this is different to the
@@ -14,7 +14,6 @@ const { appConfig } = require('./settings');
 const { injectTheme } = require('./themer');
 
 injectTheme(appConfig.appTheme)
-
 
 window.RufflePlayer = window.RufflePlayer || {};
 
@@ -76,6 +75,11 @@ function handleWindowControls() {
     //     }
     // }
 }
+
+ipcRenderer.on('theme-changed', (event, themePath) => {
+    const active_theme = document.getElementById('active-theme');
+    active_theme.href = themePath;
+});
 
 function log(event, message) {
     ipcRenderer.send('log', event, message);

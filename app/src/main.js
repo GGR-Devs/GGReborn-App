@@ -310,6 +310,10 @@ ipcMain.on('openWindow', (event, windowOptions) => {
     createChildWindow(windowOptions);
 });
 
+ipcMain.on('theme-changed', (event, themePath) => {
+    mainWin.webContents.send('theme-changed', themePath);
+});
+
 ipcMain.on('log', (event, level, message) => {
     log(level, message)
 });

@@ -168,3 +168,16 @@ select {
 .update-text {
     color: black;
 }
+
+/* INFO BOX */
+#info-box {
+    background-color: #F0E1C4;
+}
+  
+.status-bar-container {
+    background-color: #504c44;
+}
+  
+#status-bar {
+    background-color: #c4a36a;
+}

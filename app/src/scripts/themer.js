@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+
+const assetsPath = path.join(__dirname, '../assets/');
 const themesPath = path.join(__dirname, '../../themes/');
 const themesConfig = require('../../themes/themes.json');
 const themes = themesConfig.themes || [];
@@ -64,7 +66,7 @@ function injectAvaliableThemes() {
 
                 theme_item.innerHTML = 
                 `
-                <div id="theme-${theme.id}" title="Hold or click to see the preview" draggable="false" class="theme">
+                <div id="${theme.id}" title="Click to zoom in" draggable="false" class="theme">
                 <img class="theme-thumbnail" src="${themesPath + themeData.id + '/' + themeData.thumbnail}" style="width: 200px; height: 150px;" draggable="false">
                 <img class="preview" src="../assets/buttons/preview.png" draggable="false">
                 </div>
@@ -84,7 +86,62 @@ function injectAvaliableThemes() {
 };
 
 function getThemePreview(wantedThemeID) {
-
+    for (const theme of themes) {
+        const themePath = path.join(themesPath, wantedThemeID, theme.config);
+        
+        if (fs.existsSync(themePath)) {
+            const themeConfig = fs.readFileSync(themePath, 'utf-8');
+            const themeData = JSON.parse(themeConfig);
+            if (theme.id == wantedThemeID) {
+                if (fs.existsSync(themesPath + theme.id + '/' + themeData.thumbnail)) {
+                return `${themesPath + themeData.id + '/' + themeData.thumbnail}`;
+                };
+            };
+        };
+    };
+    return `${assetsPath + 'preview-missing.png'}`;
 }
 
-module.exports = { loadThemes, injectTheme, injectAvaliableThemes, getThemePreview };
+function getThemeDescription(wantedThemeID) {
+    for (const theme of themes) {
+        const themePath = path.join(themesPath, wantedThemeID, theme.config);
+        
+        if (fs.existsSync(themePath)) {
+            const themeConfig = fs.readFileSync(themePath, 'utf-8');
+            const themeData = JSON.parse(themeConfig);
+            if (theme.id == wantedThemeID) {
+                return themeData['long-description'] || themeData.description;
+            };
+        };
+    };
+}
+
+function getThemeName(wantedThemeID) {
+    for (const theme of themes) {
+        const themePath = path.join(themesPath, wantedThemeID, theme.config);
+        
+        if (fs.existsSync(themePath)) {
+            const themeConfig = fs.readFileSync(themePath, 'utf-8');
+            const themeData = JSON.parse(themeConfig);
+            if (theme.id == wantedThemeID) {
+                return themeData.name;
+            };
+        };
+    };
+}
+
+function getThemeFile(wantedThemeID) {
+    for (const theme of themes) {
+        const themePath = path.join(themesPath, wantedThemeID, theme.config);
+        
+        if (fs.existsSync(themePath)) {
+            const themeConfig = fs.readFileSync(themePath, 'utf-8');
+            const themeData = JSON.parse(themeConfig);
+            if (theme.id == wantedThemeID) {
+                return `${themesPath + themeData.id + '/' + themeData.theme_file}`;
+            };
+        };
+    };
+}
+
+module.exports = { loadThemes, injectTheme, injectAvaliableThemes, getThemePreview, getThemeDescription, getThemeName, getThemeFile };

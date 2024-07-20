@@ -35,7 +35,7 @@ function handleControls() {
             fileUrl: 'app/src/views/theme_browser.html'
             });
         });
-
+        
     document.getElementById('github-repo').addEventListener("click", event => {
         event.preventDefault();
         shell.openExternal("https://github.com/GGR-Devs/GGReborn-App");
