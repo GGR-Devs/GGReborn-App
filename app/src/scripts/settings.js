@@ -108,16 +108,6 @@ function loadAppConfig() {
 }
 
 function updateSetting(setting, value) {
-    if (setting === 'enableDiscordRichPresence') {
-        if (appConfig.enableDiscordRichPresence) {
-            removeDiscordRichPresence();
-            log('INFO', 'Removing Discord Rich Presence');
-        }
-        else {
-            initDiscordRichPresence();
-            log('INFO', 'Initing Discord Rich Presence');
-        }
-    }
     appConfig[setting] = value;
 
     saveSettings();

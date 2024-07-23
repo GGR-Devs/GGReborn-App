@@ -10,7 +10,7 @@ autoUpdater.auto
 const { appConfig } = require('../src/scripts/settings');
 
 //const { updateStatus } = require('./scripts/updater')
-const { initDiscordRichPresence } = require('../src/integrations/discord');
+const { initDiscordRichPresence, removeDiscordRichPresence } = require('../src/integrations/discord');
 const { loadThemes } = require('../src/scripts/themer');
 
 loadThemes();
@@ -312,6 +312,14 @@ ipcMain.on('openWindow', (event, windowOptions) => {
 
 ipcMain.on('theme-changed', (event, themePath) => {
     mainWin.webContents.send('theme-changed', themePath);
+});
+
+ipcMain.on('update-discord-changed', (event, enabled) => {
+    if (enabled) {
+        initDiscordRichPresence();
+    } else if (!enabled) {
+        removeDiscordRichPresence();
+    };
 });
 
 ipcMain.on('log', (event, level, message) => {

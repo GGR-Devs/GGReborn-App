@@ -1,4 +1,4 @@
-const { app, ipcRenderer } = require('electron');
+const { ipcRenderer } = require('electron');
 const { appConfig, updateSetting } = require('./settings');
 const remote = require('electron').remote;
 const shell = require('electron').shell; // need to open the links in the OS default browser
@@ -77,7 +77,11 @@ const faster_splash = document.getElementById('faster-splash');
 faster_splash.addEventListener("click", event => { updateSetting('fasterSplash', faster_splash.checked) });
 
 const enable_discord = document.getElementById('enable-discord');
-enable_discord.addEventListener("click", event => { updateSetting('enableDiscordRichPresence', enable_discord.checked) });
+enable_discord.addEventListener("click", event => { 
+    updateSetting('enableDiscordRichPresence', enable_discord.checked) 
+    ipcRenderer.send('update-discord-changed', enable_discord.checked)
+
+});
 
 const update_discord = document.getElementById('update-discord');
 update_discord.addEventListener("click", event => { updateSetting('updateDiscordRichPresence', update_discord.checked) });
