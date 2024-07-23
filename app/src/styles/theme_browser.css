@@ -8,13 +8,34 @@
   overflow-y: auto;
 }
 
-#theme-item {
+.theme-item {
   align-items: center;
   padding: 12px;
   width: 100%;
   text-align: center;
   display: flex;
   position: relative;
+}
+
+.theme-item-destroy {
+  align-items: center;
+  padding: 12px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  position: relative;
+  animation: destroy 0.5s forwards;
+}
+
+@keyframes destroy {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0);
+  }
 }
 
 .theme-thumbnail {

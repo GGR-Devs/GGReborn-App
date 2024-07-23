@@ -1,31 +1,33 @@
 const remote = require('electron').remote;
 const { ipcRenderer } = require('electron');
 
-const { injectAvaliableThemes, getThemePreview, getThemeDescription, getThemeName, injectTheme, getThemeFile } = require('./themer');
+const { injectAvaliableThemes, getThemePreview, getThemeDescription, 
+        getThemeName, injectTheme, getThemeFile, removeTheme } = require('./themer');
 const { appConfig, updateSetting } = require('./settings');
+const { app } = require('electron/main');
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     injectAvaliableThemes();
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-// showInfoBox(`Theme ${themeData.name} loaded!`, {button_id: 'ok_test', button_class: 'ok_test', button_text: 'OK'});
-// We can add buttons, but its not useful.
-// showInfoBox(`Theme ${appConfig.appTheme} loaded!`);
-handleControls();
+document.addEventListener("DOMContentLoaded", function () {
+    // showInfoBox(`Theme ${themeData.name} loaded!`, {button_id: 'ok_test', button_class: 'ok_test', button_text: 'OK'});
+    // We can add buttons, but its not useful.
+    // showInfoBox(`Theme ${appConfig.appTheme} loaded!`);
+    handleControls();
 });
 
 function handleControls() {
 
     document.getElementById('theme-browser-back').addEventListener("click", event => {
-        ipcRenderer.send('openWindow', { 
+        ipcRenderer.send('openWindow', {
             width: 400,
             height: 560,
             minWidth: 350,
             minHeight: 450,
             fileUrl: 'app/src/views/settings.html'
-            });
         });
+    });
 
     document.querySelectorAll('.theme').forEach(preview => {
         preview.addEventListener('click', event => {
@@ -37,8 +39,8 @@ function handleControls() {
             theme_preview_src = getThemePreview(themeID);
             theme_description = getThemeDescription(themeID);
 
-            theme_preview_window.innerHTML = 
-            `
+            theme_preview_window.innerHTML =
+                `
             <div id="theme-preview-window" draggable="false">
             <img id="theme-preview" src="${theme_preview_src}" draggable="false">
             <p class="text" id="theme-preview-long-description" draggable="false">${theme_description}</p>
@@ -61,21 +63,46 @@ function handleControls() {
         }
     });
 
-    document.querySelectorAll('.use-theme-button').forEach(preview => {
-        preview.addEventListener('click', event => {
+    document.querySelectorAll('.use-theme-button').forEach(use_theme => {
+        use_theme.addEventListener('click', event => {
             themeID = event.currentTarget.id;
 
             if (appConfig.appTheme != themeID) {
-            updateSetting('appTheme', themeID)
+                updateSetting('appTheme', themeID)
 
-            showInfoBox(`App theme set to: ${getThemeName(themeID)}`);
+                showInfoBox(`App theme set to: ${getThemeName(themeID)}`);
 
-            injectTheme(themeID);
-            ipcRenderer.send('theme-changed', getThemeFile(themeID));
+                injectTheme(themeID);
+                ipcRenderer.send('theme-changed', getThemeFile(themeID));
             };
         });
     });
-}
+
+    document.querySelectorAll('.delete-theme-button').forEach(delete_theme => {
+        delete_theme.addEventListener('click', event => {
+            themeID = event.currentTarget.id;
+
+            if (themeID == 'default') {
+            showInfoBox(`Can't delete this theme!`);
+            return;
+            };
+
+            if (themeID == appConfig.appTheme) {
+            showInfoBox(`Can't delete the theme that is in use!`);
+            return;
+            };
+
+            let theme_item = document.getElementById(`theme-item-${themeID}`);
+            theme_item.className = 'theme-item-destroy';
+
+            showInfoBox(`${getThemeName(themeID)} theme was deleted`);
+            removeTheme(themeID);
+            setTimeout(() => {
+                theme_item.remove();
+            }, 150);
+        });
+    });
+};
 
 function showInfoBox(message, buttonOptions) {
     let info_box_container = document.getElementById("info-box-container");

@@ -120,7 +120,7 @@ select {
 }
 
 /* THEME BROWSER */
-#theme-item {
+.theme-item {
     background-image: linear-gradient(90deg, #f0dab4, #dacfa9);
 }
 

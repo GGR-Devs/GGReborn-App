@@ -10,21 +10,44 @@ const themes = themesConfig.themes || [];
 function loadThemes() {
     themes.forEach(theme => {
         const themePath = path.join(themesPath, theme.id + '/' + theme.config);
-        
+
         if (fs.existsSync(themePath)) {
             const themeConfig = fs.readFileSync(themePath, 'utf-8');
-                const themeData = JSON.parse(themeConfig);
-                /*console.log('Theme details:');
-                console.log('Name:', themeData.name);
-                console.log('ID:', themeData.id);
-                console.log('Description:', themeData.description);
-                console.log('Long Description:', themeData['long-description']);
-                console.log('Author:', themeData.author);
-                console.log('Created:', themeData.created);
-                console.log('Modified:', themeData.modified);
-                console.log('Theme Path:', themeData.themepath);
-                console.log('Thumbnail:', themeData.thumbnail);*/
-        }});
+            const themeData = JSON.parse(themeConfig);
+            /*console.log('Theme details:');
+            console.log('Name:', themeData.name);
+            console.log('ID:', themeData.id);
+            console.log('Description:', themeData.description);
+            console.log('Long Description:', themeData['long-description']);
+            console.log('Author:', themeData.author);
+            console.log('Created:', themeData.created);
+            console.log('Modified:', themeData.modified);
+            console.log('Theme Path:', themeData.themepath);
+            console.log('Thumbnail:', themeData.thumbnail);*/
+        }
+    });
+};
+
+function removeTheme(themeID) {
+    const filePath = path.join(themesPath, 'themes.json');
+    const data = fs.readFileSync(filePath, 'utf-8');
+    const themeJSON = JSON.parse(data);
+
+    const index = themeJSON.themes.findIndex(theme => theme.id === themeID);
+
+    const theme = themeJSON.themes[index];
+    const themePath = path.join(themesPath, theme.id + '/');
+
+    if (fs.existsSync(themePath)) {
+        fs.rmdirSync(themePath, { recursive: true, force: true });
+        // alert(`Deleted: ${themePath}`);
+    } else {
+        // alert(`Not exist: ${themePath}`);
+        return;
+    };
+
+    themeJSON.themes.splice(index, 1);
+    fs.writeFileSync(filePath, JSON.stringify(themeJSON, null, 2), 'utf-8');
 };
 
 function injectTheme(wantedThemeID) {
@@ -33,15 +56,15 @@ function injectTheme(wantedThemeID) {
 
     themes.forEach(theme => {
         const themePath = path.join(themesPath + wantedThemeID + '/' + theme.config);
-        
+
         if (fs.existsSync(themePath)) {
             const themeConfig = fs.readFileSync(themePath, 'utf-8');
-                const themeData = JSON.parse(themeConfig);
-                if (theme.id == wantedThemeID) {
-                    active_theme.href = themesPath + themeData.id + '/' + themeData.theme_file;
-                    //alert('Theme loaded! ' + wantedThemeID)
-                    theme_loaded = true;
-                };
+            const themeData = JSON.parse(themeConfig);
+            if (theme.id == wantedThemeID) {
+                active_theme.href = themesPath + themeData.id + '/' + themeData.theme_file;
+                //alert('Theme loaded! ' + wantedThemeID)
+                theme_loaded = true;
+            };
         };
     }
     );
@@ -57,16 +80,17 @@ function injectAvaliableThemes() {
 
     themes.forEach(theme => {
         const themePath = path.join(themesPath + theme.id + '/' + theme.config);
-        
+
         if (fs.existsSync(themePath)) {
             const themeConfig = fs.readFileSync(themePath, 'utf-8');
-                const themeData = JSON.parse(themeConfig);
-                const theme_item = document.createElement('div');
-                theme_item.id = 'theme-item'
+            const themeData = JSON.parse(themeConfig);
+            const theme_item = document.createElement('div');
+            theme_item.id = `theme-item-${themeData.id}`;
+            theme_item.className = 'theme-item';
 
-                theme_item.innerHTML = 
+            theme_item.innerHTML =
                 `
-                <div id="${theme.id}" title="Click to zoom in" draggable="false" class="theme">
+                <div id="${themeData.id}" title="Click to zoom in" draggable="false" class="theme">
                 <img class="theme-thumbnail" src="${themesPath + themeData.id + '/' + themeData.thumbnail}" style="width: 200px; height: 150px;" draggable="false">
                 <img class="preview" src="../assets/buttons/preview.png" draggable="false">
                 </div>
@@ -77,10 +101,10 @@ function injectAvaliableThemes() {
                 <div id="theme-buttons">
                     <button class="use-theme-button" id="${themeData.id}">Use</button>
                     <button class="edit-theme-button">Edit</button>
-                    <button class="delete-theme-button">Delete</button>
+                    <button class="delete-theme-button" id="${themeData.id}">Delete</button>
                 </div>
                 `;
-                themes_list.appendChild(theme_item);
+            themes_list.appendChild(theme_item);
         };
     });
 };
@@ -88,13 +112,13 @@ function injectAvaliableThemes() {
 function getThemePreview(wantedThemeID) {
     for (const theme of themes) {
         const themePath = path.join(themesPath, wantedThemeID, theme.config);
-        
+
         if (fs.existsSync(themePath)) {
             const themeConfig = fs.readFileSync(themePath, 'utf-8');
             const themeData = JSON.parse(themeConfig);
             if (theme.id == wantedThemeID) {
                 if (fs.existsSync(themesPath + theme.id + '/' + themeData.thumbnail)) {
-                return `${themesPath + themeData.id + '/' + themeData.thumbnail}`;
+                    return `${themesPath + themeData.id + '/' + themeData.thumbnail}`;
                 };
             };
         };
@@ -105,7 +129,7 @@ function getThemePreview(wantedThemeID) {
 function getThemeDescription(wantedThemeID) {
     for (const theme of themes) {
         const themePath = path.join(themesPath, wantedThemeID, theme.config);
-        
+
         if (fs.existsSync(themePath)) {
             const themeConfig = fs.readFileSync(themePath, 'utf-8');
             const themeData = JSON.parse(themeConfig);
@@ -119,7 +143,7 @@ function getThemeDescription(wantedThemeID) {
 function getThemeName(wantedThemeID) {
     for (const theme of themes) {
         const themePath = path.join(themesPath, wantedThemeID, theme.config);
-        
+
         if (fs.existsSync(themePath)) {
             const themeConfig = fs.readFileSync(themePath, 'utf-8');
             const themeData = JSON.parse(themeConfig);
@@ -133,7 +157,7 @@ function getThemeName(wantedThemeID) {
 function getThemeFile(wantedThemeID) {
     for (const theme of themes) {
         const themePath = path.join(themesPath, wantedThemeID, theme.config);
-        
+
         if (fs.existsSync(themePath)) {
             const themeConfig = fs.readFileSync(themePath, 'utf-8');
             const themeData = JSON.parse(themeConfig);
@@ -144,4 +168,4 @@ function getThemeFile(wantedThemeID) {
     };
 }
 
-module.exports = { loadThemes, injectTheme, injectAvaliableThemes, getThemePreview, getThemeDescription, getThemeName, getThemeFile };
+module.exports = { loadThemes, injectTheme, injectAvaliableThemes, getThemePreview, getThemeDescription, getThemeName, getThemeFile, removeTheme };
