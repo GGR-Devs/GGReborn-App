@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
+const JSZip = require("jszip");
+const { ipcRenderer } = require('electron');
 
-
+const appPath = path.join(__dirname, '../../../')
 const assetsPath = path.join(__dirname, '../assets/');
 const themesPath = path.join(__dirname, '../../themes/');
 const themesConfig = require('../../themes/themes.json');
@@ -27,6 +29,47 @@ function loadThemes() {
         }
     });
 };
+
+function importTheme(zipPath) {
+    console.log('Importing a theme from: ' + zipPath);
+
+    fs.readFile(zipPath, function(er, data) {
+        if (er) {
+            console.error(er);
+            return;
+        };
+
+        console.log('Path found!');
+        JSZip.loadAsync(data).then(function(zip) {
+            const promises = [];
+
+            Object.keys(zip.files).forEach(function(filename) {
+                const file = zip.files[filename];
+                const filePath = path.join(themesPath, filename);
+
+                if (file.dir) {
+                    fs.mkdirSync(filePath, {
+                        recursive: true
+                    });
+                } else {
+                    promises.push(
+                        file.async('nodebuffer').then(content => {
+                            const dir = path.dirname(filePath);
+                            fs.mkdirSync(dir, {
+                                recursive: true
+                            });
+                            fs.writeFileSync(filePath, content);
+                        })
+                    );
+                };
+            });
+
+            return Promise.all(promises);
+        })
+    });
+};
+
+//importTheme(appPath + "test.zip");
 
 function removeTheme(themeID) {
     const filePath = path.join(themesPath, 'themes.json');
