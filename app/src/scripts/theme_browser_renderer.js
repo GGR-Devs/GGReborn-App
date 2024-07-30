@@ -1,10 +1,10 @@
-const remote = require('electron').remote;
+const { dialog } = require('electron').remote;
 const { ipcRenderer } = require('electron');
 
 const { injectAvaliableThemes, getThemePreview, getThemeDescription, 
-        getThemeName, injectTheme, getThemeFile, removeTheme } = require('./themer');
+        getThemeName, injectTheme, getThemeFile, removeTheme, importTheme } = require('./themer');
 const { appConfig, updateSetting } = require('./settings');
-const { app } = require('electron/main');
+const { showInfoBox } = require('./renderer');
 
 document.addEventListener('DOMContentLoaded', function () {
     injectAvaliableThemes();
@@ -28,6 +28,10 @@ function handleControls() {
             fileUrl: 'app/src/views/settings.html'
         });
     });
+
+    document.getElementById('import-theme-button').addEventListener("click", event => {
+        showOpenFileDialog();
+        });
 
     document.querySelectorAll('.theme').forEach(preview => {
         preview.addEventListener('click', event => {
@@ -104,58 +108,24 @@ function handleControls() {
     });
 };
 
-function showInfoBox(message, buttonOptions) {
-    let info_box_container = document.getElementById("info-box-container");
-
-    document.getElementById('info-box')?.remove();
-
-    let info_box = document.createElement('div');
-    info_box.id = 'info-box';
-    info_box_container.appendChild(info_box);
-
-    let info_box_message = document.createElement('p');
-    info_box_message.className = 'text';
-    info_box_message.id = 'info-box-message';
-    info_box.appendChild(info_box_message);
-
-    let status_bar_container = document.createElement('div');
-    status_bar_container.className = 'status-bar-container';
-    info_box.appendChild(status_bar_container);
-
-    let status_bar = document.createElement('div');
-    status_bar.id = 'status-bar';
-    status_bar_container.appendChild(status_bar);
-
-    status_bar.offsetHeight;
-
-    if (message) {
-        info_box_message.innerHTML = message
-    };
-
-    if (buttonOptions) {
-        const {
-            button_id,
-            button_class,
-            button_text,
-        } = buttonOptions;
-
-        const button = document.createElement('button');
-        button.id = button_id;
-        button.className = button_class;
-        button.textContent = button_text;
-        info_box.appendChild(button);
-    };
-
-    setTimeout(() => {
-        status_bar.style.width = '0';
-    }, 0);
-
-    setTimeout(() => {
-        info_box.style.opacity = '0';
-        info_box.style.transform = 'translateY(-50px)';
-        setTimeout(() => {
-            info_box.style.display = 'none';
-            info_box_container.removeChild(info_box);
-        }, 2000);
-    }, 5000);
-}
+function showOpenFileDialog() {
+    dialog.showOpenDialog({
+        properties: ['openFile'],
+        filters: [{
+            name: 'Zip',
+            extensions: ['zip']
+        }]
+    }).then(function(file) {
+        if (!file.canceled) {
+            const extension = file.filePaths[0].split('.').pop().toLowerCase();
+            if (extension == 'zip') {
+                importTheme(file.filePaths[0]);
+            } else {
+                showInfoBox('The selected file is not an zip archive.');
+                /*setTimeout(() => {
+                showOpenFileDialog();
+                }, 5000); */
+            };
+        };
+    });
+};

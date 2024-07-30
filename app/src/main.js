@@ -322,6 +322,11 @@ ipcMain.on('update-discord-changed', (event, enabled) => {
     };
 });
 
+ipcMain.on('show-info-box', (event, message) => {
+    childWindow.webContents.send('show-info-box', message);
+});
+
+
 ipcMain.on('log', (event, level, message) => {
     log(level, message)
 });

@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const JSZip = require("jszip");
+
 const { ipcRenderer } = require('electron');
 
-const appPath = path.join(__dirname, '../../../')
 const assetsPath = path.join(__dirname, '../assets/');
 const themesPath = path.join(__dirname, '../../themes/');
 const themesConfig = require('../../themes/themes.json');
@@ -43,33 +43,51 @@ function importTheme(zipPath) {
         JSZip.loadAsync(data).then(function(zip) {
             const promises = [];
 
+            // need to check if its a theme file, not else.
+
             Object.keys(zip.files).forEach(function(filename) {
                 const file = zip.files[filename];
                 const filePath = path.join(themesPath, filename);
+                promises.push(
+                    file.async('nodebuffer').then(content => {
+                        const dir = path.dirname(filePath);
+                        fs.mkdirSync(dir, {
+                            recursive: true
+                        });
 
-                if (file.dir) {
-                    fs.mkdirSync(filePath, {
-                        recursive: true
-                    });
-                } else {
-                    promises.push(
-                        file.async('nodebuffer').then(content => {
-                            const dir = path.dirname(filePath);
-                            fs.mkdirSync(dir, {
-                                recursive: true
-                            });
-                            fs.writeFileSync(filePath, content);
-                        })
-                    );
-                };
+                        const filename = filePath.split('/').pop();
+                        const extension = filename.split('.').pop();
+
+                        if (extension == 'json') {
+                            const themeConfig = content;
+                            const themeData = JSON.parse(themeConfig);
+
+                            const theme_name = themeData.name;
+                            const theme_id = themeData.id;
+                            const theme_config = filename;
+
+                            const newTheme = {
+                                id: theme_id,
+                                config: theme_config
+                            };
+
+                            const themeExists = themesConfig.themes.some(theme => theme.id === theme_id);
+                            if (!themeExists) {
+                                themesConfig.themes.push(newTheme);
+                                fs.writeFileSync(themesPath + 'themes.json', JSON.stringify(themesConfig, null, 2));
+                                ipcRenderer.send('show-info-box', theme_name + ' theme added!');
+                            } else {
+                                ipcRenderer.send('show-info-box', 'A theme with ID: ' + theme_id + ' already exists. The old theme has been replaced with the new.');
+                            };
+                        };
+                        fs.writeFileSync(filePath, content);
+                    })
+                );
             });
-
-            return Promise.all(promises);
+            //alert('Unzipped!');
         })
     });
 };
-
-//importTheme(appPath + "test.zip");
 
 function removeTheme(themeID) {
     const filePath = path.join(themesPath, 'themes.json');
@@ -90,6 +108,8 @@ function removeTheme(themeID) {
     };
 
     themeJSON.themes.splice(index, 1);
+    themesConfig.themes.splice(index, 1);
+
     fs.writeFileSync(filePath, JSON.stringify(themeJSON, null, 2), 'utf-8');
 };
 
@@ -211,4 +231,5 @@ function getThemeFile(wantedThemeID) {
     };
 }
 
-module.exports = { loadThemes, injectTheme, injectAvaliableThemes, getThemePreview, getThemeDescription, getThemeName, getThemeFile, removeTheme };
+module.exports = { loadThemes, injectTheme, injectAvaliableThemes, getThemePreview, 
+    getThemeDescription, getThemeName, getThemeFile, removeTheme, importTheme };

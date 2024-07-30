@@ -1,16 +1,16 @@
 {
-  "DO NOT MODIFY":[
-     "Please DO NOT modify this file!",
-     "This file is for avaiable themes configuration, and it's automatically updated."
+  "DO NOT MODIFY": [
+    "Please DO NOT modify this file!",
+    "This file is for avaiable themes configuration, and it's automatically updated."
   ],
-  "themes":[
-     {
-        "id":"default",
-        "config":"theme.json"
-     },
-     {
-        "id":"metallic iron",
-        "config":"theme.json"
-     }
+  "themes": [
+    {
+      "id": "default",
+      "config": "theme.json"
+    },
+    {
+      "id": "metallic iron",
+      "config": "theme.json"
+    }
   ]
 }
