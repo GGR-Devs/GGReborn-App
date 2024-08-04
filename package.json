@@ -53,6 +53,12 @@
       ]
     },
     "linux": {
+      "target": [
+        "AppImage",
+        "tar.gz"
+      ],
+      "icon": "./app/icons/icon.png",
+      "category": "Game",
       "extraResources": [
         {
           "from": "lib/libpepflashplayer.so",
