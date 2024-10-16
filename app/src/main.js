@@ -131,10 +131,10 @@ function createMain() {
 function createUpdate() {
     log('INFO', 'Creating update window');
     updateWin = new BrowserWindow({
-        width: 320,
-        height: 380,
-        minWidth: 320,
-        minHeight: 380,
+        width: 870,
+        height: 600,
+        minWidth: 870,
+        minHeight: 600,
         fileUrl: 'app/src/views/update.html',
         frame: false,
         show: false,

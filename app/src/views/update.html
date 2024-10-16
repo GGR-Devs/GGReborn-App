@@ -1,52 +1,66 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-  <head>
-    <title>App settings</title>
+
+<head>
+    <title>App Update</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="icon" type="image/x-icon" href="/favicon.png">
-    <link rel="stylesheet" type="text/css" id="active-theme" href="">
-    <link rel="stylesheet" type="text/css" href="../styles/game.css">
-    <link rel="stylesheet" type="text/css" href="../styles/update.css">
-  </head>
-   <body>
-      <div id="container">
-         <img src="../assets/splash.png" id="app-icon">
-      </div>
-      <div id="update-found" class="update-div" style="display: block;">
-         <p id="update-alert" class="update-text">Update found!</p>
-         <p class="update-text">Would you like to download the update now?</p>
-         <div id="update-download-now" class="update-options-button">
-            <p class="update-text">Download now</p>
-         </div>
-         <div id="update-download-later" class="update-options-button">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex flex-col items-center justify-center h-screen">
+    <div id="container" class="mb-8">
+        <img src="../assets/splash.png" id="app-icon" class="w-32 h-32">
+    </div>
+
+    <div id="update-found" class="update-div bg-white p-6 rounded-lg shadow-md text-center" style="display: block;">
+        <p id="update-alert" class="update-text text-2xl font-bold text-gray-800">Update Found!</p>
+        <p class="update-text text-gray-600 mt-4">Would You Like To Download The Update Now?</p>
+        <div id="update-download-now"
+            class="update-options-button mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg cursor-pointer hover:bg-blue-700">
+            <p class="update-text">Download Now</p>
+        </div>
+        <div id="update-download-later"
+            class="update-options-button mt-4 bg-gray-300 text-gray-700 py-2 px-4 rounded-lg cursor-pointer hover:bg-gray-400">
             <p class="update-text">Later</p>
-         </div>
-      </div>
-      <div id="update-downloading" class="update-div" style="display: none;">
-         <p id="update-alert" class="update-text">Downloading the update</p>
-         <p id="update-text" class="update-text">Please don't close the app.</p>
-         <div id="progress-bar-container">
-         <img src="../assets/progress_bar/bar.png" id="progress-bar">
-         <img src="../assets/progress_bar/0.png" class="progress-bar-preload" id="progress-bar-preload-0">
-         <img src="../assets/progress_bar/0.png" class="progress-bar-preload" id="progress-bar-preload-1">
-         <img src="../assets/progress_bar/0.png" class="progress-bar-preload" id="progress-bar-preload-2">
-         <img src="../assets/progress_bar/0.png" class="progress-bar-preload" id="progress-bar-preload-3">
-         <p id="info" class="">ETA: N/A</p>
-      </div>
-      </div>
-      <div id="update-downloaded" class="update-div" style="display: none;">
-         <p id="update-alert" class="update-text">Update downloaded!</p>
-         <p class="update-text">Install the update now?</p>
-         <div id="update-download-now" class="update-options-button">
-            <p class="update-text">Install now</p>
-         </div>
-         <div id="update-download-later" class="update-options-button">
+        </div>
+    </div>
+
+    <div id="update-downloading" class="update-div bg-white p-6 rounded-lg shadow-md text-center" style="display: none;">
+        <p id="update-alert" class="update-text text-2xl font-bold text-gray-800">Downloading The Update</p>
+    
+        <p id="update-text" class="update-text text-white bg-red-800 uppercase py-4 px-6 my-4 rounded-lg shadow-lg font-semibold text-center">
+            Please Don't Close The App !
+        </p>
+        <div id="progress-bar-container" class="relative mt-8 flex flex-col items-center">
+            <img src="../assets/progress_bar/bar.png" id="progress-bar" class="mx-auto w-64 z-0">
+            <div class="absolute inset-x-0 top-0 flex justify-center space-x-4 translate-y-8 z-10">
+                <img src="../assets/progress_bar/0.png" id="progress-bar-preload-0" class="progress-bar-preload w-10 h-10">
+                <img src="../assets/progress_bar/0.png" id="progress-bar-preload-1" class="progress-bar-preload w-10 h-10">
+                <img src="../assets/progress_bar/0.png" id="progress-bar-preload-2" class="progress-bar-preload w-10 h-10">
+                <img src="../assets/progress_bar/0.png" id="progress-bar-preload-3" class="progress-bar-preload w-10 h-10">
+            </div>
+            <p id="info" class="text-gray-500 mt-4 text-center">ETA: N/A</p>
+        </div>                     
+    </div>    
+
+    <div id="update-downloaded" class="update-div bg-white p-6 rounded-lg shadow-md text-center" style="display: none;">
+        <p id="update-alert" class="update-text text-2xl font-bold text-gray-800">Update Downloaded!</p>
+        <p class="update-text text-gray-600 mt-4">Install The Update Now?</p>
+        <div id="update-download-now"
+            class="update-options-button mt-6 bg-green-500 text-white py-2 px-4 rounded-lg cursor-pointer hover:bg-green-700">
+            <p class="update-text">Install Now</p>
+        </div>
+        <div id="update-download-later"
+            class="update-options-button mt-4 bg-gray-300 text-gray-700 py-2 px-4 rounded-lg cursor-pointer hover:bg-gray-400">
             <p class="update-text">Later</p>
-         </div>
-      </div>
-      <script>
-         require('../scripts/updater_renderer.js')
-         require('../scripts/renderer.js')
-       </script>
-   </body>
+        </div>
+    </div>
+
+    <script>
+        require('../scripts/updater_renderer.js')
+        require('../scripts/renderer.js')
+    </script>
+</body>
+
 </html>
