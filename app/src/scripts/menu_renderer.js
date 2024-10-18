@@ -50,7 +50,7 @@ function handleControls() {
             height: 520,
             minWidth: 700,
             minHeight: 500,
-            fileUrl: 'app/src/views/Discord.html'
+            fileUrl: 'app/src/views/discord.html'
             });
         });
 
