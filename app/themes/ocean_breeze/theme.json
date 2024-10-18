@@ -1,0 +1,11 @@
+{
+  "name": "Ocean Breeze",
+  "id": "ocean_breeze",
+  "description": "A refreshing and vibrant theme",
+  "long-description": "Experience the soothing vibes of the ocean with fresh blues and greens, creating a calm and inviting user interface.",
+  "author": "SC-Sulivan",
+  "created": "10-18-24",
+  "modified": "10-18-24",
+  "theme_file": "theme.css",
+  "thumbnail": "preview.png"
+}

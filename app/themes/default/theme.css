@@ -170,11 +170,6 @@ select {
     border-bottom: 2px solid rgba(179, 150, 101, 0.5);
 }
 
-/* UPDATER */
-.update-text {
-    color: black;
-}
-
 /* INFO BOX */
 #info-box {
     background-color: #F0E1C4;
