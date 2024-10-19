@@ -162,3 +162,16 @@ select {
 #infobox-in-app {
     border-bottom: 2px solid rgba(179, 150, 101, 0.5);
 }
+
+/* INFO BOX */
+#info-box {
+    background-color: #1a1a2e;
+}
+  
+.status-bar-container {
+    background-color: #1a39a0;
+}
+  
+#status-bar {
+    background-color: #1a39a0;
+}
