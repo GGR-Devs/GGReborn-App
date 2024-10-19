@@ -38,7 +38,7 @@ const appConfig = {
     startMaximized: false, // Always maximize the main (game) window
     enableSplash: true,  //Splash screen duration: 5s. The game loads in the background
     fasterSplash: false, // Splash screen duration: 2.5s
-    customResolution: resolutions.b, // Set a custom app windowed resolution
+    customResolution: resolutions.HD, // Set a custom app windowed resolution
     appTheme: 'default', // Use custom themes
     defaultGame: 'cafe', // Loads this game on launch
     enableDiscordRichPresence: true, // Enable rich presence

@@ -1,7 +1,7 @@
 {
   "DO NOT MODIFY": [
     "Please DO NOT modify this file!",
-    "This file is for avaiable themes configuration, and it's automatically updated."
+    "This file is for available themes configuration, and it's automatically updated."
   ],
   "themes": [
     {
@@ -10,6 +10,14 @@
     },
     {
       "id": "metallic iron",
+      "config": "theme.json"
+    },
+    {
+      "id": "mystic_night",
+      "config": "theme.json"
+    },
+    {
+      "id": "ocean_breeze",
       "config": "theme.json"
     }
   ]

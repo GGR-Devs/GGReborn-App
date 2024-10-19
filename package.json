@@ -1,12 +1,13 @@
 {
   "name": "GGRebornApp",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Simple, customizable client with built in flash player to play GoodGame Café, Disco and Fashion.",
   "main": "app/src/main.js",
   "repository": "https://github.com/GGR-Devs/GGReborn-App",
   "author": "GGReborn",
   "contributors": [
     {"name": "BXn4", "url": "https://github.com/bxn4"},
+    {"name": "SulivanM", "url": "https://github.com/SulivanM"},
     {"name": "MKerem", "url": "https://github.com/keremgokcek"}
   ],
   "keywords": [
