@@ -5,14 +5,11 @@
     <title>App Update</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="icon" type="image/x-icon" href="/favicon.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <!-- This can be used, because the app update check only works when the user have active internet connection -->
 </head>
 
-<body class="bg-gray-100 flex flex-col items-center justify-center h-screen">
-    <div id="container" class="mb-8">
-        <img src="../assets/splash.png" id="app-icon" class="w-32 h-32">
-    </div>
-
+<body class="flex flex-col items-center justify-center h-screen">
     <div id="update-found" class="update-div bg-white p-6 rounded-lg shadow-md text-center" style="display: block;">
         <p id="update-alert" class="update-text text-2xl font-bold text-gray-800">Update Found!</p>
         <p class="update-text text-gray-600 mt-4">Would You Like To Download The Update Now?</p>

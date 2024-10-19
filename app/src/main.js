@@ -132,13 +132,14 @@ function createUpdate() {
     log('INFO', 'Creating update window');
     updateWin = new BrowserWindow({
         width: 450,
-        height: 500,
+        height: 350,
         minWidth: 450,
-        minHeight: 500,
+        minHeight: 350,
         fileUrl: 'app/src/views/update.html',
         frame: false,
         show: false,
         alwaysOnTop: true,
+        transparent: true,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,
