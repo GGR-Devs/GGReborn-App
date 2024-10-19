@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, app } = require('electron');
 const { appConfig, updateSetting } = require('./settings');
 const remote = require('electron').remote;
 const shell = require('electron').shell; // need to open the links in the OS default browser

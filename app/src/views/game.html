@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
   <head>
-    <title id="app-title"></title> <!--SET BY CURRENT WEBPAGE-->
+    <title id="app-title"></title>
+    <!--SET BY CURRENT WEBPAGE-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" id="active-theme" href="">
     <link rel="icon" type="image/x-icon" href="/favicon.png">
@@ -12,7 +13,8 @@
       <div id="drag-region">
         <img src="" id="titlebar-image"></img>
         <div id="window-title">
-          <span></span> <!--SET BY CURRENT WEBPAGE-->
+          <span></span>
+          <!--SET BY CURRENT WEBPAGE-->
         </div>
         <div id="menu-controls">
           <div class="button" id="menu-button" title="Menu">
@@ -20,21 +22,25 @@
           </div>
           <div id="menu" style="display:none">
             <a id="menu-items-title" draggable="false" class="text">Discover games</a>
-            <div class="menu-item" title="Create your own Café!">
+            <div class="menu-item" id="play-cafe-game-button" title="Create your own Café!">
               <img src="../assets/buttons/cafe_logo.png" class="icon" draggable="false">
               <a id="menu-items-text" draggable="false" class="text">Café</a>
             </div>
-            <div class="menu-item" title="Manage your Disco!">
+            <div class="menu-item" id="play-disco-game-button" title="Manage your Disco!">
               <img src="../assets/buttons/disco_logo.png" class="icon" draggable="false">
               <a id="menu-items-text" draggable="false" class="text">Disco</a>
             </div>
-            <div class="menu-item" title="Customize your shirts!">
+            <div class="menu-item" id="play-fashion-game-button" title="Customize your shirts!">
               <img src="../assets/buttons/fashion_logo.png" class="icon" draggable="false">
               <a id="menu-items-text" draggable="false" class="text">Fashion</a>
             </div>
             <div id="menu-others" class="">
               <a id="menu-items-title" draggable="false" class="text">Other</a>
               <br>
+              <div class="menu-item" id="load-homepage-button" title="Browse our website!">
+                <img src="../assets/buttons/homepage_icon.png" class="icon" draggable="false">
+                <a id="menu-items-text" draggable="false" class="text">Homepage</a>
+              </div>
               <div class="menu-item" title="Updates, events, etc...">
                 <img src="../assets/buttons/news.png" class="icon" draggable="false">
                 <a id="menu-items-text" draggable="false" class="text">News</a>
@@ -69,9 +75,26 @@
         </div>
       </div>
     </header>
-    <!--Missing game url-->
     <webview id="game" src="https://ggreborn.net" autosize="on" style="width:100%;height:100%" plugins></webview>
     <script>
+      function extractQuery(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      };
+
+      function loadGame() {
+        const gameName = extractQuery('game') || 'website';
+        const game_view = document.getElementById('game');
+        const base_url = "https://ggreborn.net";
+        if (game_view) {
+          if (gameName === 'website') {
+            game_view.src = base_url;
+          } else {
+            game_view.src = `${base_url}/${gameName}`;
+          };
+        };
+      };
+      
       let titlebar_height = getComputedStyle(document.documentElement).getPropertyValue('--height');
 
       function resizeFlashObject() {
@@ -85,6 +108,7 @@
         resizeFlashObject();
       });
       // Initial resizing
+      window.onload = loadGame;
       resizeFlashObject();
       require('../scripts/menu_renderer.js')
       require('../scripts/renderer.js')

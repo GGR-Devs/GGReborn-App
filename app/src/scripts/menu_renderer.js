@@ -65,6 +65,26 @@ function handleControls() {
             fileUrl: 'app/src/views/settings.html'
             });
         });
+
+    document.getElementById('play-cafe-game-button').addEventListener("click", event => {
+        log('USEREVENT', 'Clicked the Café game button')
+        ipcRenderer.send('loadGame', 'cafe')
+    });
+
+    document.getElementById('play-disco-game-button').addEventListener("click", event => {
+        log('USEREVENT', 'Clicked the Disco game button')
+        ipcRenderer.send('loadGame', 'disco')
+    });
+
+    document.getElementById('play-fashion-game-button').addEventListener("click", event => {
+        log('USEREVENT', 'Clicked the Fashion game button')
+        ipcRenderer.send('loadGame', 'fashion')
+    });
+    
+    document.getElementById('load-homepage-button').addEventListener("click", event => {
+        log('USEREVENT', 'Clicked the homepage button')
+        ipcRenderer.send('loadGame', 'website')
+    });
 }
 
 function log(event, message) {

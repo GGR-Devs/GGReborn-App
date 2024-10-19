@@ -123,7 +123,7 @@ function createMain() {
         },
     });
 
-    mainWin.loadURL("file://" + path.join(path.dirname(__dirname), "src/views/game.html"));
+    mainWin.loadURL(`file://${path.join(path.dirname(__dirname), "src/views/game.html")}?game=${appConfig.defaultGame}`);
 
     log('INFO', 'Main window loaded!');
 }
@@ -212,6 +212,10 @@ app.on('window-all-closed', () => {
         app.quit();
         log('INFO', 'App closed');
     }
+});
+
+ipcMain.on('loadGame', (event, gameName) => {
+    mainWin.loadURL(`file://${path.join(path.dirname(__dirname), "src/views/game.html")}?game=${gameName}`);
 });
 
 ipcMain.on('downloadUpdate', (event) => {

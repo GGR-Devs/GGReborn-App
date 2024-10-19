@@ -12,5 +12,6 @@ x_light
 info_colorized
 info_dark
 preview
+homepage_icon
 
 by icons8.com
