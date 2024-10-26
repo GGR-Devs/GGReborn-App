@@ -42,7 +42,8 @@ const appConfig = {
     enableDiscordRichPresence: true, // Enable rich presence
     updateDiscordRichPresence: true, // Update realtime the rich presence
     checkUpdates: true, // On launch the app checks the latest version. If the current version is different, the user can update the app
-    autoUpdate: false // Auto update the app, if there's a new version without asking the user
+    autoUpdate: false, // Auto update the app, if there's a new version without asking the user
+    renderEngine: 'flash'  // Set the engine to render the game ('flash' or 'ruffle'). Ruffle have some issues, already contacted a developer about the issues.
 }
 
 const userPath = (electron.app || electron.remote.app).getPath('userData');
