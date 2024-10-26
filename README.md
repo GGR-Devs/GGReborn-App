@@ -1,8 +1,8 @@
+
 # GGReborn-App
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://choosealicense.com/licenses/mit/) [![LATEST](https://img.shields.io/badge/latest-0.0.4-blue?style=flat)](https://img.shields.io/badge/latest-UNKNOWN-blue)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://choosealicense.com/licenses/mit/) [![PRE-Release](https://img.shields.io/badge/pre-0.0.7-yellow?style=flat)](https://img.shields.io/badge/pre-0.0.7-yellow?style=flat) [![LATEST-Release](https://img.shields.io/badge/latest-Unknown-red?style=flat)](https://img.shields.io/badge/latest-Unknown-red?style=flat)
 [![DISCORD](https://dcbadge.limes.pink/api/server/fHN8Pk9a3Q?style=flat)](https://discord.gg/fHN8Pk9a3Q)
 
-With this app, you're not getting access to the servers, because the servers are not ready, and still under development. When the servers are done, the app will loads our website where you can play these games.
 Simple, customizable client with built in flash player to play GoodGame Café, Disco and Fashion.
 ![image](https://github.com/GGR-Devs/GGReborn-App/assets/78733248/5f615d50-4c95-4b7e-962d-76ce87d0fd45)
 ## About the project
@@ -17,8 +17,8 @@ The private servers are developed and maintained by the GGR-Devs team.
 
 Once you have installed the application, launch the GGRebornApp executable.
 
-#### Build it yourself
-Make sure you have [nodejs](https://nodejs.org/en/download/) installed (you can install [yarn](https://classic.yarnpkg.com/en/docs/install) too).
+## Build it yourself
+Make sure you have [Node](https://nodejs.org/en/download/) installed (you can install [Yarn](https://classic.yarnpkg.com/en/docs/install) too).
 
 Clone this repository
 ```
