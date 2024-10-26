@@ -2,9 +2,9 @@ const { dialog } = require('electron').remote;
 const { ipcRenderer } = require('electron');
 
 const { injectAvaliableThemes, getThemePreview, getThemeDescription, 
-        getThemeName, injectTheme, getThemeFile, removeTheme, importTheme } = require('./themer');
-const { appConfig, updateSetting } = require('./settings');
-const { showInfoBox } = require('./renderer');
+        getThemeName, injectTheme, getThemeFile, removeTheme, importTheme } = require('../utils/themer');
+const { appConfig, updateSetting } = require('../utils/settings');
+const { showInfoBox } = require('../renderer/renderer');
 
 document.addEventListener('DOMContentLoaded', function () {
     injectAvaliableThemes();

@@ -7,11 +7,10 @@ autoUpdater.autoInstallOnAppQuit = true
 autoUpdater.autoRunAppAfterInstall = true
 autoUpdater.auto
 
-const { appConfig } = require('../src/scripts/settings');
-
+const { appConfig } = require('../src/utils/settings')
 //const { updateStatus } = require('./scripts/updater')
 const { initDiscordRichPresence, removeDiscordRichPresence } = require('../src/integrations/discord');
-const { loadThemes } = require('../src/scripts/themer');
+const { loadThemes } = require('../src/utils/themer');
 
 loadThemes();
 

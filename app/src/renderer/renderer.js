@@ -9,9 +9,9 @@ const webview = document.getElementById('game');
 const app_title = document.getElementById('app-title');
 const title = document.getElementById('window-title');
 
-const { appConfig } = require('./settings');
+const { appConfig } = require('../utils/settings');
 
-const { injectTheme } = require('./themer');
+const { injectTheme } = require('../utils/themer');
 
 injectTheme(appConfig.appTheme)
 
