@@ -1,7 +1,7 @@
-const { ipcRenderer, app } = require('electron');
 const { appConfig, updateSetting } = require('./settings');
 const remote = require('electron').remote;
 const shell = require('electron').shell; // need to open the links in the OS default browser
+const { ipcRenderer } = require('electron');
 
 handleControls();
 
@@ -98,6 +98,11 @@ game_select.addEventListener("change", event => { updateSetting('defaultGame', g
 
 const resolutions_select = document.getElementById('resolutions-select');
 resolutions_select.addEventListener("change", event => { updateSetting('customResolution', resolutions_select.options[resolutions_select.selectedIndex].text) });
+resolutions_select.addEventListener("change", event => {
+    ipcRenderer.send('resizeMainWindow', {
+        resolution: resolutions_select.options[resolutions_select.selectedIndex].text
+    });
+});
 
 setSettings('start-maximized', appConfig.startMaximized);
 setSettings('enable-splash', appConfig.enableSplash);
