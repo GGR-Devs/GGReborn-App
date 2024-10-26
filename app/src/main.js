@@ -375,7 +375,7 @@ ipcMain.on('resizeMainWindow', (event, newResolution) => {
         mainWin.setPosition(x, y);
     }
 
-    log("Info", "Resolution got changed!");
+    log("INFO", "Resolution got changed!");
 });
 
 
