@@ -111,8 +111,8 @@ function createMain() {
     mainWin = new BrowserWindow({
         width: parseInt(appConfig.customResolution.split('x')[0]),
         height: parseInt(appConfig.customResolution.split('x')[1]),
-        minWidth: 1280,
-        minHeight: 400,
+        minWidth: 800,
+        minHeight: 600,
         frame: false,
         show: false,
         webPreferences: {
