@@ -17,6 +17,14 @@ webview.addEventListener('dom-ready', () => {
 
 handleControls();
 
+const app_version = document.getElementById('app-version');
+
+const version = remote.app.getVersion();
+
+const isAlpha = version.split('.')[0] === '0';
+
+app_version.textContent = isAlpha ? `Preview: ${version}` : `Release: ${version}`;
+
 window.onbeforeunload = (event) => {
     /* If window is reloaded, remove win event listeners
     (DOM element listeners get auto garbage collected but not
