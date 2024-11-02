@@ -43,12 +43,20 @@ function handleControls() {
         }
     });
 
-    document.getElementById('password-manager-button').addEventListener('click', event => {
-    });
-
     document.getElementById('reload-button').addEventListener("click", event => {
         win.reload();
     });
+
+    document.getElementById('account-manager-button').addEventListener("click", event => {
+        log('USEREVENT', 'Account manager button clicked')
+        ipcRenderer.send('openWindow', { 
+            width: 600,
+            height: 600,
+            minWidth: 600,
+            minHeight: 600,
+            fileUrl: 'app/src/views/accounts.html'
+            });
+        });
 
     
     document.getElementById('support-button').addEventListener("click", event => {

@@ -1,0 +1,76 @@
+#accounts-list {
+    margin: 12px;
+    border-radius: 12px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.account-item {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 16px;
+    gap: 10px;
+    margin: 16px;
+}
+
+.text {
+    font-family: Arial_Rounded_MT_Pro, 'Roboto', 'Segoe UI', sans-serif;
+    font-size: 16px;
+    user-select: none;
+}
+
+/* button design from github button */
+#add-account-button {
+    appearance: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    text-align: center;
+    margin-left: auto;
+    margin-top: 12px;
+    margin-right: 12px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+
+button {
+    appearance: none;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}

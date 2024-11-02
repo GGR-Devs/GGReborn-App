@@ -1,4 +1,4 @@
-/* MAIN */
+/* GLOBAL */
 #titlebar {
     background-image: linear-gradient(90deg, #e4d4b8, #ddd5b6);
 }
@@ -30,6 +30,12 @@ body {
 .theme-author,
 .theme-modified {
     color: #000000;
+}
+
+
+input {
+    background-color: #fceed8;
+    border: none;
 }
 
 
@@ -181,4 +187,10 @@ select {
   
 #status-bar {
     background-color: #c4a36a;
+}
+
+/* ACCOUNTS */
+.account-item {
+    background-image: linear-gradient(90deg, #f0dab4, #dacfa9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
