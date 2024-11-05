@@ -13,11 +13,7 @@ function encrypt(username, password) {
 
     const encrypted = CryptoJS.AES.encrypt(password, key, { iv: iv });
 
-    return {
-        salt: salt.toString(CryptoJS.enc.Hex),
-        iv: iv.toString(CryptoJS.enc.Hex),
-        data: encrypted.toString()
-    };
+    return `${salt.toString(CryptoJS.enc.Hex)}${iv.toString(CryptoJS.enc.Hex)}${encrypted.toString()}`;
 }
 
 function decrypt(encryptData, username) {

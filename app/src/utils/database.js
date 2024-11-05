@@ -1,27 +1,36 @@
-const remote = require('electron').remote;
-const {  ipcRenderer } = require('electron');
+const PouchDB = require('pouchdb');
+const path = require('path');
+const fs = require('fs');
 
+const databasePath = path.join(path.dirname(__dirname), "../../database")
 
-var db = new PouchDB('accounts');
+const db = new PouchDB(databasePath);
 
-function getLatestID() {
-
-}
-
-
-function new_account(username, encrypted) {
+function newAccount(username, password) {
     return db.put({
-        _id: getLatestID().toString(),
+        _id: Date.now().toString(),
         username: username,
-        encrypted: encrypted
+        password: password
     });
 }
 
-function remove_account(username) {
+function removeAccount(username) {
 
 }
 
 
-function update_account(username) {
+function updateAccount(username) {
 
 }
+
+async function getAllAccounts() {
+        const result = await db.allDocs({ include_docs: true });
+        if (result.rows && result.rows.length > 0) {
+            const accounts = result.rows.map(row => row.doc);
+            return accounts;
+        } else {
+            return [];
+        }
+};
+
+module.exports = { newAccount, getAllAccounts }

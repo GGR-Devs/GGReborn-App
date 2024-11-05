@@ -5,7 +5,6 @@ const path = require("path");
 autoUpdater.autoDownload = false // If auto update set to true -> set to true
 autoUpdater.autoInstallOnAppQuit = true
 autoUpdater.autoRunAppAfterInstall = true
-autoUpdater.auto
 
 const { appConfig } = require('../src/utils/settings')
 //const { updateStatus } = require('./scripts/updater')
