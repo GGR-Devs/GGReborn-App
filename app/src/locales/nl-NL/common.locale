@@ -1,0 +1,12 @@
+# Shows in the language selection
+language = Nederlands (Nederland)
+
+# Window controls
+minimize = Verklein
+close = Sluit
+back = Terug
+
+# Window title
+browse-themes = Bekijk thema's
+settings = Instellingen
+saved-accounts = Opgeslagen accounts
