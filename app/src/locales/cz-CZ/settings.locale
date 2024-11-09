@@ -1,0 +1,30 @@
+settings-general = Obecné
+start-maximized = Začít maximalizovaný
+enable-splash-screen = Povolit úvodní obrazovku
+fast-splash-screen = Rychlá úvodní obrazovka
+default-game = Výchozí hra
+website = Webová stránka
+window-size = Window velikost
+
+browse-themes-button = Procházet motivy
+
+discord = Discord
+enable-rich-presence = Povolit Bohatou Přítomnost
+update-rich-presence = Aktualizovat Bohatou Přítomnost
+
+other = Ostatní
+check-updates = Zkontrolujte aktualizace
+auto-update = Automatická aktualizace
+
+report-problem-button = Nahlašte problém
+
+render-engine = Renderovací engine
+
+danger-zone = Nebezpečná zóna
+
+github-social-tooltip = Otevře aplikaci Github repo
+x-social-tooltip = Otevře projeky X sociální účet
+facebook-social-tooltip = Otevře stránku projektu na Facebooku
+buymeacoffee-social-tooltip = Podpoř projekt
+
+support = Support
