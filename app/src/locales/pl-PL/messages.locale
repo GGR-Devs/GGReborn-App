@@ -1,0 +1,4 @@
+theme-set = Muzyka w tle aplikacji ustawiona na: {id}
+cant-delete-this-theme = Nie można usunąć tej muzyki!
+cant-delete-used-theme = Nie można usunąć muzyki, która jest aktualnie używana!
+theme-deleted = {id} muzyka została usunięta
