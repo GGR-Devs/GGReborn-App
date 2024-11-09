@@ -1,0 +1,12 @@
+# Shows in the language selection
+language = Čeština
+
+# Window controls
+minimize = Minimalizovat
+close = Zavřít
+back = Zpět
+
+# Window title
+browse-themes = Procházet motivy
+settings = Nastavení
+saved-accounts = Uložené účty
