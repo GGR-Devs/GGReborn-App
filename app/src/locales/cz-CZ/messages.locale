@@ -1,0 +1,4 @@
+theme-set = Téma aplikace nastaveno na: {id}
+cant-delete-this-theme = Toto téma nelze odstranit!
+cant-delete-used-theme = Nelze odstranit téma, které se používá!
+theme-deleted = {id} téma bylo odstraněno
