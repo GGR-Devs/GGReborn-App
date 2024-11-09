@@ -86,7 +86,7 @@
     "discord-rpc": "^4.0.1",
     "electron-updater": "^6.3.9",
     "jszip": "^3.10.1",
-    "crypto-js": "4.2.0",
+    "crypto-js": "^4.2.0",
     "pouchdb": "^9.0.0"
   },
   "devDependencies": {

@@ -1,0 +1,12 @@
+# Shows in the language selection
+language = English (United States)
+
+# Window controls
+minimize = Minimize
+close = Close
+back = Back
+
+# Window title
+browse-themes = Browse themes
+settings = Settings
+saved-accounts = Saved Accounts

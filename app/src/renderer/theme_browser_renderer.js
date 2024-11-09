@@ -5,6 +5,8 @@ const { injectAvaliableThemes, getThemePreview, getThemeDescription,
         getThemeName, injectTheme, getThemeFile, removeTheme, importTheme } = require('../utils/themer');
 const { appConfig, updateSetting } = require('../utils/settings');
 const { showInfoBox } = require('../renderer/renderer');
+const { loadLocales, getLocalizedText } = require('../utils/locales');
+loadLocales('en-US', ['common', 'messages']);
 
 document.addEventListener('DOMContentLoaded', function () {
     injectAvaliableThemes();
@@ -48,7 +50,7 @@ function handleControls() {
             <div id="theme-preview-window" draggable="false">
             <img id="theme-preview" src="${theme_preview_src}" draggable="false">
             <p class="text" id="theme-preview-long-description" draggable="false">${theme_description}</p>
-            <p class="text" id="close-theme-preview" draggable="false">Close</p>
+            <p class="text" id="close-theme-preview" draggable="false" locale="close">Close</p>
             </div>
             `;
 
@@ -74,7 +76,10 @@ function handleControls() {
             if (appConfig.appTheme != themeID) {
                 updateSetting('appTheme', themeID)
 
-                showInfoBox(`App theme set to: ${getThemeName(themeID)}`);
+                const themeName = getThemeName(themeID);
+                const message = getLocalizedText('theme-set');
+
+                showInfoBox(message.replace('{id}', themeName));
 
                 injectTheme(themeID);
                 ipcRenderer.send('theme-changed', getThemeFile(themeID));
@@ -87,19 +92,25 @@ function handleControls() {
             themeID = event.currentTarget.id;
 
             if (themeID == 'default') {
-            showInfoBox(`Can't delete this theme!`);
+                const message = getLocalizedText('cant-delete-this-theme');
+                showInfoBox(message);
             return;
             };
 
             if (themeID == appConfig.appTheme) {
-            showInfoBox(`Can't delete the theme that is in use!`);
+                const message = getLocalizedText('cant-delete-used-theme');
+                showInfoBox(message);
             return;
             };
 
             let theme_item = document.getElementById(`theme-item-${themeID}`);
             theme_item.className = 'theme-item-destroy';
 
-            showInfoBox(`${getThemeName(themeID)} theme was deleted`);
+            const themeName = getThemeName(themeID);
+            const message = getLocalizedText('theme-deleted');
+
+            showInfoBox(message.replace('{id}', themeName));
+
             removeTheme(themeID);
             setTimeout(() => {
                 theme_item.remove();
