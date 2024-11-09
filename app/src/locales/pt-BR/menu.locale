@@ -1,0 +1,24 @@
+# Menu button texts, area
+menu-discover = Ver jogos
+menu-other = Outro
+menu-homepage = Página Inicial
+menu-news = Notícias
+menu-support = Suporte
+
+# Games button hover information
+menu-cafe-button-tooltip = Crie o seu própio Café!
+menu-disco-button-tooltip = Gerencie sua Discoteca!
+menu-fashion-button-tooltip = Personalize suas camisas!
+
+# Button hover information
+menu-button-tooltip = Menu
+menu-homepage-button-tooltip = Navegue nosso site!
+menu-news-button-tooltip = Atualizações, eventos, etc...
+menu-reload-button-tooltip = Recarrega a página atual (CTRL + R)
+menu-accounts-button-tooltip = Guardar suas contas
+menu-settings-button-tooltip = Mudar as configurações do app
+menu-support-button-tooltip = Entrar em contato com o Suporte GGReborn
+
+# App version, not really needed
+# version-message-preview = Prévia
+# version-message-stable = Estável
