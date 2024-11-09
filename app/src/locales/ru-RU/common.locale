@@ -1,0 +1,12 @@
+# Shows in the language selection
+language = Русский
+
+# Window controls
+minimize = Свернуть
+close = Закрыть
+back = Назад
+
+# Window title
+browse-themes = Посмотреть темы
+settings = Настройки
+saved-accounts = Сохранённые аккаунты

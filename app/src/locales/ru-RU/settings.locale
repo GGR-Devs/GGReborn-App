@@ -1,0 +1,30 @@
+settings-general = Основное
+start-maximized = Запускать в полноэкранном режиме
+enable-splash-screen = Включить заставку
+fast-splash-screen = Быстрая заставка
+default-game = Игра по умолчанию
+website = Вебсайт
+window-size = Размер окна
+
+browse-themes-button = Посмотреть темы
+
+discord = Дискорд
+enable-rich-presence = Включить Rich Presence
+update-rich-presence = Обновить Rich Presence
+
+other = Другое
+check-updates = Проверять обновление
+auto-update = Авто-обновление
+
+report-problem-button = Сообщить о проблеме
+
+render-engine = Движок рендеринга
+
+danger-zone = Опасная зона
+
+github-social-tooltip = Открыть Github репозиторий приложения
+x-social-tooltip = Открыть страницу на X
+facebook-social-tooltip = Открыть страницу на Facebook
+buymeacoffee-social-tooltip = Поддержать проект
+
+support = Поддержка
