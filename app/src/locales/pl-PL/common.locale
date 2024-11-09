@@ -1,1 +1,12 @@
+# Shows in the language selection
+language = Polski (Polska)
 
+# Window controls
+minimize = Zminimalizuj
+close = Zamknij
+back = Cofnij
+
+# Window title
+browse-themes = Przeglądaj motywy
+settings = Ustawienia
+saved-accounts = Zapisane Konta
