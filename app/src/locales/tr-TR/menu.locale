@@ -1,0 +1,24 @@
+# Menu button texts, area
+menu-discover = Oyunları Keşfet
+menu-other = Diğer
+menu-homepage = Anasayfa
+menu-news = Haberler
+menu-support = Destek
+
+# Games button hover information
+menu-cafe-button-tooltip = Kendi kafeni yarat!
+menu-disco-button-tooltip = Diskonu yönet!
+menu-fashion-button-tooltip = Tişörtlerini tasarla!
+
+# Button hover information
+menu-button-tooltip = Menü
+menu-homepage-button-tooltip = Websitemize göz at!
+menu-news-button-tooltip = Güncellemeler, etkinlikler, vs...
+menu-reload-button-tooltip = Mevcut sayfayı güncelle (CTRL + R)
+menu-accounts-button-tooltip = Hesaplarını sakla
+menu-settings-button-tooltip = Uygulama ayarlarını değiştir
+menu-support-button-tooltip = GGReborn desteğiyle iletişime geç
+
+# App version, not really needed
+# version-message-preview = Ön izleme
+# version-message-stable = Stabil
