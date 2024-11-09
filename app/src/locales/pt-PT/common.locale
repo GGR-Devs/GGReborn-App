@@ -1,0 +1,12 @@
+# Shows in the language selection
+language = Português (Portugal)
+
+# Window controls
+minimize = Minimizar
+close = Fechar
+back = Voltar
+
+# Window title
+browse-themes = Procurar temas
+settings = Definições
+saved-accounts = Contas Guardadas
