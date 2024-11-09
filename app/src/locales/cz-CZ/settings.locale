@@ -3,14 +3,14 @@ start-maximized = Spustťe režim celé obrazovky
 enable-splash-screen = Povolit úvodní obrazovku
 fast-splash-screen = Rychlá úvodní obrazovka
 default-game = Výchozí hra
-website = Webová stránka
-window-size = Window velikost
+website = Webové stránky
+window-size = Velikost okna
 
 browse-themes-button = Procházet motivy
 
 discord = Discord
-enable-rich-presence = Povolit Bohatou Přítomnost
-update-rich-presence = Aktualizovat Bohatou Přítomnost
+enable-rich-presence = Povolit Rich Presence
+update-rich-presence = Aktualizovat Rich Presence
 
 other = Ostatní
 check-updates = Zkontrolujte aktualizace
@@ -18,13 +18,13 @@ auto-update = Automatická aktualizace
 
 report-problem-button = Nahlašte problém
 
-render-engine = Renderovací engine
+render-engine = Renderujte zařízení
 
 danger-zone = Nebezpečná zóna
 
 github-social-tooltip = Otevře aplikaci Github repo
 x-social-tooltip = Otevře sociální účet X projektu
 facebook-social-tooltip = Otevře stránku projektu na Facebooku
-buymeacoffee-social-tooltip = Podpoř projekt
+buymeacoffee-social-tooltip = Podpořte projekt
 
-support = Support
+support = Pomoc
