@@ -1,1 +1,30 @@
+settings-general = Główne
+start-maximized = Rozpocznij zmaksymalizowany
+enable-splash-screen = Włącz ekran powitalny
+fast-splash-screen = Szybki ekran powitalny
+default-game = Domyślna gra
+website = Strona Internetowa
+window-size = Rozmiar okna
 
+browse-themes-button = Wyszukaj muzyki
+
+discord = Discord
+enable-rich-presence = Włącz bogatą obecność
+update-rich-presence = Zaktualizuj bogatą obecność
+
+other = Inny
+check-updates = Sprawdź aktualizacje
+auto-update = Automatyczna aktualizacja
+
+report-problem-button = Zgłoś błąd
+
+render-engine = Stwórz silnik
+
+danger-zone = Niebezpieczna strefa
+
+github-social-tooltip = Otwórz aplikacje Github
+x-social-tooltip = Otwórz konto społecznościowe projektu 
+facebook-social-tooltip = Otwórz Facebooka projektu
+buymeacoffee-social-tooltip = Wesprzyj projekt
+
+support = Wsparcie
