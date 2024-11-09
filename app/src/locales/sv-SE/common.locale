@@ -1,12 +1,12 @@
 # Shows in the language selection
-language = English (United States)
+language = Svenska
 
 # Window controls
-minimize = Minimize
-close = Close
-back = Back
+minimize = Minimera
+close = Stäng
+back = Tillbaka
 
 # Window title
-browse-themes = Browse themes
-settings = Settings
-saved-accounts = Saved Accounts
+browse-themes = Bläddra bland teman
+settings = Inställningar
+saved-accounts = Sparade konton
