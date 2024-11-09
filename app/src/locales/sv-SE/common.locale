@@ -1,0 +1,12 @@
+# Shows in the language selection
+language = Svenska
+
+# Window controls
+minimize = Minimera
+close = Stäng
+back = Tillbaka
+
+# Window title
+browse-themes = Bläddra bland teman
+settings = Inställningar
+saved-accounts = Sparade konton
