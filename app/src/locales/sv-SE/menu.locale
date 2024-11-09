@@ -1,23 +1,23 @@
 # Menu button texts, area
-menu-discover = Discover games
-menu-other = Other
-menu-homepage = Homepage
-menu-news = News
+menu-discover = Upptäck spel
+menu-other = Övrigt
+menu-homepage = Hemsida
+menu-news = Nyheter
 menu-support = Support
 
 # Games button hover information
-menu-cafe-button-tooltip = Create your own Café!
-menu-disco-button-tooltip = Manage your Disco!
-menu-fashion-button-tooltip = Customize your shirts!
+menu-cafe-button-tooltip = Skapa ditt eget café!
+menu-disco-button-tooltip = Sköt om ditt eget disco!
+menu-fashion-button-tooltip = Skapa dina egna plagg!
 
 # Button hover information
-menu-button-tooltip = Menu
-menu-homepage-button-tooltip = Browse our website!
-menu-news-button-tooltip = Updates, events, etc...
-menu-reload-button-tooltip = Refresh the current page (CTRL + R)
-menu-accounts-button-tooltip = Store your accounts
-menu-settings-button-tooltip = Change the app settings
-menu-support-button-tooltip = Contact GGReborn support
+menu-button-tooltip = Meny
+menu-homepage-button-tooltip = Utforska vår webbsida!
+menu-news-button-tooltip = Nyheter, evenemang, m.m...
+menu-reload-button-tooltip = Ladda om sidan (CTRL + R)
+menu-accounts-button-tooltip = Spara dina konton
+menu-settings-button-tooltip = Ändra appens inställningar
+menu-support-button-tooltip = Kontakta GGReborn support
 
 # App version, not really needed
 # version-message-preview = Preview
