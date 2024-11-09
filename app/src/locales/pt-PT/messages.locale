@@ -1,0 +1,4 @@
+theme-set = Tema da aplicação definida como: {id}
+cant-delete-this-theme = Não é possível eliminar este tema!
+cant-delete-used-theme = Não é possível eliminar o tema que está em uso!
+theme-deleted = O tema {id} foi eliminado

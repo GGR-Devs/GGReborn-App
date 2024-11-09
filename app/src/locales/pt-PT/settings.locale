@@ -1,0 +1,30 @@
+settings-general = Geral
+start-maximized = Iniciar maximizado
+enable-splash-screen = Ativar splash screen
+fast-splash-screen = Splash screen rápido
+default-game = Jogo padrão
+website = Site
+window-size = Tamanho da janela
+
+browse-themes-button = Procura temas
+
+discord = Discord
+enable-rich-presence = Ativar Rich Presence
+update-rich-presence = Atualizar Rich Presence
+
+other = Outro
+check-updates = Verificar atualizações
+auto-update = Atualizar automaticamente
+
+report-problem-button = Reporta um problema
+
+render-engine = Mecanismo de renderização
+
+danger-zone = Zona perigosa
+
+github-social-tooltip = Abre o repositório Github da aplicação
+x-social-tooltip = Abre o perfil dos projetos no X
+facebook-social-tooltip = Abre a página dos projetos no Facebook
+buymeacoffee-social-tooltip = Contribui o projeto
+
+support = Suporte
