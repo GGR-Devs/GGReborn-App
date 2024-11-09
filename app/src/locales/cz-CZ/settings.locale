@@ -23,7 +23,7 @@ render-engine = Renderovací engine
 danger-zone = Nebezpečná zóna
 
 github-social-tooltip = Otevře aplikaci Github repo
-x-social-tooltip = Otevře projeky X sociální účet
+x-social-tooltip = Otevře sociální účet X projektu
 facebook-social-tooltip = Otevře stránku projektu na Facebooku
 buymeacoffee-social-tooltip = Podpoř projekt
 
