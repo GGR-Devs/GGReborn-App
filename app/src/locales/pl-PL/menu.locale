@@ -1,1 +1,25 @@
+# Menu button texts, area
+menu-discover = Odkryj gry
+menu-other = Inne
+menu-homepage = Strona Główna
+menu-news = Aktualności
+menu-support = Pomoc
 
+# Games button hover information
+menu-cafe-button-tooltip = Stwórz własną Kawiarnię!
+menu-disco-button-tooltip = Zarządzaj własnym klubem Disco!
+menu-fashion-button-tooltip = Wymyśl własne koszulki!
+
+# Button hover information
+menu-button-tooltip = Menu
+menu-homepage-button-tooltip = Wyszukaj naszą stronę!
+menu-news-button-tooltip = Aktualizacje, Wydarzenia, itd...
+menu-reload-button-tooltip = Odśwież stronę (CTRL + R)
+menu-accounts-button-tooltip = Przechowaj swoje konta
+menu-settings-button-tooltip = Zmień ustawienia aplikacji
+menu-support-button-tooltip = Skontaktuj się z wsparciem GGReborn
+
+# App version, not really needed
+# version-message-preview = Zapowiedź
+# version-message-stable = Stable 
+# I dont know what do you mean by "stable". For what this button will be.
