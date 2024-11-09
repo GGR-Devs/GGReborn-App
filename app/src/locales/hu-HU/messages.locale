@@ -1,0 +1,4 @@
+theme-set = A téma az alábbiakra lett állítva: {id}
+cant-delete-this-theme = Ezt a témát nem lehet törölni!
+cant-delete-used-theme = A jelenleg használt témát nem lehet törölni!
+theme-deleted = A(z) {id} téma törölve lett

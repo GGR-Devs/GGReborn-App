@@ -6,7 +6,7 @@ const { injectAvaliableThemes, getThemePreview, getThemeDescription,
 const { appConfig, updateSetting } = require('../utils/settings');
 const { showInfoBox } = require('../renderer/renderer');
 const { loadLocales, getLocalizedText } = require('../utils/locales');
-loadLocales('en-US', ['common', 'messages']);
+loadLocales(appConfig.language, ['common', 'messages']);
 
 document.addEventListener('DOMContentLoaded', function () {
     injectAvaliableThemes();

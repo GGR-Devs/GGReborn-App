@@ -11,7 +11,7 @@ const title = document.getElementById('window-title');
 const { appConfig } = require('../utils/settings');
 const { injectTheme } = require('../utils/themer');
 const { loadLocales, getLocalizedText } = require('../utils/locales');
-loadLocales('en-US', ['common', 'menu', 'settings', 'accounts']);
+loadLocales(appConfig.language, ['common', 'menu', 'settings', 'accounts']);
 
 injectTheme(appConfig.appTheme)
 
