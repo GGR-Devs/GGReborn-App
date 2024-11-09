@@ -1,30 +1,30 @@
-settings-general = General
-start-maximized = Start maximized
-enable-splash-screen = Enable splash screen
-fast-splash-screen = Fast splash screen
-default-game = Default game
-website = Website
-window-size = Window size
+settings-general = Allmänt
+start-maximized = Starta i maximalt läge
+enable-splash-screen = Aktivera startskärm
+fast-splash-screen = Snabb startskärm
+default-game = Huvudspel
+website = Hemsida
+window-size = Fönsterstorlek
 
-browse-themes-button = Browse themes
+browse-themes-button = Bläddra bland teman
 
 discord = Discord
-enable-rich-presence = Enable Rich Presence
-update-rich-presence = Update Rich Presence
+enable-rich-presence = Aktivera Rich Presence
+update-rich-presence = Uppdatera Rich Presence
 
-other = Other
-check-updates = Check updates
-auto-update = Auto update
+other = Övrigt
+check-updates = Kolla uppdateringar
+auto-update = Automatisk uppdatering
 
-report-problem-button = Report a problem
+report-problem-button = Anmäl ett fel
 
-render-engine = Render engine
+render-engine = Rendera enheten
 
-danger-zone = Danger zone
+danger-zone = Riskzon
 
-github-social-tooltip = Opens the app Github repo
-x-social-tooltip = Opens the projects X social account
-facebook-social-tooltip = Opens the projects Facebook page
-buymeacoffee-social-tooltip = Support the project
+github-social-tooltip = Öppnar appens GitHub-repo
+x-social-tooltip = Öppnar projektets X-konto
+facebook-social-tooltip = Öppnar projektets Facebooksida
+buymeacoffee-social-tooltip = Stötta projektet
 
 support = Support
