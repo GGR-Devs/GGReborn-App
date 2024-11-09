@@ -1,0 +1,24 @@
+# Menu button texts, area
+menu-discover = Ontdek spellen
+menu-other = Overige
+menu-homepage = Hoofdpagina
+menu-news = Nieuws
+menu-support = Hulp
+
+# Games button hover information
+menu-cafe-button-tooltip = Maak je eigen café!
+menu-disco-button-tooltip = Beheer je eigen disco!
+menu-fashion-button-tooltip = Ontwerp je eigen kleren!
+
+# Button hover information
+menu-button-tooltip = Menu
+menu-homepage-button-tooltip = Bekijk onze website!
+menu-news-button-tooltip = Updates, evenementen, etc...
+menu-reload-button-tooltip = Herlaad de huidige pagina (CTRL + R)
+menu-accounts-button-tooltip = Bewaar je accounts
+menu-settings-button-tooltip = Wijzig de app-instellingen
+menu-support-button-tooltip = Contacteer GGReborn support
+
+# App version, not really needed
+# version-message-preview = Preview
+# version-message-stable = Stable
