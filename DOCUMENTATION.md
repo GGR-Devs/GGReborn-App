@@ -1,3 +1,46 @@
+# **App Usage Basics**
+
+#### **Window Controls**
+- **Move the Window:**  
+  Click and hold the top of the window to move it around the screen.
+  
+- **Maximize the Window:**  
+  Double click the title bar to maximize the window.
+
+---
+
+#### **Menu Navigation**
+- **Open the Menu:**  
+  Click the **menu icon** (three horizontal lines) located in the top left corner of the app to access the menu.
+
+---
+
+#### **Quick Access Buttons**
+- **Play Games:**  
+  In the **Discover** section, click on any game to play.
+
+- **Homepage:**  
+  Click the **house icon** to go directly to the homepage of our website.
+
+- **News:**  
+  Click the **list icon** to view the latest news updates.
+
+- **Refresh Page:**  
+  Click the **arrow icon** to refresh the current page.
+
+---
+
+#### **Account and Settings**
+- **Account Manager:**  
+  Click the **lock icon** to open the account manager, where you can save your ingame username and passwords.
+
+- **Settings:**  
+  Click the **three vertical dots icon** to access app settings.
+
+- **Support:**  
+  Click the **help icon** to get help.
+
+
 ## Dependencies
 
 - `electron`
