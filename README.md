@@ -7,7 +7,8 @@ Simple, customizable client with built in flash player to play GoodGame Café, D
 
 ## Looking for translations!
 Feel free to translate the app into your language!
-Just fork the repo, and add translate the locales/en-US files into your language, then create a new pull request.
+Just fork the repo, and add translate locales/en-US files into your language, then create a new pull request.
+The folder should be named using a two-letter lowercase language code, followed by a '-', and then a two-letter uppercase country code (e.g., en-US for English in the United States).
 
 ## About the project
 **Goodgame Reborn is a fan community** dedicated to reviving the flash games from Goodgame Studios (Café, Disco, Fashion) that were discontinued in 2016. Rebuild your dream Café, Disco, or Fashion and connect with old and new friends!
