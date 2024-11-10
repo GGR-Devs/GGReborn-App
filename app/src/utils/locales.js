@@ -27,7 +27,7 @@ function loadLocales(locale, resources) {
 };
 
 function getLocalizedText(key) {
-    return locales[key];
+    return locales[key] || 'Translation missing!';
 };
 
 module.exports = { loadLocales, getLocalizedText };

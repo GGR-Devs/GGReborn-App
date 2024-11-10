@@ -69,27 +69,34 @@
           <div class="select-menu">
             <select id="resolutions-select">
               <option value="0" id="aspect-ratio-text" disabled>--- 4:3 ---</option>
-              <option value="R800x600">800x600</option>
-              <option value="R960x720">960x720</option>
-              <option value="R1024x768">1024x768</option>
-              <option value="R1152x864">1152x864</option>
-              <option value="R1280x960">1280x960</option>
-              <option value="R1440x1050">1440x1050</option>
-              <option value="R1440x1080">1440x1080</option>
-              <option value="R1600x1200">1600x1200</option>
-              <option value="R1856x1392">1856x1392</option>
-              <option value="R1920x1440">1920x1440</option>
+              <option value="800x600">800x600</option>
+              <option value="960x720">960x720</option>
+              <option value="1024x768">1024x768</option>
+              <option value="1152x864">1152x864</option>
+              <option value="1280x960">1280x960</option>
+              <option value="1440x1050">1440x1050</option>
+              <option value="1440x1080">1440x1080</option>
+              <option value="1600x1200">1600x1200</option>
+              <option value="1856x1392">1856x1392</option>
+              <option value="1920x1440">1920x1440</option>
               <option value="0" id="aspect-ratio-text" disabled>--- 16:9 ---</option>
-              <option value="R854x480">854x480</option>
-              <option value="R960x540">960x540</option>
-              <option value="R1024x576">1024x576</option>
-              <option value="R1280x768">1280x768</option>
-              <option value="R1366x768">1366x768</option>
-              <option value="R1600x900">1600x900</option>
-              <option value="R1920x1080">1920x1080</option>
-              <option value="R2560x1440">2560x1440</option>
-              <option value="R3200x1800">3200x1800</option>
-              <option value="R3840x2160">3840x2160</option>
+              <option value="854x480">854x480</option>
+              <option value="960x540">960x540</option>
+              <option value="1024x576">1024x576</option>
+              <option value="1280x768">1280x768</option>
+              <option value="1366x768">1366x768</option>
+              <option value="1600x900">1600x900</option>
+              <option value="1920x1080">1920x1080</option>
+              <option value="2560x1440">2560x1440</option>
+              <option value="3200x1800">3200x1800</option>
+              <option value="3840x2160">3840x2160</option>
+            </select>
+          </div>
+        </div>
+        <div id="settings-item">
+          <p class="text" locale="language-text"></p>
+          <div class="select-menu">
+            <select id="language-select">
             </select>
           </div>
         </div>
@@ -162,8 +169,8 @@
     </div>
     </div>
     <script>
-      require('../renderer/renderer.js')
       require('../renderer/settings_render.js')
+      require('../renderer/renderer.js')
     </script>
   </body>
 </html>

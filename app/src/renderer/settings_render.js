@@ -2,8 +2,12 @@ const { appConfig, updateSetting } = require('../utils/settings');
 const remote = require('electron').remote;
 const shell = require('electron').shell; // need to open the links in the OS default browser
 const { ipcRenderer } = require('electron');
+const fs = require('fs');
+const path = require('path');
+const { loadLocales, getLocalizedText } = require('../utils/locales');
 
 handleControls();
+fillLanguages();
 
 function setSettings(settingId, value) {
     const setting = document.getElementById(settingId);
@@ -12,13 +16,16 @@ function setSettings(settingId, value) {
     }
 }
 
-
 function setSelection(selectionId, value) {
     const selection = document.getElementById(selectionId);
     if (selection) {
-        for (let i = 0; i <= selection.options.length; i++) {
-            if (selection.options[i].text.toLowerCase() === value.toLowerCase()) {
+        for (let i = 0; i < selection.options.length; i++) {
+            const option = selection.options[i];
+            const optionValue = option.value;
+
+            if (optionValue === value) {
                 selection.selectedIndex = i;
+                console.log(`Selected index: ${i}, value: ${option.value}`);
                 break;
             }
         }
@@ -63,6 +70,26 @@ function handleControls() {
     
 }
 
+function fillLanguages() {
+    const locales = path.join(path.dirname(__dirname), './locales');
+
+    const languages_list = document.getElementById('language-select');
+
+    fs.readdirSync(locales, { withFileTypes: true }).forEach(file => {
+        if (file.isDirectory()) {
+            const language_item = document.createElement('option');
+
+            loadLocales(file.name, ['common']);
+            const language = getLocalizedText('language');
+
+            language_item.value = file.name;
+            language_item.textContent = language;
+
+            languages_list.appendChild(language_item);
+        };
+    });
+};
+
 function log(event, message) {
     ipcRenderer.send('log', event, message);
 }
@@ -97,12 +124,16 @@ const game_select = document.getElementById('game-select');
 game_select.addEventListener("change", event => { updateSetting('defaultGame', game_select.value) });
 
 const resolutions_select = document.getElementById('resolutions-select');
-resolutions_select.addEventListener("change", event => { updateSetting('customResolution', resolutions_select.options[resolutions_select.selectedIndex].text) });
+resolutions_select.addEventListener("change", event => { updateSetting('customResolution', resolutions_select.options[resolutions_select.selectedIndex].value) });
 resolutions_select.addEventListener("change", event => {
     ipcRenderer.send('resizeMainWindow', {
-        resolution: resolutions_select.options[resolutions_select.selectedIndex].text
+        resolution: resolutions_select.options[resolutions_select.selectedIndex].value
     });
 });
+
+const language_select = document.getElementById('language-select');
+language_select.addEventListener("change", event => { updateSetting('language', language_select.value) });
+
 
 setSettings('start-maximized', appConfig.startMaximized);
 setSettings('enable-splash', appConfig.enableSplash);
@@ -114,3 +145,4 @@ setSettings('auto-update', appConfig.autoUpdate);
 
 setSelection('game-select', appConfig.defaultGame);
 setSelection('resolutions-select', appConfig.customResolution);
+setSelection('language-select', appConfig.language);
