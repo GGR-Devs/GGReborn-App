@@ -3,7 +3,11 @@ const { showInfoBox } = require('../renderer/renderer');
 const { encrypt } = require('../utils/encrypter');
 const { newAccount, getAllAccounts } = require('../utils/database');
 
-handleControls();
+init();
+
+function init() {
+    handleControls();
+};
 
 function handleControls() {
     document.getElementById('add-account-button').addEventListener('click', event => {

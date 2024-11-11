@@ -6,8 +6,13 @@ const fs = require('fs');
 const path = require('path');
 const { loadLocales, getLocalizedText } = require('../utils/locales');
 
-handleControls();
-fillLanguages();
+init();
+
+function init() {
+    handleControls();
+    fillLanguages();
+    
+};
 
 function setSettings(settingId, value) {
     const setting = document.getElementById(settingId);

@@ -6,21 +6,21 @@ const { injectAvaliableThemes, getThemePreview, getThemeDescription,
 const { appConfig, updateSetting } = require('../utils/settings');
 const { showInfoBox } = require('../renderer/renderer');
 const { loadLocales, getLocalizedText } = require('../utils/locales');
-loadLocales(appConfig.language, ['common', 'messages']);
 
-document.addEventListener('DOMContentLoaded', function () {
-    injectAvaliableThemes();
-});
+init();
 
-document.addEventListener("DOMContentLoaded", function () {
-    // showInfoBox(`Theme ${themeData.name} loaded!`, {button_id: 'ok_test', button_class: 'ok_test', button_text: 'OK'});
-    // We can add buttons, but its not useful.
-    // showInfoBox(`Theme ${appConfig.appTheme} loaded!`);
-    handleControls();
-});
+function init() {
+    loadLocales(appConfig.language, ['common', 'messages']);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        injectAvaliableThemes();
+
+        handleControls();
+    });
+    
+};
 
 function handleControls() {
-
     document.getElementById('theme-browser-back').addEventListener("click", event => {
         ipcRenderer.send('openWindow', {
             width: 400,

@@ -8,14 +8,19 @@ html global `window` variable */
 const webview = document.getElementById('game');
 const title = document.getElementById('window-title');
 
+init();
+
+function init() {
+    handleControls();
+};
+
+
 // Added check
 if (webview) {
 webview.addEventListener('dom-ready', () => {
     title.innerHTML = webview.getTitle();
 });
 }
-
-handleControls();
 
 const app_version = document.getElementById('app-version');
 const version = remote.app.getVersion();

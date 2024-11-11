@@ -13,7 +13,11 @@ const update_found = document.getElementById('update-found');
 const update_downloading = document.getElementById('update-downloading');
 const update_downloaded = document.getElementById('update-downloaded');
 
-handleControls();
+init();
+
+function init() {
+    handleControls();
+};
 
 function handleControls() {
 

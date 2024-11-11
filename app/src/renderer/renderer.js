@@ -11,9 +11,26 @@ const title = document.getElementById('window-title');
 const { appConfig } = require('../utils/settings');
 const { injectTheme } = require('../utils/themer');
 const { loadLocales, getLocalizedText } = require('../utils/locales');
-loadLocales(appConfig.language, ['common', 'menu', 'settings', 'accounts']);
 
-injectTheme(appConfig.appTheme)
+init();
+
+function init() {
+    loadLocales(appConfig.language, ['common', 'menu', 'settings', 'accounts']);
+    injectTheme(appConfig.appTheme)
+    handleWindowControls();
+
+    document.querySelectorAll('[locale]').forEach(element => {
+        const key = element.getAttribute('locale');
+
+        const localizedText = getLocalizedText(key);
+
+        if (element.hasAttribute('title')) {
+            element.title = localizedText;
+        } else {
+            element.textContent = localizedText;
+        };
+    });
+};
 
 // Added check
 if (webview) {
@@ -25,25 +42,6 @@ webview.addEventListener('dom-ready', () => {
     document.getElementById("titlebar-image").src = titlebar_image;
 });
 }
-
-// When document has loaded, initialise
-document.onreadystatechange = (event) => {
-    if (document.readyState == "complete") {
-        handleWindowControls();
-
-        document.querySelectorAll('[locale]').forEach(element => {
-            const key = element.getAttribute('locale');
-
-            const localizedText = getLocalizedText(key);
-
-            if (element.hasAttribute('title')) {
-                element.title = localizedText;
-            } else {
-                element.textContent = localizedText;
-            };
-        });
-    };
-};
 
 window.onbeforeunload = (event) => {
     /* If window is reloaded, remove win event listeners
