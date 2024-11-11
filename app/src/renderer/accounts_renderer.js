@@ -7,6 +7,8 @@ init();
 
 function init() {
     handleControls();
+
+    listAccounts();
 };
 
 function handleControls() {
@@ -152,5 +154,3 @@ function saveAccount() {
 
     accounts_list.insertBefore(account_item, accounts_list.firstChild);
 };
-
-listAccounts();

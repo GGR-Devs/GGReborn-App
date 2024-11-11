@@ -12,6 +12,17 @@ function init() {
     handleControls();
     fillLanguages();
     
+    setSettings('start-maximized', appConfig.startMaximized);
+    setSettings('enable-splash', appConfig.enableSplash);
+    setSettings('faster-splash', appConfig.fasterSplash);
+    setSettings('enable-discord', appConfig.enableDiscordRichPresence);
+    setSettings('update-discord', appConfig.updateDiscordRichPresence);
+    setSettings('check-updates', appConfig.checkUpdates);
+    setSettings('auto-update', appConfig.autoUpdate);
+    
+    setSelection('game-select', appConfig.defaultGame);
+    setSelection('resolutions-select', appConfig.customResolution);
+    setSelection('language-select', appConfig.language);
 };
 
 function setSettings(settingId, value) {
@@ -138,16 +149,3 @@ resolutions_select.addEventListener("change", event => {
 
 const language_select = document.getElementById('language-select');
 language_select.addEventListener("change", event => { updateSetting('language', language_select.value) });
-
-
-setSettings('start-maximized', appConfig.startMaximized);
-setSettings('enable-splash', appConfig.enableSplash);
-setSettings('faster-splash', appConfig.fasterSplash);
-setSettings('enable-discord', appConfig.enableDiscordRichPresence);
-setSettings('update-discord', appConfig.updateDiscordRichPresence);
-setSettings('check-updates', appConfig.checkUpdates);
-setSettings('auto-update', appConfig.autoUpdate);
-
-setSelection('game-select', appConfig.defaultGame);
-setSelection('resolutions-select', appConfig.customResolution);
-setSelection('language-select', appConfig.language);

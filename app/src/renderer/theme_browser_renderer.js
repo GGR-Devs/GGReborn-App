@@ -12,10 +12,10 @@ init();
 function init() {
     loadLocales(appConfig.language, ['common', 'messages']);
 
+    handleControls();
+
     document.addEventListener('DOMContentLoaded', function () {
         injectAvaliableThemes();
-
-        handleControls();
     });
     
 };
