@@ -1,0 +1,24 @@
+# Menü-Button-Texte, Bereich
+menu-discover = Spiele entdecken
+menu-other = Sonstiges
+menu-homepage = Startseite
+menu-news = Neuigkeiten
+menu-support = Support
+
+# Informationen beim Hover über die Spiel-Buttons
+menu-cafe-button-tooltip = Erstelle dein eigenes Café!
+menu-disco-button-tooltip = Verwalte deine Disco!
+menu-fashion-button-tooltip = Gestalte deine Shirts!
+
+# Informationen beim Hover über Buttons
+menu-button-tooltip = Menü
+menu-homepage-button-tooltip = Besuche unsere Website!
+menu-news-button-tooltip = Updates, Events, usw...
+menu-reload-button-tooltip = Aktuelle Seite neu laden (STRG + R)
+menu-accounts-button-tooltip = Speichere deine Konten
+menu-settings-button-tooltip = Ändere die App-Einstellungen
+menu-support-button-tooltip = Kontaktiere den GGReborn-Support
+
+# App-Version, nicht wirklich erforderlich
+# version-message-preview = Vorschau
+# version-message-stable = Stabil
