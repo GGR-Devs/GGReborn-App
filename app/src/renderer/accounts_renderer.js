@@ -2,6 +2,7 @@ const { ipcRenderer } = require('electron');
 const { showInfoBox } = require('../renderer/renderer');
 const { encrypt } = require('../utils/encrypter');
 const { newAccount, getAllAccounts } = require('../utils/database');
+const { getLocalizedText } = require('../utils/locales');
 
 init();
 
@@ -35,7 +36,7 @@ async function listAccounts() {
         <p class="text">${account.username}</p>
         <p class="text">****</p>
         <div class="button-container">
-            <button id="update-button-${account._id}">Update</button>
+            <button id="update-button-${account._id} locale="update">${getLocalizedText('update')}</button>
         </div>
         `
 
@@ -55,21 +56,21 @@ function addNewAccount() {
     account_item.draggable = false;
 
     account_item.innerHTML = `
-        <p class="text">Username</p>
+        <p class="text" locale="username">${getLocalizedText('username')}</p>
         <input type="text" id="account-username">
-        <p class="text">Password</lapbel>
+        <p class="text" locale="password">${getLocalizedText('password')}</lapbel>
         <div class="password-container">
             <input type="password" id="account-password">
-            <button type="button" id="reveal-password-button">Show</button>
+            <button type="button" id="reveal-password-button" locale="show-password">${getLocalizedText('show-password')}</button>
         </div>
         <div class="checkbox-container">
             <input type="checkbox" id="encrypt-password" checked="true">
-            <label for="encrypt-password">Encrypt</label>
+            <label for="encrypt-password" locale="encrypt">${getLocalizedText('encrypt')}</label>
         </div>
         <div class="button-container">
-            <button id="remove-button" disabled="true">Remove</button>
-            <button id="cancel-button">Cancel</button>
-            <button id="save-button">Save</button>
+            <button id="remove-button" disabled="true" locale="remove">${getLocalizedText('remove')}</button>
+            <button id="cancel-button" locale="cancel">${getLocalizedText('cancel')}</button>
+            <button id="save-button" locale="save">${getLocalizedText('save')}</button>
         </div>
     `;
 
@@ -90,10 +91,10 @@ function addNewAccount() {
 
         if (account_password.type === "password") {
             account_password.type = "text";
-            reveal_password_button.textContent = "Hide";
+            reveal_password_button.textContent = getLocalizedText('hide-password');
         } else {
             account_password.type = "password";
-            reveal_password_button.textContent = "Show";
+            reveal_password_button.textContent = getLocalizedText('show-password');
         };
     });
 };
@@ -118,12 +119,12 @@ function saveAccount() {
 
 
     if (username_len <= 0) {
-        showInfoBox("Username cannot be empty.");
+        showInfoBox(getLocalizedText('username-cant-be-empty'));
         return;
     };
 
     if (password_len <= 0) {
-        showInfoBox("Password cannot be empty");
+        showInfoBox(getLocalizedText('password-cant-be-empty'));
         return;
     };
 
@@ -148,7 +149,7 @@ function saveAccount() {
     <p class="text">${username}</p>
     <p class="text">****</p>
     <div class="button-container">
-        <button id="update-button">Update</button>
+        <button id="update-button" locale='update">${getLocalizedText('update')}</button>
     </div>
     `
 

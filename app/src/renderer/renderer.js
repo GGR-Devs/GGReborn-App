@@ -15,13 +15,16 @@ const { loadLocales, getLocalizedText } = require('../utils/locales');
 init();
 
 function init() {
-    loadLocales(appConfig.language, ['common', 'menu', 'settings', 'accounts']);
+    loadLocales(appConfig.language, ['common', 'menu', 'settings', 'accounts', 'messages']);
+    applyTranslations();
+
     injectTheme(appConfig.appTheme)
     handleWindowControls();
+};
 
+function applyTranslations() {
     document.querySelectorAll('[locale]').forEach(element => {
         const key = element.getAttribute('locale');
-
         const localizedText = getLocalizedText(key);
 
         if (element.hasAttribute('title')) {
@@ -31,6 +34,7 @@ function init() {
         };
     });
 };
+
 
 // Added check
 if (webview) {
@@ -153,4 +157,4 @@ function log(event, message) {
     ipcRenderer.send('log', event, message);
 }
 
-module.exports = { showInfoBox }
+module.exports = { showInfoBox, applyTranslations }

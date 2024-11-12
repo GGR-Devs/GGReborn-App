@@ -5,17 +5,14 @@ const { injectAvaliableThemes, getThemePreview, getThemeDescription,
         getThemeName, injectTheme, getThemeFile, removeTheme, importTheme } = require('../utils/themer');
 const { appConfig, updateSetting } = require('../utils/settings');
 const { showInfoBox } = require('../renderer/renderer');
-const { loadLocales, getLocalizedText } = require('../utils/locales');
+const { getLocalizedText } = require('../utils/locales');
 
 init();
 
 function init() {
-    loadLocales(appConfig.language, ['common', 'messages']);
-
-    handleControls();
-
     document.addEventListener('DOMContentLoaded', function () {
         injectAvaliableThemes();
+        handleControls();
     });
     
 };
@@ -50,7 +47,7 @@ function handleControls() {
             <div id="theme-preview-window" draggable="false">
             <img id="theme-preview" src="${theme_preview_src}" draggable="false">
             <p class="text" id="theme-preview-long-description" draggable="false">${theme_description}</p>
-            <p class="text" id="close-theme-preview" draggable="false" locale="close">Close</p>
+            <p class="text" id="close-theme-preview" draggable="false" locale="close">${getLocalizedText('close')}</p>
             </div>
             `;
 

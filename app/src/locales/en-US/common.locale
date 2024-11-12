@@ -10,3 +10,12 @@ back = Back
 browse-themes = Browse themes
 settings = Settings
 saved-accounts = Saved Accounts
+
+# Common
+update = Update
+remove = Remove
+save = Save
+use = Use
+edit = Edit
+delete = Delete
+cancel = Cancel

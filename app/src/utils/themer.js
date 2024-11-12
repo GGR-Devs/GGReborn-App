@@ -3,6 +3,7 @@ const path = require('path');
 const JSZip = require("jszip");
 
 const { ipcRenderer } = require('electron');
+const { getLocalizedText } = require('../utils/locales');
 
 const assetsPath = path.join(__dirname, '../assets/');
 const themesPath = path.join(__dirname, '../../themes/');
@@ -153,18 +154,18 @@ function injectAvaliableThemes() {
 
             theme_item.innerHTML =
                 `
-                <div id="${themeData.id}" title="Click to zoom in" draggable="false" class="theme">
+                <div id="${themeData.id}" locale="theme-preview-tooltip" title="${getLocalizedText('theme-preview-tooltip')}" draggable="false" class="theme">
                 <img class="theme-thumbnail" src="${themesPath + themeData.id + '/' + themeData.thumbnail}" style="width: 200px; height: 150px;" draggable="false">
                 <img class="preview" src="../assets/buttons/preview.png" draggable="false">
                 </div>
                 <p class="theme-name">${themeData.name}</p>
                 <p class="theme-description">${themeData.description}</p>
-                <p class="theme-author">Author: ${themeData.author}</p>
-                <p class="theme-modified">Modified: ${themeData.modified}</p>
+                <p class="theme-author" locale="theme-author">${getLocalizedText('theme-author')}: ${themeData.author}</p>
+                <p class="theme-modified" locale="theme-modified">${getLocalizedText('theme-modified')}: ${themeData.modified}</p>
                 <div id="theme-buttons">
-                    <button class="use-theme-button" id="${themeData.id}">Use</button>
-                    <button class="edit-theme-button">Edit</button>
-                    <button class="delete-theme-button" id="${themeData.id}">Delete</button>
+                    <button class="use-theme-button" id="${themeData.id}" locale="use">${getLocalizedText('use')}</button>
+                    <button class="edit-theme-button" locale="edit">${getLocalizedText('edit')}</button>
+                    <button class="delete-theme-button" id="${themeData.id}" locale="delete">${getLocalizedText('delete')}</button>
                 </div>
                 `;
             themes_list.appendChild(theme_item);
