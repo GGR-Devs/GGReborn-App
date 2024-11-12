@@ -10,3 +10,12 @@ back = Voltar
 browse-themes = Procurar temas
 settings = Definições
 saved-accounts = Contas Guardadas
+
+# Common
+update = Atualizar
+remove = Remover
+save = Guardar
+use = Usar
+edit = Editar
+delete = Eliminar
+cancel = Cancelar
