@@ -5,8 +5,9 @@ fast-splash-screen = Splash screen rápido
 default-game = Jogo padrão
 website = Site
 window-size = Tamanho da janela
+language-text = Idioma
 
-browse-themes-button = Procura temas
+browse-themes-button = Procurar temas
 
 discord = Discord
 enable-rich-presence = Ativar Rich Presence
@@ -25,6 +26,6 @@ danger-zone = Zona perigosa
 github-social-tooltip = Abre o repositório Github da aplicação
 x-social-tooltip = Abre o perfil dos projetos no X
 facebook-social-tooltip = Abre a página dos projetos no Facebook
-buymeacoffee-social-tooltip = Contribui o projeto
+buymeacoffee-social-tooltip = Contribui para o projeto
 
 support = Suporte
