@@ -1,21 +1,21 @@
 # Shows in the language selection
-language = English (United States)
+language = Español (Latinoamérica)
 
 # Window controls
-minimize = Minimize
-close = Close
-back = Back
+minimize = Minimizar
+close = Cerrar
+back = Volver
 
 # Window title
-browse-themes = Browse themes
-settings = Settings
-saved-accounts = Saved Accounts
+browse-themes = Explorar Temas
+settings = Ajustes
+saved-accounts = Cuentas Guardadas
 
 # Common
-update = Update
-remove = Remove
-save = Save
-use = Use
-edit = Edit
-delete = Delete
-cancel = Cancel
+update = Actualizar
+remove = Quitar
+save = Guardar
+use = Usar
+edit = Editar
+delete = Eliminar
+cancel = Cancelar
