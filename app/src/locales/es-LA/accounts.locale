@@ -1,5 +1,5 @@
-add-new-account = Add new
-username = Username
-password = Password
-show-password = Show
-hide-password = Hide
+add-new-account = Añadir Cuenta
+username = Nombre de Usuario
+password = Contraseña
+show-password = Mostrar
+hide-password = Ocultar
