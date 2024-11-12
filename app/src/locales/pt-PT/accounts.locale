@@ -1,1 +1,5 @@
 add-new-account = Adicionar uma nova
+username = Nome de utilizador
+password = Palavra-passe
+show-password = Mostrar
+hide-password = Esconder
