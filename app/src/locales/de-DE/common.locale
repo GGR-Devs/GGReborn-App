@@ -1,0 +1,21 @@
+# Wird in der Sprachauswahl angezeigt
+language = Deutsch (Deutschland)
+
+# Fenstersteuerungen
+minimize = Minimieren
+close = Schließen
+back = Zurück
+
+# Fenstertitel
+browse-themes = Themen durchsuchen
+settings = Einstellungen
+saved-accounts = Gespeicherte Konten
+
+# Allgemein
+update = Aktualisieren
+remove = Entfernen
+save = Speichern
+use = Verwenden
+edit = Bearbeiten
+delete = Löschen
+cancel = Abbrechen
