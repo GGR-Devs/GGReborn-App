@@ -1,4 +1,4 @@
-theme-set = Diseño de la App aplicado a: {id}
+theme-set = Diseño de la App definido como: {id}
 cant-delete-this-theme = ¡No se puede eliminar este Diseño!
 cant-delete-used-theme = ¡No se puede eliminar un Diseño que está en uso!
 theme-deleted = {id} el diseño fue eliminado.
