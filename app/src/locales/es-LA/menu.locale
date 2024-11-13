@@ -1,6 +1,6 @@
 # Menu button texts, area
 menu-discover = Descubre más Juegos
-menu-other = Otros
+menu-other = Más
 menu-homepage = Página Principal
 menu-news = Noticias
 menu-support = Soporte
@@ -12,12 +12,12 @@ menu-fashion-button-tooltip = ¡Diseña tus Camisas!
 
 # Button hover information
 menu-button-tooltip = Menú
-menu-homepage-button-tooltip = ¡Visita nuestra Página!
-menu-news-button-tooltip = Actualizaciones, eventos, etc...
+menu-homepage-button-tooltip = ¡Visita nuestro Página!
+menu-news-button-tooltip = Novedades, eventos, etc...
 menu-reload-button-tooltip = Recarga la página actual (CTRL + R)
 menu-accounts-button-tooltip = Administra tus Cuentas
-menu-settings-button-tooltip = Cambia la Configuración de la App
-menu-support-button-tooltip = Contacto con el Soporte de GGReborn
+menu-settings-button-tooltip = Modifica los Ajustes de la App
+menu-support-button-tooltip = Ponte en Contacto con el Soporte de GGReborn
 
 # App version, not really needed
 # version-message-preview = Vista Previa
