@@ -12,12 +12,12 @@ menu-fashion-button-tooltip = ¡Diseña tus Camisas!
 
 # Button hover information
 menu-button-tooltip = Menú
-menu-homepage-button-tooltip = ¡Visita nuestro Página!
+menu-homepage-button-tooltip = ¡Visita nuestra Página!
 menu-news-button-tooltip = Novedades, eventos, etc...
-menu-reload-button-tooltip = Recarga la página actual (CTRL + R)
-menu-accounts-button-tooltip = Administra tus Cuentas
-menu-settings-button-tooltip = Modifica los Ajustes de la App
-menu-support-button-tooltip = Ponte en Contacto con el Soporte de GGReborn
+menu-reload-button-tooltip = Recargar la página actual (CTRL + R)
+menu-accounts-button-tooltip = Administrar tus Cuentas
+menu-settings-button-tooltip = Modificar Ajustes de la App
+menu-support-button-tooltip = Establecer Contacto con el Soporte de GGReborn
 
 # App version, not really needed
 # version-message-preview = Vista Previa
