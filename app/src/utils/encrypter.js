@@ -16,10 +16,10 @@ function encrypt(username, password) {
     return `${salt.toString(CryptoJS.enc.Hex)}${iv.toString(CryptoJS.enc.Hex)}${encrypted.toString()}`;
 }
 
-function decrypt(encryptData, username) {
-    const saltHex = encryptData.substr(0, 32);
-    const ivHex = encryptData.substr(32, 32);
-    const ciphertext = encryptData.substr(64);
+function decrypt(username, password) {
+    const saltHex = password.substr(0, 32);
+    const ivHex = password.substr(32, 32);
+    const ciphertext = password.substr(64);
 
     const salt = CryptoJS.enc.Hex.parse(saltHex);
     const iv = CryptoJS.enc.Hex.parse(ivHex);

@@ -1,26 +1,33 @@
-const { ipcRenderer } = require('electron');
+const { ipcRendere } = require('electron');
 const { showInfoBox } = require('../renderer/renderer');
-const { encrypt } = require('../utils/encrypter');
-const { newAccount, getAllAccounts } = require('../utils/database');
+const { encrypt, decrypt } = require('../utils/encrypter');
+const { newAccount, getAllAccounts, getAccount, updateAccount } = require('../utils/database');
 const { getLocalizedText } = require('../utils/locales');
 
 init();
 
 function init() {
-    handleControls();
-
     listAccounts();
+
+    handleControls();
 };
 
 function handleControls() {
     document.getElementById('add-account-button').addEventListener('click', event => {
-        addNewAccount();
+        editAccount();
+    });
+
+    document.getElementById('accounts-list').addEventListener('click', event => {
+        if (event.target.classList.contains('edit-account-button')) {
+            const account_id = event.target.id;
+            editAccount(account_id);
+        }
     });
 };
 
 async function listAccounts() {
     const accounts_list = document.getElementById("accounts-list");
-    
+
     const accounts = await getAllAccounts();
 
     accounts.sort((a, b) => {
@@ -30,13 +37,13 @@ async function listAccounts() {
     accounts.forEach(account => {
         const account_item = document.createElement('div');
         account_item.className = 'account-item';
-        account_item.id = `account-item-${account_item._id}`;
+        account_item.id = `account-container-${account._id}`;
 
         account_item.innerHTML = `
         <p class="text">${account.username}</p>
         <p class="text">****</p>
         <div class="button-container">
-            <button id="update-button-${account._id} locale="update">${getLocalizedText('update')}</button>
+            <button id="${account._id}" class="edit-account-button" locale="edit">${getLocalizedText('edit')}</button>
         </div>
         `
 
@@ -44,47 +51,102 @@ async function listAccounts() {
     });
 };
 
-function addNewAccount() {
-    let isAccountUpdate = document.getElementById("account-update");
+async function editAccount(account_id) {
+    let isAccountEdit = document.getElementById("account-edit");
 
-    if (!isAccountUpdate) {
-        const accounts_list = document.getElementById("accounts-list");
+    // No account ID given on adding new account
+    if (!account_id) {
+        if (!isAccountEdit) {
+            const accounts_list = document.getElementById("accounts-list");
 
-    const account_item = document.createElement('div');
-    account_item.className = 'account-item';
-    account_item.id = 'account-update';
-    account_item.draggable = false;
+            const account_item = document.createElement('div');
+            account_item.className = 'account-item';
+            account_item.id = 'account-edit';
+            account_item.draggable = false;
 
-    account_item.innerHTML = `
-        <p class="text" locale="username">${getLocalizedText('username')}</p>
-        <input type="text" id="account-username">
-        <p class="text" locale="password">${getLocalizedText('password')}</lapbel>
-        <div class="password-container">
-            <input type="password" id="account-password">
-            <button type="button" id="reveal-password-button" locale="show-password">${getLocalizedText('show-password')}</button>
-        </div>
-        <div class="checkbox-container">
-            <input type="checkbox" id="encrypt-password" checked="true">
-            <label for="encrypt-password" locale="encrypt">${getLocalizedText('encrypt')}</label>
-        </div>
-        <div class="button-container">
-            <button id="remove-button" disabled="true" locale="remove">${getLocalizedText('remove')}</button>
-            <button id="cancel-button" locale="cancel">${getLocalizedText('cancel')}</button>
-            <button id="save-button" locale="save">${getLocalizedText('save')}</button>
-        </div>
-    `;
+            account_item.innerHTML = `
+                <p class="text" locale="username">${getLocalizedText('username')}</p>
+                <input type="text" id="account-username">
+                <p class="text" locale="password">${getLocalizedText('password')}</p>
+                <div class="password-container">
+                    <input type="password" id="account-password">
+                    <button type="button" id="reveal-password-button" locale="show-password">${getLocalizedText('show-password')}</button>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="encrypt-password" checked="true">
+                    <label for="encrypt-password" locale="encrypt">${getLocalizedText('encrypt')}</label>
+                </div>
+                <div class="button-container">
+                    <button id="remove-button" disabled="true" locale="remove">${getLocalizedText('remove')}</button>
+                    <button id="cancel-button" locale="cancel">${getLocalizedText('cancel')}</button>
+                    <button id="save-button" locale="save">${getLocalizedText('save')}</button>
+                </div>
+            `;
 
-    accounts_list.insertBefore(account_item, accounts_list.firstChild);
+            accounts_list.insertBefore(account_item, accounts_list.firstChild);
+        } else if (isAccountEdit) {
+            return;
+        };
+    } else if (account_id) {
+        const account_container = document.getElementById(`account-container-${account_id}`);
+
+        if (!account_container) {
+            return;
+        }
+        else if (account_container) {
+            account_container.id = "account-edit";
+
+            const account_data = await getAccount(account_id);
+
+            let password = account_data.password;
+
+            if (account_data.encrypt) {
+                password = decrypt(account_data.username, account_data.password);
+            };
+
+            const isEncrypt = account_data.encrypt ? 'checked' : '';
+
+            account_container.innerHTML = `
+                <p class="text" locale="username">${getLocalizedText('username')}</p>
+                <input type="text" id="account-username" value="${account_data.username.trim()}">
+                <p class="text" locale="password">${getLocalizedText('password')}</p>
+                <div class="password-container">
+                    <input type="password" id="account-password" value="${password.trim()}">
+                    <button type="button" id="reveal-password-button" locale="show-password">${getLocalizedText('show-password')}</button>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="encrypt-password" ${isEncrypt}>
+                    <label for="encrypt-password" locale="encrypt">${getLocalizedText('encrypt')}</label>
+                </div>
+                <div class="button-container">
+                    <button id="remove-button" locale="remove">${getLocalizedText('remove')}</button>
+                    <button id="cancel-button" locale="cancel">${getLocalizedText('cancel')}</button>
+                    <button id="save-button" locale="save">${getLocalizedText('save')}</button>
+                </div>
+            `;
+        };
+    };
 
     document.getElementById('cancel-button').addEventListener('click', event => {
-        cancelAccountUpdate();
+        if (!account_id) {
+            cancelAccount();
+        } else if (account_id) {
+            cancelAccount(account_id);
+        };
     });
 
     document.getElementById('save-button').addEventListener('click', event => {
-        saveAccount();
+        const username = document.getElementById("account-username").value.trim();
+        const password = document.getElementById("account-password").value.trim();
+        
+        if (!account_id) {
+            saveAccount();
+        } else if (account_id) {
+            saveAccount(account_id);
+        };
     });
 
-    const reveal_password_button =  document.getElementById('reveal-password-button');
+    const reveal_password_button = document.getElementById('reveal-password-button');
 
     reveal_password_button.addEventListener('click', event => {
         const account_password = document.getElementById("account-password");
@@ -98,21 +160,41 @@ function addNewAccount() {
         };
     });
 };
+
+async function cancelAccount(account_id) {
+    const accountEdit = document.getElementById('account-edit');
+
+    accountEdit.remove();
+
+    if (account_id) {
+        const accounts_list = document.getElementById("accounts-list");
+
+        const account_item = document.createElement('div');
+        account_item.className = 'account-item';
+        account_item.id = `account-container-${account_id}`;
+
+        const account_data = await getAccount(account_id);
+    
+        account_item.innerHTML = `
+        <p class="text">${account_data.username}</p>
+        <p class="text">****</p>
+        <div class="button-container">
+            <button id="${account_id}" class="edit-account-button" locale="edit">${getLocalizedText('edit')}</button>
+        </div>
+        `
+    
+        accounts_list.insertBefore(account_item, accounts_list.firstChild);    
+    };
 };
 
-function cancelAccountUpdate() {
-    const accountUpdate = document.getElementById('account-update');
-    accountUpdate.remove();
-};
-
-function saveAccount() {
+function saveAccount(account_id) {
     const account_username = document.getElementById('account-username');
     const username_len = account_username.value.length;
     const username = account_username.value;
 
     const account_password = document.getElementById('account-password');
     const password_len = account_password.value.length;
-    const password = account_password.value;
+    let password = account_password.value;
 
     const encrypt_password = document.getElementById('encrypt-password');
     const isEncrypt = encrypt_password.checked;
@@ -129,27 +211,30 @@ function saveAccount() {
     };
 
     if (isEncrypt) {
-        const encryptedData = encrypt(username, password);
-        newAccount(username, encryptedData);
-    }
-    else {
-        newAccount(username, password);
+        password = encrypt(username, password);
     };
-    
-    // !! LAZY
-    cancelAccountUpdate();
-    
+
+    if (!account_id) {
+        account_id = Date.now().toString();
+        newAccount(username, password, account_id, isEncrypt);
+    } else if (account_id) {
+        updateAccount(account_id, username, password, isEncrypt);
+    };
+
+    const accountEdit = document.getElementById('account-edit');
+    accountEdit.remove();
+
     const accounts_list = document.getElementById("accounts-list");
 
     const account_item = document.createElement('div');
     account_item.className = 'account-item';
-    account_item.id = `account-item-${account_item._id}`;
+    account_item.id = `account-container-${account_id}`;
 
     account_item.innerHTML = `
     <p class="text">${username}</p>
     <p class="text">****</p>
     <div class="button-container">
-        <button id="update-button" locale='update">${getLocalizedText('update')}</button>
+        <button id="${account_id}" class="edit-account-button" locale="edit">${getLocalizedText('edit')}</button>
     </div>
     `
 

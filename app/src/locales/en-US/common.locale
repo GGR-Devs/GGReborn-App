@@ -12,7 +12,6 @@ settings = Settings
 saved-accounts = Saved Accounts
 
 # Common
-update = Update
 remove = Remove
 save = Save
 use = Use

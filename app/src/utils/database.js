@@ -6,22 +6,42 @@ const databasePath = path.join(path.dirname(__dirname), "../../database")
 
 const db = new PouchDB(databasePath);
 
-function newAccount(username, password) {
-    return db.put({
-        _id: Date.now().toString(),
+function newAccount(username, password, account_id, encrypt) {
+    db.put({
+        _id: account_id,
         username: username,
-        password: password
+        password: password,
+        encrypt: encrypt
     });
-}
+};
+
+function getAccount(account_id) {
+    return db.get(account_id)
+        .then((account) => {
+            return {
+                username: account.username,
+                password: account.password,
+                encrypt: account.encrypt
+            };
+        });
+};
 
 function removeAccount(username) {
 
 }
 
 
-function updateAccount(username) {
-
-}
+function updateAccount(account_id, username, password, encrypt) {
+    db.get(account_id).then((account) => {
+            const updatedAccount = { 
+                ...account, 
+                username: username, 
+                password: password,
+                encrypt: encrypt
+            };
+            return db.put(updatedAccount);
+        });
+};
 
 async function getAllAccounts() {
         const result = await db.allDocs({ include_docs: true });
@@ -33,4 +53,4 @@ async function getAllAccounts() {
         }
 };
 
-module.exports = { newAccount, getAllAccounts }
+module.exports = { newAccount, getAllAccounts, getAccount, updateAccount }
