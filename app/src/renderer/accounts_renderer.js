@@ -73,7 +73,7 @@ async function editAccount(account_id) {
                 </div>
                 <div class="checkbox-container">
                     <input type="checkbox" id="encrypt-password" checked="true">
-                    <label for="encrypt-password" locale="encrypt">${getLocalizedText('encrypt')}</label>
+                    <label for="encrypt-password" locale="encrypt" class="text">${getLocalizedText('encrypt')}</label>
                 </div>
                 <div class="button-container">
                     <button id="remove-button" disabled="true" locale="remove">${getLocalizedText('remove')}</button>
@@ -115,7 +115,7 @@ async function editAccount(account_id) {
                 </div>
                 <div class="checkbox-container">
                     <input type="checkbox" id="encrypt-password" ${isEncrypt}>
-                    <label for="encrypt-password" locale="encrypt">${getLocalizedText('encrypt')}</label>
+                    <label for="encrypt-password" locale="encrypt" class="text">${getLocalizedText('encrypt')}</label>
                 </div>
                 <div class="button-container">
                     <button id="remove-button" locale="remove">${getLocalizedText('remove')}</button>
