@@ -26,9 +26,11 @@ function getAccount(account_id) {
         });
 };
 
-function removeAccount(username) {
-
-}
+function removeAccount(account_id) {
+    db.get(account_id).then(function (account) {
+        return db.remove(account);
+      });
+};
 
 
 function updateAccount(account_id, username, password, encrypt) {
@@ -53,4 +55,4 @@ async function getAllAccounts() {
         }
 };
 
-module.exports = { newAccount, getAllAccounts, getAccount, updateAccount }
+module.exports = { newAccount, getAllAccounts, getAccount, updateAccount, removeAccount }

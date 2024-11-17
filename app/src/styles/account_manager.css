@@ -74,3 +74,25 @@ button {
     gap: 6px;
     font-size: 14px;
 }
+
+.account-item-destroy {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 16px;
+    gap: 10px;
+    margin: 16px;
+    animation: destroy 0.5s forwards;
+}
+  
+@keyframes destroy {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}

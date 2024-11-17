@@ -1,7 +1,6 @@
-const { ipcRendere } = require('electron');
 const { showInfoBox } = require('../renderer/renderer');
 const { encrypt, decrypt } = require('../utils/encrypter');
-const { newAccount, getAllAccounts, getAccount, updateAccount } = require('../utils/database');
+const { newAccount, getAllAccounts, getAccount, updateAccount, removeAccount } = require('../utils/database');
 const { getLocalizedText } = require('../utils/locales');
 
 init();
@@ -136,14 +135,15 @@ async function editAccount(account_id) {
     });
 
     document.getElementById('save-button').addEventListener('click', event => {
-        const username = document.getElementById("account-username").value.trim();
-        const password = document.getElementById("account-password").value.trim();
-        
         if (!account_id) {
             saveAccount();
         } else if (account_id) {
             saveAccount(account_id);
         };
+    });
+
+    document.getElementById('remove-button').addEventListener('click', event => {
+        deleteAccount(account_id);
     });
 
     const reveal_password_button = document.getElementById('reveal-password-button');
@@ -159,6 +159,20 @@ async function editAccount(account_id) {
             reveal_password_button.textContent = getLocalizedText('show-password');
         };
     });
+};
+
+async function deleteAccount(account_id) {
+
+    showInfoBox(getLocalizedText('account-removed'));
+
+    let account_edit = document.getElementById("account-edit");
+
+    account_edit.className = 'account-item-destroy';
+
+    removeAccount(account_id);
+    setTimeout(() => {
+        account_edit.remove();
+    }, 150);
 };
 
 async function cancelAccount(account_id) {
