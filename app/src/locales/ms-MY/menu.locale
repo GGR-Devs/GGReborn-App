@@ -1,0 +1,24 @@
+# Menu button texts, area
+menu-discover = Terokai permainan
+menu-other = Lain-lain
+menu-homepage = Laman web
+menu-news = Berita
+menu-support = Sokongan
+
+# Games button hover information
+menu-cafe-button-tooltip = Cipta Café anda!
+menu-disco-button-tooltip = Kendalikan Disco anda!
+menu-fashion-button-tooltip = Suaikan pakaian anda!
+
+# Button hover information
+menu-button-tooltip = Menu
+menu-homepage-button-tooltip = Layari laman sesawang kami!
+menu-news-button-tooltip = Kemas kini, acara, etc...
+menu-reload-button-tooltip = Muat semula halaman semasa (CTRL + R)
+menu-accounts-button-tooltip = Simpan akaun
+menu-settings-button-tooltip = Tukar tetatapn
+menu-support-button-tooltip = Hubungi GGReborn
+
+# App version, not really needed
+# version-message-preview = Pralihat
+# version-message-stable = Stabil

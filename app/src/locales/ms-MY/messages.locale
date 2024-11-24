@@ -1,0 +1,4 @@
+theme-set = App theme set to: {id}
+cant-delete-this-theme = Tema tidak boleh dipadam!
+cant-delete-used-theme = Tema yang sedang digunakan tidak boleh dipadam!
+theme-deleted = {id} tema dipadam
