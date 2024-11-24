@@ -19,7 +19,6 @@ menu-accounts-button-tooltip = Przechowaj swoje konta
 menu-settings-button-tooltip = Zmień ustawienia aplikacji
 menu-support-button-tooltip = Skontaktuj się z wsparciem GGReborn
 
-# App version, not really needed
-# version-message-preview = Zapowiedź
-# version-message-stable = Stable 
-# I dont know what do you mean by "stable". For what this button will be.
+# App version = Wersja aplikacji
+# version-message-preview = Podgląd
+# version-message-stable = Stabilna 
