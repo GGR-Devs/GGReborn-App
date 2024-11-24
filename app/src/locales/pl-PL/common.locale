@@ -10,3 +10,11 @@ back = Cofnij
 browse-themes = Przeglądaj motywy
 settings = Ustawienia
 saved-accounts = Zapisane Konta
+
+# Common
+remove = Usuń
+save = Zapisz
+use = Użyj
+edit = Edytuj
+delete = Skasuj
+cancel = Anuluj
