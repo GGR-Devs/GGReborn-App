@@ -1,4 +1,0 @@
-theme-set = App theme set to: {id}
-cant-delete-this-theme = Can't delete this theme!
-cant-delete-used-theme = Can't delete the theme that is in use!
-theme-deleted = {id} theme was deleted

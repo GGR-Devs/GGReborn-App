@@ -1,0 +1,59 @@
+.navbar-show {
+    position: absolute;
+    top: -30px;
+    animation: show_navbar 1s forwards;
+}
+
+.navbar-hide {
+    position: absolute;
+    top: 30px;
+    animation: hide_navbar 1s forwards;
+}
+
+.games-menu-show {
+    position: absolute;
+    left: -150px;
+    animation: show_games_menu 1s forwards;
+}
+
+.games-menu-hide {
+    position: absolute;
+    left: 0px;
+    animation: hide_games_menu 1s forwards;
+}
+
+@keyframes show_navbar {
+    0% {
+        top: -30px;
+    }
+    100% {
+        top: 30px;
+    }
+}
+
+@keyframes hide_navbar {
+    0% {
+        top: 30px;
+    }
+    100% {
+        top: -30px;
+    }
+}
+
+@keyframes show_games_menu {
+    0% {
+        left: -150px;
+    }
+    100% {
+        left: 0px;
+    }
+}
+
+@keyframes hide_games_menu {
+    0% {
+        left: 0px;
+    }
+    100% {
+        left: -150px;
+    }
+}

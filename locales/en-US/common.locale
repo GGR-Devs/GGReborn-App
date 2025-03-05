@@ -1,0 +1,20 @@
+# Shows in the language selection
+language = English (United States)
+
+# Window controls
+minimize = Minimize
+close = Close
+back = Back
+
+# Buttons
+remove = Remove
+save = Save
+use = Use
+edit = Edit
+delete = Delete
+cancel = Cancel
+
+# Navbar
+games = Games
+guides = Guides
+news = News

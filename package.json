@@ -1,27 +1,62 @@
 {
-  "name": "GGRebornApp",
-  "version": "0.0.7",
+  "name": "ggreborn-app",
+  "productName": "GGRebornApp",
+  "license": "MIT",
+  "version": "1.0.0",
   "description": "Simple, customizable client with built in flash player to play GoodGame Café, Disco and Fashion.",
-  "main": "app/src/main.js",
+  "author": {
+    "name": "Bence Fodor",
+    "email": "bence@ggreborn.net"
+  },
+  "main": "app/main.js",
   "repository": "https://github.com/GGR-Devs/GGReborn-App",
-  "author": "GGReborn",
+  "homepage": "https://ggreborn.net",
+  "bugs": {
+    "url": "https://github.com/GGR-Devs/GGReborn-App/issues",
+    "email": "bence@ggreborn.net"
+  },
+  "maintainers": [
+    {
+      "name": "Bence Fodor",
+      "email": "bence@ggreborn.net"
+    },
+    {
+      "name": "GGReborn Devs",
+      "email": "support@ggreborn.net"
+    }
+  ],
   "contributors": [
-    {"name": "BXn4", "url": "https://github.com/bxn4"},
-    {"name": "SulivanM", "url": "https://github.com/SulivanM"},
-    {"name": "MKerem", "url": "https://github.com/keremgokcek"}
+    {
+      "name": "Bence Fodor",
+      "url": "https://github.com/bxn4",
+      "email": "bence@ggreborn.net"
+    },
+    {
+      "name": "Santi13",
+      "url": "https://github.com/santi134565"
+    },
+    {
+      "name": "MKerem",
+      "url": "https://github.com/keremgokcek"
+    },
+    {
+      "name": "SulivanM",
+      "url": "https://github.com/SulivanM"
+    }
   ],
   "keywords": [
     "ggreborn",
     "ggreborn app",
     "goodgame cafe reborn",
     "goodgame disco reborn",
-    "goodgame fashion reborn"
+    "goodgame fashion reborn",
+    "goodgame studios",
+    "flash game"
   ],
   "funding": {
     "type": "Buy Me a Coffee",
     "url": "https://buymeacoffee.com/ggreborn"
   },
-  "license": "MIT",
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
@@ -33,7 +68,7 @@
     "releaseType": "release"
   },
   "build": {
-    "appId": "com.ggreborn.app",
+    "appId": "com.ggreborn.ggrebornapp",
     "productName": "GGRebornApp",
     "win": {
       "target": "nsis",
@@ -46,6 +81,7 @@
       ]
     },
     "mac": {
+      "target": "dmg",
       "extraResources": [
         {
           "from": "lib/PepperFlashPlayer.plugin",
@@ -56,7 +92,8 @@
     "linux": {
       "target": [
         "AppImage",
-        "tar.gz"
+        "tar.gz",
+        "deb"
       ],
       "icon": "./app/icons/icon.png",
       "category": "Game",
@@ -67,14 +104,14 @@
         }
       ]
     },
-	"nsis": {
-	"oneClick": false,
-    "allowElevation": true,
-    "allowToChangeInstallationDirectory": true,
-	"license": "LICENSE",
-	"deleteAppDataOnUninstall": true,
-	"createDesktopShortcut": true
-	},
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "license": "LICENSE",
+      "deleteAppDataOnUninstall": true,
+      "createDesktopShortcut": true
+    },
     "asar": true,
     "files": [
       "**/*",
@@ -85,8 +122,6 @@
   "dependencies": {
     "discord-rpc": "^4.0.1",
     "electron-updater": "^6.3.9",
-    "jszip": "^3.10.1",
-    "crypto-js": "^4.2.0",
     "pouchdb": "^9.0.0"
   },
   "devDependencies": {

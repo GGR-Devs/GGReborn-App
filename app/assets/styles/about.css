@@ -1,0 +1,67 @@
+#ggreborn-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: AtkinsonHyperlegibleMono, "Courier New", Courier, monospace;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+}
+
+#about-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 255, 0.2) 0%,
+        rgba(0, 0, 0, 1) 100%
+    );
+    overflow: hidden;
+    z-index: -1;
+}
+
+#about-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    background-image: linear-gradient(
+            rgba(0, 255, 255, 0.1) 1px,
+            transparent 1px
+        ),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid_background 7s linear infinite;
+}
+
+#crt-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.3) 2px,
+        transparent 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+@keyframes grid_background {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(0, -50px);
+    }
+}
