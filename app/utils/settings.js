@@ -24,6 +24,25 @@ const resolutions = {
   R3840x2160: "3840x2160",
 };
 
+const RenderEngines = {
+  FLASH: "flash",
+  RUFFLE: "ruffle",
+};
+
+const guidesLayoutPins = {
+  // 1000 BASE NUMBER
+  cafeGuidesPinned: [
+    1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+  ], // ID
+  discoGuidesPinned: [
+    1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+  ], // ID
+  fashionGuidesPinned: [
+    1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+  ], // ID
+  maxPins: 10,
+};
+
 // default
 const appConfig = {
   startMaximized: false, // Always maximize the main (game) window
@@ -35,11 +54,12 @@ const appConfig = {
   enableDiscordRichPresence: true, // Enable Discord rich presence
   checkForUpdates: true, // On launch the app checks the latest version. If the current version is different, the user can update the app
   autoUpdate: false, // Auto update the app, if there's a new version without asking the user
-  renderEngine: "flash", // Set the engine to render the game ('flash' or 'ruffle'). Ruffle have some issues, already contacted a developer about the issues.
+  renderEngine: RenderEngines.FLASH, // Set the engine to render the game ('flash' or 'ruffle'). Ruffle have some issues, already contacted a developer about the issues.
   language: "en-US", // App language
   key: "", // This API key allows the app to access our API.
   // Note: This API key has limitations and cannot be used to retrieve other information from the API.
   // It is reserved only for the app.
+  guidesPinned: guidesLayoutPins,
 };
 
 module.exports = { appConfig };

@@ -8,11 +8,12 @@ function checkConnection() {
 
 const launcherProperties = {
   isOnline: checkConnection(),
-  currentGame: appConfig.favGame,
-  currentMenu: "games",
+  selectedGame: appConfig.favGame,
+  selectedMenu: "games",
   newsCategory: "All",
   gameFocus: false,
   isPlaying: false,
+  currentGame: null,
   isEventAdded: false,
   isTimerStarted: false,
 };
@@ -35,7 +36,22 @@ function init() {
   handleNewsMenuControls();
   handleWindowTitlebarHover();
 
-  switchNavbarMenu(launcherProperties.currentMenu);
+  switchNavbarMenu(launcherProperties.selectedMenu);
+  addEventListeners();
+}
+
+function addEventListeners() {
+  const play_button = document.getElementById("play-button");
+  play_button.addEventListener("click", () => {
+    if (launcherProperties.currentGame == launcherProperties.selectedGame) {
+      exitGame();
+    } else {
+      if (launcherProperties.isPlaying) {
+        exitGame();
+      }
+      playGame(launcherProperties.selectedGame);
+    }
+  });
 }
 
 const ServerStatuses = {
@@ -62,7 +78,7 @@ function handleNavbarControls() {
             switchNavbarMenu(menu);
           } else {
             games_menu.style.display = "none";
-            launcherProperties.currentMenu = "";
+            launcherProperties.selectedMenu = "";
           }
           break;
         case "news":
@@ -70,7 +86,7 @@ function handleNavbarControls() {
             switchNavbarMenu(menu);
           } else {
             news_menu.style.display = "none";
-            launcherProperties.currentMenu = "";
+            launcherProperties.selectedMenu = "";
           }
           break;
         case "guides":
@@ -78,7 +94,7 @@ function handleNavbarControls() {
             switchNavbarMenu(menu);
           } else {
             guides_menu.style.display = "none";
-            launcherProperties.currentMenu = "";
+            launcherProperties.selectedMenu = "";
           }
           break;
         case "about":
@@ -86,7 +102,7 @@ function handleNavbarControls() {
             switchNavbarMenu(menu);
           } else {
             about_menu.style.display = "none";
-            launcherProperties.currentMenu = "";
+            launcherProperties.selectedMenu = "";
           }
           break;
       }
@@ -133,7 +149,7 @@ function handleGamesMenuControls() {
       );
 
       if (
-        gameName != launcherProperties.currentGame &&
+        gameName != launcherProperties.selectedGame &&
         !launcherProperties.gameFocus
       ) {
         switchGame(gameName);
@@ -143,7 +159,6 @@ function handleGamesMenuControls() {
         game_background_container.style.display = "none";
 
         const game_item = document.getElementById(`${gameName}-game`);
-
         game_item.classList.remove("selected-game");
 
         if (launcherProperties.isPlaying) {
@@ -151,7 +166,7 @@ function handleGamesMenuControls() {
           // Its just hides the navbar + menu
           playGame(gameName);
         } else {
-          launcherProperties.currentGame = null;
+          launcherProperties.selectedGame = null;
         }
       }
     });
@@ -161,7 +176,7 @@ function handleGamesMenuControls() {
 function switchGame(gameName) {
   Log.Info(`Switched to game: ${gameName}`);
 
-  launcherProperties.currentGame = gameName;
+  launcherProperties.selectedGame = gameName;
 
   const game_item = document.getElementById(`${gameName}-game`);
   const game_add_to_fav = document.getElementById("game-add-to-fav");
@@ -172,14 +187,15 @@ function switchGame(gameName) {
   const server_players = document.getElementById("server-players");
   const play_button = document.getElementById("play-button");
 
+  const play_text = document.getElementById("play-text");
+  const offline_text = document.getElementById("offline-text");
+  const exit_text = document.getElementById("exit-text");
+
   game_item.classList.add("selected-game");
 
   let serverStatus = ServerStatuses[0];
 
   if (!launcherProperties.isOnline) {
-    const play_text = document.getElementById("play-text");
-    const offline_text = document.getElementById("offline-text");
-
     play_text.style.display = "none";
     offline_text.style.display = "flex";
 
@@ -199,7 +215,7 @@ function switchGame(gameName) {
       : gameName.charAt(0).toUpperCase() + gameName.slice(1)
   }`;
 
-  if (appConfig.favGame == launcherProperties.currentGame) {
+  if (appConfig.favGame == launcherProperties.selectedGame) {
     game_add_to_fav.innerHTML = Stars.removeFromFav;
   } else {
     game_add_to_fav.innerHTML = Stars.addToFav;
@@ -221,9 +237,17 @@ function switchGame(gameName) {
 
     play_button.title = "Server is unavailable. Try again later.";
   } else {
-    play_button.addEventListener("click", () => {
-      playGame(gameName);
-    });
+    if (launcherProperties.currentGame == gameName) {
+      play_text.style.display = "none";
+      exit_text.style.display = "flex";
+
+      play_button.classList.add("exit");
+    } else {
+      play_text.style.display = "flex";
+      exit_text.style.display = "none";
+
+      play_button.classList.remove("exit");
+    }
   }
 
   addToFav();
@@ -245,7 +269,7 @@ function switchNavbarMenu(menu) {
   selected_tab.classList.add("selected-tab");
 
   launcherProperties.gameFocus = false;
-  launcherProperties.currentMenu = menu;
+  launcherProperties.selectedMenu = menu;
 
   switch (menu) {
     case "games": {
@@ -257,7 +281,7 @@ function switchNavbarMenu(menu) {
 
       game_background_container.style.display = "flex";
 
-      switchGame(launcherProperties.currentGame);
+      switchGame(launcherProperties.selectedGame);
       break;
     }
     case "news": {
@@ -306,7 +330,7 @@ function playGame(gameName) {
   game_background_container.style.display = "none";
 
   const selected_tab = document.getElementById(
-    `navbar-${launcherProperties.currentMenu}`,
+    `navbar-${launcherProperties.selectedMenu}`,
   );
 
   selected_tab.classList.remove("selected-tab");
@@ -314,12 +338,28 @@ function playGame(gameName) {
   if (!launcherProperties.isPlaying) {
     // LOAD THE GAME
     launcherProperties.isPlaying = true;
+    launcherProperties.currentGame = gameName;
 
     const game_content = document.getElementById(`content`);
 
     game_content.src = `https://ggreborn.net/${gameName}`;
     // game_content.src = `https://example.com`;
+    //
+    const game_item = document.getElementById(`${gameName}-game`);
+    game_item.classList.add("active-game");
   }
+}
+
+function exitGame() {
+  const game_item = document.getElementById(
+    `${launcherProperties.currentGame}-game`,
+  );
+  game_item.classList.remove("active-game");
+
+  launcherProperties.isPlaying = false;
+  launcherProperties.currentGame = null;
+
+  switchGame(launcherProperties.selectedGame);
 }
 
 function handleNewsMenuControls() {

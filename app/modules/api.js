@@ -5,7 +5,9 @@ const { appConfig } = require("../utils/settings");
 
 baseUrl = "https://ggreborn.net/api";
 
-function Get(url) {
+function FetchAPI(url) {
+  // THE WEBSITE + API IS CURRENTLY IN DEVELOPMENT!
+  return null;
   return fetch(url)
     .then((response) => {
       if (!response.ok) {
@@ -47,6 +49,7 @@ function getGameServerStatus(gameServer) {
 }
 
 function getGameServerPlayers(gameServer) {
+  return 0;
   const response = Get(
     `${baseUrl}?game=${gameServer}&fetch=players&source=app&key=${appConfig.key}`,
   );
@@ -62,11 +65,11 @@ function getGameServerPlayers(gameServer) {
 }
 
 function getAnAppApiKey() {
-  return 0;
+  return "";
   // This API key allows the app to access our API.
   // Note: This API key has limitations and cannot be used to retrieve other information from the API.
   // It is reserved only for the app.
-  const response = Call(`${baseUrl}?get=key&source=app`);
+  const response = FetchAPI(`${baseUrl}?get=key&source=app`);
   if (response.ok) {
     const result = response.json();
     return result.data.key;
@@ -76,7 +79,7 @@ function getAnAppApiKey() {
 }
 
 function getSupporters(amount) {
-  const response = Call(
+  const response = FetchAPI(
     `https://app.buymeacoffee.com/api/creators/slug/ggreborn/coffees?web=1&page=1&per_page=${amount}`,
   );
 

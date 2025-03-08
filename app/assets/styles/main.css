@@ -252,6 +252,11 @@
     box-shadow: 0 6px 6px rgba(0, 0, 0, 0.5);
 }
 
+.game-item.active-game {
+    border: 2px solid rgba(0, 130, 0, 0.8);
+    background-color: rgba(0, 130, 0, 0.4);
+}
+
 #game-background-container {
     display: flex;
     flex-direction: column;
@@ -381,13 +386,13 @@
     background-color: rgba(196, 121, 24, 1);
 }
 
-.server-players-container {
+.server-players-layout {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.server-players-container svg {
+.server-players-layout svg {
     width: 24px;
     height: 24px;
     fill: white;
@@ -445,7 +450,7 @@
     fill: rgb(45, 120, 255);
 }
 
-#game-server-admins-container {
+#game-server-admins-layout {
     position: absolute;
     top: 450px;
     background-color: rgba(31, 39, 54, 0.5);
@@ -460,7 +465,7 @@
     gap: 24px;
     font-weight: bold;
     width: 360px;
-    height: 80px;
+    height: 60px;
 }
 
 #game-server-admins {
@@ -473,7 +478,7 @@
     transition: all 0.2s ease-in-out;
 }
 
-#game-guides-container {
+#game-guides-layout {
     position: absolute;
     top: 130px;
     left: 420px;
@@ -503,7 +508,7 @@
     transition: all 0.2s ease-in-out;
 }
 
-#game-news-container {
+#game-news-layout {
     position: absolute;
     top: 300px;
     left: 420px;
@@ -556,11 +561,20 @@
     border-radius: 16px;
 }
 
+.play-button.exit {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 24px;
+    background-color: rgba(36, 145, 60, 0.7);
+    border-radius: 16px;
+}
+
 #play-button span {
     font-size: 18px;
 }
 
-#news-menu-container {
+#news-menu-layout {
     flex-direction: row;
     gap: 24px;
     position: fixed;
