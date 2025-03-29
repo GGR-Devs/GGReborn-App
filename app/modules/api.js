@@ -78,9 +78,9 @@ function getAnAppApiKey() {
   return "";
 }
 
-function getSupporters(amount) {
+function getSupporters(page, amount) {
   const response = FetchAPI(
-    `https://app.buymeacoffee.com/api/creators/slug/ggreborn/coffees?web=1&page=1&per_page=${amount}`,
+    `https://app.buymeacoffee.com/api/creators/slug/ggreborn/coffees?web=1&page=${page}&per_page=${amount}`,
   );
 
   if (response.ok) {
@@ -99,4 +99,9 @@ function cacheData(game, data) {
   }
 }
 
-module.exports = { getGameServerStatus, getGameServerPlayers, getAnAppApiKey };
+module.exports = {
+  getGameServerStatus,
+  getGameServerPlayers,
+  getAnAppApiKey,
+  getSupporters,
+};

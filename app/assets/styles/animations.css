@@ -1,10 +1,12 @@
-.navbar-show {
+.navbar-show,
+.navbar-utils-show {
     position: absolute;
     top: -30px;
     animation: show_navbar 1s forwards;
 }
 
-.navbar-hide {
+.navbar-hide,
+.navbar-utils-hide {
     position: absolute;
     top: 30px;
     animation: hide_navbar 1s forwards;

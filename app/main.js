@@ -50,7 +50,7 @@ app.whenReady().then(() => {
       minHeight: 500,
       setResizable: true,
       show: false,
-      frame: false,
+      frame: true,
     },
     {
       plugins: true,
@@ -85,7 +85,7 @@ app.whenReady().then(() => {
   Log.Info("Splash window created!");
   splashWindow.show();
 
-  sleep(1500).then(() => {
+  sleep(1).then(() => {
     mainWindow.show();
 
     splashWindow.close();

@@ -40,7 +40,7 @@ const guidesLayoutPins = {
   fashionGuidesPinned: [
     1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
   ], // ID
-  maxPins: 10,
+  maxPins: 10, // Max pins allowed
 };
 
 // default

@@ -1,5 +1,5 @@
 # Shows in the language selection
-language = English (United States)
+language = English
 
 # Window controls
 minimize = Minimize
@@ -13,8 +13,16 @@ use = Use
 edit = Edit
 delete = Delete
 cancel = Cancel
+play = Play
+
 
 # Navbar
 games = Games
 guides = Guides
 news = News
+about = About
+
+# Server statuses
+offline = Offline
+maintence = Maintence
+captures = Captures
