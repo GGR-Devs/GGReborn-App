@@ -3,7 +3,7 @@ const path = require("path");
 
 const { Log } = require("./utils/logger");
 const { createWindow } = require("./modules/windows");
-const { sleep } = require("./utils/sleep");
+const { sleep, sleepUntilFetch } = require("./utils/sleep");
 const { initDiscordRichPresence } = require("./integrations/discord");
 
 function init() {
@@ -50,7 +50,7 @@ app.whenReady().then(() => {
       minHeight: 500,
       setResizable: true,
       show: false,
-      frame: true,
+      frame: false,
     },
     {
       plugins: true,
@@ -85,7 +85,7 @@ app.whenReady().then(() => {
   Log.Info("Splash window created!");
   splashWindow.show();
 
-  sleep(1).then(() => {
+  sleepUntilFetch().then(() => {
     mainWindow.show();
 
     splashWindow.close();

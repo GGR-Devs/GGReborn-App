@@ -7,6 +7,7 @@ const userPath = (electron.app || electron.remote.app).getPath("userData");
 const parentDir = path.join(userPath, "..");
 // var appDir = path.join(parentDir, "GGRebornApp");
 // var cachesFile = path.join(appDir, "caches.json");
+// var cachesDir = path.join(appDir, "caches")
 
 const cacheProperties = {
   guidesCache: {

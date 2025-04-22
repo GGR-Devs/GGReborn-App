@@ -164,7 +164,7 @@ function addEventListeners() {
     "mousemove",
     checkHover,
   );
-  launcherElements.Containers.Titlebar.NavbarUtils(
+  launcherElements.Containers.Titlebar.NavbarUtils.addEventListener(
     "mouseleave",
     handleMouseLeave,
   );
@@ -285,7 +285,8 @@ function switchGame(gameName) {
     game_add_to_fav.innerHTML = launcherElements.Buttons.Favourites.Icon;
   }
 
-  server_status.innerText = ServerStatuses[serverStatus];
+  // server_status.innerText = ServerStatuses[serverStatus];
+  // server_status.innerText = TODO: FROM LOCALES;
   server_status.className = `text ${ServerStatuses[serverStatus]}`;
   server_players.innerText = getGameServerPlayers(gameName);
 
@@ -484,17 +485,28 @@ function handleMouseLeave() {
         launcherProperties.isTimerStarted = true;
         Log.Debug("TIMER STARTED");
         setTimeout(() => {
-          const titlebarHovered = isHover(titlebar);
-          const navbarHovered = isHover(navbar);
-          const navbarUtilsHovered = isHover(navbar_utils);
+          const titlebarHovered = isHover(
+            launcherElements.Containers.Titlebar.HoverArea,
+          );
+          const navbarHovered = isHover(
+            launcherElements.Containers.Titlebar.Navbar,
+          );
+          const navbarUtilsHovered = isHover(
+            launcherElements.Containers.Titlebar.NavbarUtils,
+          );
           if (!navbarHovered && !titlebarHovered && !navbarUtilsHovered) {
             if (launcherProperties.fullScreenFocus) {
               Log.Debug("GAME FOCUS TRUE");
               clearInterval(checkMouseLeave);
 
-              navbar.classList.remove("navbar-show");
-              navbar.classList.add("navbar-hide");
-              navbar_utils.classList = "navbar-utils-hide";
+              launcherElements.Containers.Titlebar.Navbar.classList.remove(
+                "navbar-show",
+              );
+              launcherElements.Containers.Titlebar.Navbar.classList.add(
+                "navbar-hide",
+              );
+              launcherElements.Containers.Titlebar.NavbarUtils.classList =
+                "navbar-utils-hide";
               launcherProperties.isEventAdded = false;
               launcherProperties.isTimerStarted = false;
 
