@@ -23,3 +23,12 @@ const cacheProperties = {
   cacheStepps: 6, // Do not try to cache everyting at one time.
   retriesBeforeCancelling: 4, // Number of tries before cancelling the caching, and showing network error and retry button.
 };
+
+function loadData(need) {
+  switch (need) {
+    case "staffs":
+      return 0;
+  }
+}
+
+module.exports = { loadData };

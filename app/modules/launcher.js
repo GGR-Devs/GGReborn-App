@@ -2,6 +2,7 @@ const { getGameServerStatus, getGameServerPlayers } = require("./api");
 const { appConfig } = require("../utils/settings");
 const { Log } = require("../utils/logger");
 const { playMusic, stopMusic, playAnimation } = require("../utils/about");
+const { loadData } = require("../utils/cache");
 
 function checkConnection() {
   return navigator.onLine;
@@ -29,6 +30,13 @@ const launcherElements = {
       Background: document.getElementById("game-background-container"),
       GamesList: document.querySelectorAll(".game-item"),
       Game: document.getElementById(`${launcherProperties.currentGame}-game`),
+      Layouts: {
+        PlayersContainer: {
+          PlaceHolderText: document.getElementById(
+            "game-server-players-placeholder-text",
+          ),
+        },
+      },
     },
     Guides: {
       Container: document.getElementById("guides-menu"),
@@ -95,6 +103,8 @@ function init() {
   // need to always click on it to view it.
   switchNavbarMenu(launcherProperties.selectedMenu);
   addEventListeners();
+
+  loadDataFromCache();
 }
 
 function addEventListeners() {
@@ -532,3 +542,30 @@ function handleMouseLeave() {
 }
 
 function switchNews(category) {}
+
+function loadDataFromCache() {
+  const staffsData = loadData("staffs");
+
+  if (staffsData == 0) {
+    updateLauncherElements(
+      launcherElements.Containers.Games.Layouts.PlayersContainer
+        .PlaceHolderText,
+      "No Players Online",
+      false,
+    );
+  } else {
+    updateLauncherElements(
+      launcherElements.Containers.Games.Layouts.PlayersContainer
+        .PlaceHolderText,
+      "Error",
+      false,
+    );
+  }
+}
+
+function updateLauncherElements(element, content, remove) {
+  if (remove) {
+  } else {
+    element.textContent = content;
+  }
+}

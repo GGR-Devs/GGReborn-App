@@ -46,8 +46,8 @@ app.whenReady().then(() => {
     {
       width: 1280,
       height: 768,
-      minWidth: 500,
-      minHeight: 500,
+      minWidth: 1280,
+      minHeight: 768,
       setResizable: true,
       show: false,
       frame: false,

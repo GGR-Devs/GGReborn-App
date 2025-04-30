@@ -450,7 +450,7 @@
     fill: rgb(45, 120, 255);
 }
 
-#game-server-admins-layout {
+#game-server-players-layout {
     position: absolute;
     top: 450px;
     background-color: rgba(31, 39, 54, 0.5);
@@ -480,24 +480,15 @@
     border: 2px solid transparent;
 }
 
-.game-server-admin img {
+.game-server-player img {
     width: 100%;
     height: 100%;
     border-radius: 24px;
     margin: 4px;
+    /* border-color: rgb(0, 122, 30); */
 }
 
-.game-server-admin.online {
-    border-radius: 12px;
-    border-color: rgb(0, 122, 30);
-}
-
-.game-server-admin.offline {
-    border-radius: 12px;
-    border-color: rgb(80, 80, 80);
-}
-
-#game-server-admins {
+#game-server-players {
     position: absolute;
     top: 420px;
     font-size: 20px;
