@@ -16,9 +16,6 @@ const cacheProperties = {
   newsCache: {
     latestCached: -1, // TIMESTAMP
   },
-  serverAdmins: {
-    latestCached: -1, // TIMESTAMP
-  },
 
   cacheStepps: 6, // Do not try to cache everyting at one time.
   retriesBeforeCancelling: 4, // Number of tries before cancelling the caching, and showing network error and retry button.
@@ -26,8 +23,8 @@ const cacheProperties = {
 
 function loadData(need) {
   switch (need) {
-    case "staffs":
-      return 0;
+    case "players":
+      return null;
   }
 }
 

@@ -28,7 +28,7 @@ function FetchAPI(url) {
 function getGameServerStatus(gameServer) {
   return 1;
   // API IS NOT YET READY!
-  const response = Get(
+  const response = FetchAPI(
     `${baseUrl}?game=${gameServer}&fetch=status&source=app&key=${appConfig.key}`,
   );
 
@@ -48,9 +48,29 @@ function getGameServerStatus(gameServer) {
   */
 }
 
-function getGameServerPlayers(gameServer) {
+function getGameServerPlayersCount(gameServer) {
   return 0;
-  const response = Get(
+  const response = FetchAPI(
+    `${baseUrl}?game=${gameServer}&fetch=players&source=app&key=${appConfig.key}`,
+  );
+
+  if (response.ok) {
+    const result = response.json();
+
+    cacheData(gameServer, result.data);
+    return result.data.players;
+  }
+
+  return 0;
+}
+
+function getGameServerPlayers(gameServer) {
+  if (getGameServerPlayersCount(gameServer) == 0) {
+    return 0;
+  }
+
+  return 0;
+  const response = FetchAPI(
     `${baseUrl}?game=${gameServer}&fetch=players&source=app&key=${appConfig.key}`,
   );
 
@@ -102,6 +122,7 @@ function cacheData(game, data) {
 module.exports = {
   getGameServerStatus,
   getGameServerPlayers,
+  getGameServerPlayersCount,
   getAnAppApiKey,
   getSupporters,
 };

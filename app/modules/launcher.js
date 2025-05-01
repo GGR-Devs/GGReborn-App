@@ -1,8 +1,11 @@
-const { getGameServerStatus, getGameServerPlayers } = require("./api");
+const {
+  getGameServerStatus,
+  getGameServerPlayersCount,
+  getGameServerPlayers,
+} = require("./api");
 const { appConfig } = require("../utils/settings");
 const { Log } = require("../utils/logger");
 const { playMusic, stopMusic, playAnimation } = require("../utils/about");
-const { loadData } = require("../utils/cache");
 
 function checkConnection() {
   return navigator.onLine;
@@ -104,7 +107,8 @@ function init() {
   switchNavbarMenu(launcherProperties.selectedMenu);
   addEventListeners();
 
-  loadDataFromCache();
+  loadData();
+  // updateData();
 }
 
 function addEventListeners() {
@@ -146,10 +150,12 @@ function addEventListeners() {
         launcherElements.Buttons.Favourites.isFilled = false;
         launcherElements.Buttons.Favourites.Favourite.innerHTML =
           launcherElements.Buttons.Favourites.Icon;
+        appConfig.favGame = null;
       } else {
         launcherElements.Buttons.Favourites.isFilled = true;
         launcherElements.Buttons.Favourites.Favourite.innerHTML =
           launcherElements.Buttons.Favourites.Icon;
+        appConfig.favGame = launcherProperties.selectedGame;
       }
     },
   );
@@ -298,7 +304,7 @@ function switchGame(gameName) {
   // server_status.innerText = ServerStatuses[serverStatus];
   // server_status.innerText = TODO: FROM LOCALES;
   server_status.className = `text ${ServerStatuses[serverStatus]}`;
-  server_players.innerText = getGameServerPlayers(gameName);
+  server_players.innerText = getGameServerPlayersCount(gameName);
 
   if (serverStatus == 0 || serverStatus == 2) {
     const play_text = document.getElementById("play-text");
@@ -543,10 +549,10 @@ function handleMouseLeave() {
 
 function switchNews(category) {}
 
-function loadDataFromCache() {
-  const staffsData = loadData("staffs");
+function loadData() {
+  const playersData = getGameServerPlayers("players");
 
-  if (staffsData == 0) {
+  if (!playersData) {
     updateLauncherElements(
       launcherElements.Containers.Games.Layouts.PlayersContainer
         .PlaceHolderText,
@@ -557,14 +563,15 @@ function loadDataFromCache() {
     updateLauncherElements(
       launcherElements.Containers.Games.Layouts.PlayersContainer
         .PlaceHolderText,
-      "Error",
-      false,
+      "",
+      true,
     );
   }
 }
 
 function updateLauncherElements(element, content, remove) {
   if (remove) {
+    element.remove();
   } else {
     element.textContent = content;
   }
