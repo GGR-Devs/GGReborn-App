@@ -4,7 +4,8 @@
 [![DISCORD](https://dcbadge.limes.pink/api/server/fHN8Pk9a3Q?style=flat)](https://discord.gg/fHN8Pk9a3Q)
 
 Simple, customizable client with built in flash player to play GoodGame Café, Disco and Fashion.
-![image](https://github.com/GGR-Devs/GGReborn-App/assets/78733248/5f615d50-4c95-4b7e-962d-76ce87d0fd45)
+![image](https://github.com/user-attachments/assets/a2a90f1d-55d3-46d8-b625-5a5281962c6f)
+
 
 ## Looking for translations!
 Feel free to translate the app into your language!
