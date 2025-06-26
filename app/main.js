@@ -4,7 +4,6 @@ const path = require("path");
 const { Log } = require("./utils/logger");
 const { createWindow } = require("./modules/windows");
 const { sleep, sleepUntilFetch } = require("./utils/sleep");
-const { initDiscordRichPresence } = require("./integrations/discord");
 
 function init() {
   Log.Info("App started");
@@ -37,8 +36,6 @@ function isAsar() {
 init();
 
 app.whenReady().then(() => {
-  initDiscordRichPresence();
-
   Log.Info("App is ready!");
   Log.Info("Creating main window...");
 

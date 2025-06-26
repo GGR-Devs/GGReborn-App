@@ -6,6 +6,7 @@ const {
 const { appConfig } = require("../utils/settings");
 const { Log } = require("../utils/logger");
 const { playMusic, stopMusic, playAnimation } = require("../utils/about");
+const { DiscordRPCManager } = require("../integrations/discord");
 
 function checkConnection() {
   return navigator.onLine;
@@ -439,6 +440,8 @@ function playGame(gameName) {
 
   launcherProperties.selectedMenu = null;
   Log.Debug(`Playing game: ${launcherProperties.currentGame}`);
+
+  DiscordRPCManager();
 }
 
 function exitGame() {
