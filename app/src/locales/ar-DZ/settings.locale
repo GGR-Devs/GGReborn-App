@@ -1,0 +1,31 @@
+settings-general = عامة
+start-maximized = بدء في وضع ملء الشاشة
+enable-splash-screen = تفعيل نافذة البداية
+fast-splash-screen = نافذة بداية سريعة
+default-game = اللعبة الافتراضية
+website = الموقع الالكتروني
+window-size = حجم النافذة
+language-text = اللغة
+
+browse-themes-button = تصفح الخلفيات
+
+discord = Discord
+enable-rich-presence = تفعيل الحالة التفصيلية
+update-rich-presence = تحديث الحالة التفصيلية
+
+other = أخرى
+check-updates = التحقق من التحديثات
+auto-update = التحديث التلقائي
+
+report-problem-button = الإبلاغ عن مشكلة
+
+render-engine = محرك الرسوم
+
+danger-zone = Danger zone
+
+github-social-tooltip = Opens the app Github repo
+x-social-tooltip = Opens the projects X social account
+facebook-social-tooltip = افتح صفحة المشروع على فيسبوك
+buymeacoffee-social-tooltip = ادعم المشروع
+
+support = الدعم
