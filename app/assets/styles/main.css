@@ -3,20 +3,18 @@
     src: url(../fonts/AtkinsonHyperlegibleMono-VariableFont_wght.ttf);
 }
 
-#content {
-    position: absolute;
-    padding-top: var(--height);
-    width: 100%;
-    height: 100vh;
-    height: calc(100% - var(--height));
-    padding-top: var(--height);
-    z-index: -1;
-}
-
 /* Height variable */
 :root {
     --height: 40px;
     user-select: none;
+}
+
+#content {
+    position: absolute;
+    top: calc(var(--height));
+    width: 100%;
+    height: calc(100% - var(--height));
+    z-index: -1;
 }
 
 #titlebar {
@@ -99,8 +97,7 @@
     grid-column: 2;
 }
 
-#game {
-}
+#game {}
 
 .text {
     font-family: AtkinsonHyperlegibleMono, "Roboto", "Segoe UI", sans-serif;
@@ -373,6 +370,7 @@
     font-size: 14px;
     font-weight: 600;
 }
+
 #server-status.Offline {
     background-color: rgba(107, 107, 107, 1);
     /* red or gray? */

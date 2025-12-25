@@ -288,11 +288,10 @@ function switchGame(gameName) {
 
   background.style.backgroundImage = `url("../assets/images/games/backgrounds/${gameName}.jpg")`;
   game_title_image.src = `../assets/images/games/titles/${gameName}.png`;
-  game_title_name.innerText = `GoodGame ${
-    gameName.toLowerCase() === "cafe"
-      ? "Café"
-      : gameName.charAt(0).toUpperCase() + gameName.slice(1)
-  }`;
+  game_title_name.innerText = `GoodGame ${gameName.toLowerCase() === "cafe"
+    ? "Café"
+    : gameName.charAt(0).toUpperCase() + gameName.slice(1)
+    }`;
 
   if (appConfig.favGame == launcherProperties.selectedGame) {
     launcherElements.Buttons.Favourites.isFilled = true;
@@ -429,7 +428,7 @@ function playGame(gameName) {
 
     const game_content = document.getElementById(`content`);
 
-    game_content.src = `https://ggreborn.net/${gameName}`;
+    game_content.src = `https://ggreborn.net/games/${gameName}`;
     // game_content.src = `https://example.com`;
     //
     const game_item = document.getElementById(`${gameName}-game`);
@@ -550,7 +549,7 @@ function handleMouseLeave() {
   }
 }
 
-function switchNews(category) {}
+function switchNews(category) { }
 
 function loadData() {
   const playersData = getGameServerPlayers("players");

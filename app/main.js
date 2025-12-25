@@ -16,6 +16,18 @@ function init() {
 
   if (!isAsar()) {
     const pluginPaths = {
+      win32: path.join(path.dirname(__dirname), "./lib/pepflashplayer.dll"),
+      darwin: path.join(
+        path.dirname(__dirname),
+        "./lib/PepperFlashPlayer.plugin",
+      ),
+      linux: path.join(path.dirname(__dirname), "./lib/libpepflashplayer.so"),
+    };
+    const pluginPath = pluginPaths[process.platform];
+    app.commandLine.appendSwitch("ppapi-flash-path", pluginPath);
+    Log.Debug(`Plugin path: ${pluginPath}`);
+  } else {
+    const pluginPaths = {
       win32: path.join(path.dirname(__dirname), "../lib/pepflashplayer.dll"),
       darwin: path.join(
         path.dirname(__dirname),

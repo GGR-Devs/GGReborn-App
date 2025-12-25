@@ -2,7 +2,7 @@
   "name": "ggreborn-app",
   "productName": "GGRebornApp",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "0.0.7",
   "description": "Simple, customizable client with built in flash player to play GoodGame Café, Disco and Fashion.",
   "author": {
     "name": "Bence Fodor",
