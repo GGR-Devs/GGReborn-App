@@ -1,6 +1,6 @@
 
 # GGReborn-App
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://choosealicense.com/licenses/mit/) [![PRE-Release](https://img.shields.io/badge/pre-0.0.7-yellow?style=flat)](https://img.shields.io/badge/pre-0.0.7-yellow?style=flat) [![LATEST-Release](https://img.shields.io/badge/latest-Unknown-red?style=flat)](https://img.shields.io/badge/latest-Unknown-red?style=flat)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://choosealicense.com/licenses/mit/) [![PRE-Release](https://img.shields.io/badge/pre-0.0.8-yellow?style=flat)](https://img.shields.io/badge/pre-0.0.8-yellow?style=flat) [![LATEST-Release](https://img.shields.io/badge/latest-Unknown-red?style=flat)](https://img.shields.io/badge/latest-Unknown-red?style=flat)
 [![DISCORD](https://dcbadge.limes.pink/api/server/fHN8Pk9a3Q?style=flat)](https://discord.gg/fHN8Pk9a3Q)
 
 Simple, customizable client with built in flash player to play GoodGame Café, Disco and Fashion.
