@@ -1,4 +1,0 @@
-theme-set = Uygulama temasını ayarla: {id}
-cant-delete-this-theme = Bu temayı silemezsin!
-cant-delete-used-theme = Kullanımda olan bir temayı silemezsin!
-theme-deleted = {id} Tema silindi

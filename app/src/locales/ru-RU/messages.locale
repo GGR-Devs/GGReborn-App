@@ -1,4 +1,0 @@
-theme-set = Тема приложения установлена на: {id}
-cant-delete-this-theme = Невозможно удалить данную тему!
-cant-delete-used-theme = Нельзя удалить активную тему!
-theme-deleted = тема {id} была удалена
