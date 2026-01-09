@@ -1,8 +1,11 @@
 const remote = require("electron").remote;
 
+const { applyTranslations } = require("../utils/locales");
+
 const win = remote.getCurrentWindow();
 
 function init() {
+  applyTranslations();
   handleWindowControls();
 }
 
