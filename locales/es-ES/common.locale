@@ -1,0 +1,28 @@
+# Shows in the language selection
+language = Spanish
+
+# Window controls
+minimize = Minimizar
+close = Cerrar
+back = Volver
+
+# Buttons
+remove = Quitar
+save = Guardar
+use = Usar
+edit = Editar
+delete = Eliminar
+cancel = Cancelar
+play = Jugar
+
+
+# Navbar
+games = Juegos
+guides = Guías
+news = Noticias
+about = Acerca de
+
+# Server statuses
+offline = Desconectado
+maintence = Mantenimiento
+captures = Capturas
