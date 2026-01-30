@@ -4,7 +4,7 @@
 [![DISCORD](https://dcbadge.limes.pink/api/server/fHN8Pk9a3Q?style=flat)](https://discord.gg/fHN8Pk9a3Q)
 
 Simple, customizable client with built in flash player to play Café Reborn
-![image](https://github.com/user-attachments/assets/a2a90f1d-55d3-46d8-b625-5a5281962c6f)
+![image](https://github.com/user-attachments/assets/b70fe0f4-1800-43aa-8419-abd02158d5e6)
 
 
 ## Looking for translations!
