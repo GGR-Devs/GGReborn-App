@@ -288,10 +288,10 @@ function switchGame(gameName) {
 
   background.style.backgroundImage = `url("../assets/images/games/backgrounds/${gameName}.jpg")`;
   game_title_image.src = `../assets/images/games/titles/${gameName}.png`;
-  game_title_name.innerText = `GoodGame ${gameName.toLowerCase() === "cafe"
+  game_title_name.innerText = `${gameName.toLowerCase() === "cafe"
     ? "Café"
     : gameName.charAt(0).toUpperCase() + gameName.slice(1)
-    }`;
+    } Reborn`;
 
   if (appConfig.favGame == launcherProperties.selectedGame) {
     launcherElements.Buttons.Favourites.isFilled = true;

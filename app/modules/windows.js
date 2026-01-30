@@ -30,6 +30,7 @@ function createWindow(windowOptions, webPreferences) {
     transparent,
     setResizable,
     webPreferences: {
+      plugins,
       nodeIntegration,
       enableRemoteModule,
       webviewTag,
