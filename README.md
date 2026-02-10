@@ -1,5 +1,5 @@
 
-# GGReborn-App
+# OldReborn-App
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://choosealicense.com/licenses/mit/) [![PRE-Release](https://img.shields.io/badge/pre-0.0.8-yellow?style=flat)](https://img.shields.io/badge/pre-0.0.8-yellow?style=flat) [![LATEST-Release](https://img.shields.io/badge/latest-Unknown-red?style=flat)](https://img.shields.io/badge/latest-Unknown-red?style=flat)
 [![DISCORD](https://dcbadge.limes.pink/api/server/fHN8Pk9a3Q?style=flat)](https://discord.gg/fHN8Pk9a3Q)
 
@@ -18,11 +18,11 @@ Feel free to translate the app into your language!
 [Translation Guide]()
 
 ## How to install
- - Download the latest version from [here](https://github.com/GGR-Devs/GGReborn-App/releases).
+ - Download the latest version
  - Open the installer, then follow the steps.
  - If you downloaded the portable: unzip it, then enter the directory.
 
-Once you have installed the application, launch the GGRebornApp executable.
+Once you have installed the application, launch the OldRebornApp executable.
 
 ## Build it yourself
 Make sure you have [Node](https://nodejs.org/en/download/) installed (you can install [Yarn](https://classic.yarnpkg.com/en/docs/install) too).
