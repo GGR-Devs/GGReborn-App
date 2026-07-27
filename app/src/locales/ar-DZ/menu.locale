@@ -1,0 +1,24 @@
+# Menu button texts, area
+menu-discover = استكشف الألعاب
+menu-other = أخرى
+menu-homepage = الصفحة الرئيسية
+menu-news = أخبار
+menu-support = الدعم
+
+# Games button hover information
+menu-cafe-button-tooltip = أنشئ مقهاك الخاص
+menu-disco-button-tooltip = ادارة الديسكو الخاص بك
+menu-fashion-button-tooltip = صمم ازياءك
+
+# Button hover information
+menu-button-tooltip = القائمة
+menu-homepage-button-tooltip = تصفح موقعنا الالكتروني
+menu-news-button-tooltip = تحديثات، فعاليات، إلخ...
+menu-reload-button-tooltip = حدث الصفحة  (CTRL + R)
+menu-accounts-button-tooltip = خزن حساباتك
+menu-settings-button-tooltip = غير إعدادات التطبيق
+menu-support-button-tooltip = تواصل مع فريق دعم GGReborn
+
+# App version, not really needed
+# version-message-preview = Preview
+# version-message-stable = Stable

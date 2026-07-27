@@ -1,0 +1,4 @@
+theme-set = خلفية التطبيق : {id}
+cant-delete-this-theme = لا يمكن حذف هذه الخلفية
+cant-delete-used-theme = لا يمكن حذف الخلفية قيد الاستعمال
+theme-deleted = {id} تم حذف الخلفية

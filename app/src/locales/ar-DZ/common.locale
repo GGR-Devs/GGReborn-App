@@ -1,0 +1,20 @@
+# Shows in the language selection
+language = العربية
+
+# Window controls
+minimize = تصغير
+close = أغلق
+back = رجوع
+
+# Window title
+browse-themes = تصفح الخلفيات
+settings = إعدادات
+saved-accounts = الحسابات المحفوظة
+
+# Common
+remove = إزالة
+save = حفظ
+use = استعمال
+edit = تعديل
+delete = حذف
+cancel = إلغاء
